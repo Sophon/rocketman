@@ -10,7 +10,6 @@ import com.example.rocketman.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
     private lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbarMain)
 
         setupNavigation()
 
