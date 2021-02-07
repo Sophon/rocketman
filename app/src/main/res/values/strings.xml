@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Rocketman</string>
+
+    <string name="nav_menu_company_data">Company data</string>
+    <string name="nav_menu_rocket_data">Rocket data</string>
+    <string name="nav_menu_past_launches">Past launches</string>
+    <string name="nav_menu_upcoming_launches">Upcoming launches</string>
 </resources>
