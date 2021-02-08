@@ -12,5 +12,10 @@
         tools:layout="@layout/fragment_rockets_data"
         />
 
+    <fragment
+        android:id="@+id/company_data"
+        android:name="com.example.rocketman.company.CompanyDataFragment"
+        tools:layout="@layout/fragment_company_data"
+        />
 
 </navigation>
