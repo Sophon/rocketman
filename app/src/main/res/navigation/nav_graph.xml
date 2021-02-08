@@ -9,12 +9,14 @@
     <fragment
         android:id="@+id/rockets_data"
         android:name="com.example.rocketman.rocket.RocketsDataFragment"
+        android:label="@string/nav_menu_rockets_data"
         tools:layout="@layout/fragment_rockets_data"
         />
 
     <fragment
         android:id="@+id/company_data"
         android:name="com.example.rocketman.company.CompanyDataFragment"
+        android:label="@string/nav_menu_company_data"
         tools:layout="@layout/fragment_company_data"
         />
 
