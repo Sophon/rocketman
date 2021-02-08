@@ -11,7 +11,7 @@
         android:id="@+id/group_data"
         >
         <item
-            android:id="@+id/rocket_data"
+            android:id="@+id/rockets_data"
             android:icon="@drawable/ic_rocket"
             android:title="@string/nav_menu_rocket_data"
             />

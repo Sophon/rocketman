@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/rockets_data"
+    >
+
+    <fragment
+        android:id="@+id/rockets_data"
+        android:name="com.example.rocketman.rocket.RocketsDataFragment"
+        tools:layout="@layout/fragment_rockets_data"
+        />
+
 
 </navigation>
