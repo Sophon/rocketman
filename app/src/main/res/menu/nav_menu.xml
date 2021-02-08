@@ -2,27 +2,41 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/rocket_data"
-        android:icon="@drawable/ic_rocket"
-        android:title="@string/nav_menu_rocket_data"
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home"
+        android:title="@string/nav_menu_home"
         />
 
-    <item
-        android:id="@+id/company_data"
-        android:icon="@drawable/ic_company"
-        android:title="@string/nav_menu_company_data"
-        />
+    <group
+        android:id="@+id/group_data"
+        >
+        <item
+            android:id="@+id/rocket_data"
+            android:icon="@drawable/ic_rocket"
+            android:title="@string/nav_menu_rocket_data"
+            />
 
-    <item
-        android:id="@+id/past_launches"
-        android:icon="@drawable/ic_prev"
-        android:title="@string/nav_menu_past_launches"
-        />
+        <item
+            android:id="@+id/company_data"
+            android:icon="@drawable/ic_company"
+            android:title="@string/nav_menu_company_data"
+            />
+    </group>
 
-    <item
-        android:id="@+id/upcoming_launches"
-        android:icon="@drawable/ic_next"
-        android:title="@string/nav_menu_upcoming_launches"
-        />
+    <group
+        android:id="@+id/group_launches"
+        >
+        <item
+            android:id="@+id/past_launches"
+            android:icon="@drawable/ic_prev"
+            android:title="@string/nav_menu_launches_past"
+            />
+
+        <item
+            android:id="@+id/upcoming_launches"
+            android:icon="@drawable/ic_next"
+            android:title="@string/nav_menu_launches_upcoming"
+            />
+    </group>
 
 </menu>
