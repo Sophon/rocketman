@@ -13,11 +13,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/midnight_blue" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_nav_host"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph" />
+
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -29,13 +39,5 @@
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_menu"
         />
-
-    <androidx.fragment.app.FragmentContainerView
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:id="@+id/fragment_nav_host"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
