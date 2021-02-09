@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="nav_header_height">240dp</dimen>
+    <dimen name="nav_header_height">200dp</dimen>
     <dimen name="nav_header_padding">16dp</dimen>
     <dimen name="nav_header_img_dimen">96dp</dimen>
     <dimen name="nav_header_txt_margin">12dp</dimen>
