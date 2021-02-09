@@ -3,6 +3,7 @@
 
     <item
         android:id="@+id/homeFragment"
+        android:checked="true"
         android:icon="@drawable/ic_home"
         android:title="@string/nav_menu_home"
         />
