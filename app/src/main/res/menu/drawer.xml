@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- checkableBehavior must be single for top level destinations -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/group_top"
+        android:checkableBehavior="single"
+        >
+        <item
+            android:id="@+id/nav_home"
+            android:checked="true"
+            android:icon="@drawable/ic_home"
+            android:title="@string/nav_menu_home"
+            />
+
+        <item
+            android:id="@+id/nav_rocket"
+            android:icon="@drawable/ic_rocket"
+            android:title="@string/nav_menu_rockets_data"
+            />
+
+        <item
+            android:id="@+id/nav_company"
+            android:icon="@drawable/ic_company"
+            android:title="@string/nav_menu_company_data"
+            />
+    </group>
+
+</menu>
