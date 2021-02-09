@@ -6,9 +6,9 @@ import retrofit2.http.Query
 
 interface SpaceXApi {
 
-    @GET("/rockets")
-    fun getRockets(): Call<SpaceXResponse>
+    @GET("rockets")
+    fun getRockets(): Call<String>
 
-    @GET("/rockets")
-    fun getRocket(@Query("id") rocketId: String): Call<SpaceXResponse>
+    @GET("rockets")
+    fun getRocket(@Query("id") rocketId: String): Call<String>
 }
