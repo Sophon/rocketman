@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/homeFragment"
+    app:startDestination="@id/drawerFragment"
     >
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.rocketman.home.HomeFragment"
-        android:label="HomeFragment"
-        tools:layout="@layout/fragment_home"
+        android:id="@+id/drawerFragment"
+        android:name="com.example.rocketman.drawer.DrawerFragment"
+        android:label="DrawerFragment"
+        tools:layout="@layout/fragment_drawer"
         />
+
 
 </navigation>
