@@ -16,7 +16,7 @@ private const val KEY_SELECTED_DRAWER_ITEM = "DRAWER_SELECTED_ITEM_ID_KEY"
 class DrawerFragment: Fragment() {
 
     private lateinit var binding: FragmentDrawerBinding
-    private var drawerSelectedItemId = R.id.home
+    private var drawerSelectedItemId = R.id.nav_home
 
     override fun onCreateView(
         inflater: LayoutInflater,
