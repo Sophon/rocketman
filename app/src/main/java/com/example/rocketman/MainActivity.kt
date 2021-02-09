@@ -6,13 +6,16 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
 import com.example.rocketman.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var appBarConfiguration: AppBarConfiguration
     private val navController by lazy {
         (supportFragmentManager
             .findFragmentById(R.id.fragment_nav_host) as NavHostFragment).navController
@@ -29,7 +32,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupNavigationDrawer() {
+        appBarConfiguration = AppBarConfiguration(setOf(
+            R.id.homeFragment,
+            R.id.rocketsDataFragment,
+            R.id.companyDataFragment
+        ), binding.drawerLayout)
+
         navController.let { navController ->
+            binding.navView.setupWithNavController(navController)
             NavigationUI.setupActionBarWithNavController(
                 this,
                 navController,
@@ -41,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
     //region Navigation
     override fun onSupportNavigateUp(): Boolean {
-        return NavigationUI.navigateUp(navController, binding.drawerLayout)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
     override fun onBackPressed() {
