@@ -38,15 +38,13 @@ class MainActivity : AppCompatActivity() {
             R.id.companyDataFragment
         ), binding.drawerLayout)
 
-        navController.let { navController ->
-            binding.navView.setupWithNavController(navController)
-            NavigationUI.setupActionBarWithNavController(
-                this,
-                navController,
-                binding.drawerLayout
-            )
-            NavigationUI.setupWithNavController(binding.navView, navController)
-        }
+        binding.navView.setupWithNavController(navController)
+        NavigationUI.setupActionBarWithNavController(
+            this,
+            navController,
+            binding.drawerLayout
+        )
+        NavigationUI.setupWithNavController(binding.navView, navController)
     }
 
     //region Navigation
