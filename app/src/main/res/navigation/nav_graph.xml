@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment"
+    >
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.rocketman.home.HomeFragment"
+        android:label="@string/nav_menu_home"
+        tools:layout="@layout/fragment_home"
+        />
+
+    <fragment
+        android:id="@+id/rocketsDataFragment"
+        android:name="com.example.rocketman.rocket.RocketsDataFragment"
+        android:label="@string/nav_menu_rockets_data"
+        tools:layout="@layout/fragment_rockets_data"
+        />
+
+    <fragment
+        android:id="@+id/companyDataFragment"
+        android:name="com.example.rocketman.company.CompanyDataFragment"
+        android:label="@string/nav_menu_company_data"
+        tools:layout="@layout/fragment_company_data"
+        />
+
+</navigation>
