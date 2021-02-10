@@ -2,8 +2,6 @@ package com.example.rocketman.company
 
 import android.content.Context
 import com.example.rocketman.common.BASE_URL_SPACEX
-import com.example.rocketman.company.net.SpaceXApi
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.IllegalStateException

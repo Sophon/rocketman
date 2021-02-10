@@ -1,4 +1,4 @@
-package com.example.rocketman.company.net
+package com.example.rocketman.company
 
 import com.example.rocketman.company.model.Company
 import retrofit2.Response
