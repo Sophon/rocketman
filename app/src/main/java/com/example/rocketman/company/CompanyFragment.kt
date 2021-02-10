@@ -41,8 +41,18 @@ class CompanyFragment: Fragment() {
     private fun setupObservers() {
         vm.companyData.observe(
             viewLifecycleOwner
-        ) {
-            Toast.makeText(requireContext(), "success", Toast.LENGTH_SHORT).show()
+        ) { company ->
+            binding.apply {
+                txtFounder.text = "founded by ${company.founder} in ${company.founded}" //TODO: string
+                txtDescription.text = company.summary
+                txtEmployees.text = company.employees.toString()
+                txtVehicles.text = company.vehicles.toString()
+                txtLaunch.text = company.launchSites.toString()
+                txtTest.text = company.testSites.toString()
+                txtValuation.text = company.valuation.toString()
+//                txtHq.text = company.headquarters //TODO: string
+            }
+
         }
     }
 }
