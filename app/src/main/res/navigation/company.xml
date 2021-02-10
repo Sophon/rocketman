@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/companyDataFragment"
-        android:name="com.example.rocketman.company.CompanyDataFragment"
+        android:name="com.example.rocketman.company.CompanyFragment"
         android:label="CompanyData"
         tools:layout="@layout/fragment_company_data"
         />

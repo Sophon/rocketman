@@ -6,7 +6,7 @@
     <string name="close">Close</string>
 
     <string name="nav_menu_home">Home</string>
-    <string name="nav_menu_company_data">Company data</string>
+    <string name="nav_menu_company_data">Company info</string>
     <string name="nav_menu_rockets_data">Rockets data</string>
     <string name="nav_menu_launches">Launches</string>
     <string name="nav_menu_launches_past">Past launches</string>
