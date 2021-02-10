@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="nav_header_height">200dp</dimen>
-    <dimen name="nav_header_padding">16dp</dimen>
-    <dimen name="nav_header_img_dimen">96dp</dimen>
-    <dimen name="nav_header_txt_margin">12dp</dimen>
+    <dimen name="height_nav_header">200dp</dimen>
+    <dimen name="padding_nav_header">16dp</dimen>
+    <dimen name="dimen_nav_header_img">96dp</dimen>
+    <dimen name="margin_nav_header_txt">12dp</dimen>
+
+    <dimen name="widget_margin_small">6dp</dimen>
+    <dimen name="widget_margin_medium">12dp</dimen>
+    <dimen name="widget_margin_large">18dp</dimen>
+    <dimen name="widget_margin_xlarge">24dp</dimen>
+    
+    <dimen name="margin_company_table">90dp</dimen>
 
 </resources>
