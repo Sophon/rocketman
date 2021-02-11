@@ -12,4 +12,7 @@
     
     <dimen name="margin_company_table">90dp</dimen>
 
+    <dimen name="size_text_header">16sp</dimen>
+    <dimen name="size_text_info">12sp</dimen>
+
 </resources>
