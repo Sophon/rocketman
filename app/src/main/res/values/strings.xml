@@ -6,10 +6,17 @@
     <string name="close">Close</string>
 
     <string name="nav_menu_home">Home</string>
-    <string name="nav_menu_company_data">Company data</string>
+    <string name="nav_menu_company_data">About company</string>
     <string name="nav_menu_rockets_data">Rockets data</string>
     <string name="nav_menu_launches">Launches</string>
     <string name="nav_menu_launches_past">Past launches</string>
     <string name="nav_menu_launches_upcoming">Upcoming launches</string>
+
+    <string name="label_company_employees">Employees</string>
+    <string name="label_company_vehicles">Vehicles</string>
+    <string name="label_company_launch">Launch sites</string>
+    <string name="label_company_test">Test sites</string>
+    <string name="label_company_valuation">Valuation</string>
+    <string name="label_company_hq">Headquarters</string>
 
 </resources>
