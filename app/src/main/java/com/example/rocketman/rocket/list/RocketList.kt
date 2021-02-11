@@ -1,13 +1,13 @@
-package com.example.rocketman.rocket
+package com.example.rocketman.rocket.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.rocketman.databinding.FragmentRocketsDataBinding
+import com.example.rocketman.rocket.Repo
 import timber.log.Timber
 
 class RocketList: Fragment() {
@@ -41,7 +41,7 @@ class RocketList: Fragment() {
 
     private fun setupObservers() {
         vm.rockets.observe(viewLifecycleOwner) {
-            Timber.d("bullshit: ${it.size} rockets fetched")
+            //TODO: setupUI
         }
     }
 }
