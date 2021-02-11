@@ -87,7 +87,7 @@ data class FirstStage(
     @SerializedName("engines")
     val engines: Int = 0,
     @SerializedName("fuel_amount_tons")
-    val fuelAmountTons: Int = 0,
+    val fuelAmountTons: Double = 0.0,
     @SerializedName("reusable")
     val reusable: Boolean = false,
     @SerializedName("thrust_sea_level")
@@ -100,7 +100,7 @@ data class Height(
     @SerializedName("feet")
     val feet: Double = 0.0,
     @SerializedName("meters")
-    val meters: Int = 0
+    val meters: Double = 0.0
 )
 
 data class LandingLegs(
@@ -134,7 +134,7 @@ data class SecondStage(
     @SerializedName("engines")
     val engines: Int = 0,
     @SerializedName("fuel_amount_tons")
-    val fuelAmountTons: Int = 0,
+    val fuelAmountTons: Double = 0.0,
     @SerializedName("payloads")
     val payloads: Payloads = Payloads(),
     @SerializedName("reusable")
