@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentCompanyDataBinding
 
 class CompanyFragment: Fragment() {
@@ -43,14 +44,19 @@ class CompanyFragment: Fragment() {
             viewLifecycleOwner
         ) { company ->
             binding.apply {
-                txtFounder.text = "founded by ${company.founder} in ${company.founded}" //TODO: string
+                //TODO: use databinding
+                txtFounder.text = String.format(
+                    getString(R.string.formatting_company_founder),
+                    company.founder,
+                    company.founded
+                )
                 txtDescription.text = company.summary
                 txtEmployees.text = company.employees.toString()
                 txtVehicles.text = company.vehicles.toString()
                 txtLaunch.text = company.launchSites.toString()
                 txtTest.text = company.testSites.toString()
                 txtValuation.text = company.valuation.toString()
-//                txtHq.text = company.headquarters //TODO: string
+                txtHq.text = company.headquarters.toString()
             }
 
         }

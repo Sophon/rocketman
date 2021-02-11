@@ -44,7 +44,11 @@ data class Headquarters(
     val city: String = "",
     @SerializedName("state")
     val state: String = ""
-)
+) {
+    override fun toString(): String {
+        return "$address\n$city\n$state"
+    }
+}
 
 data class Links(
     @SerializedName("elon_twitter")

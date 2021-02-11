@@ -156,7 +156,7 @@
         
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_hq"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/txt_valuation"
             app:layout_constraintStart_toStartOf="parent"
@@ -178,10 +178,12 @@
                 android:id="@+id/txt_hq"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/label_hq"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/widget_margin_small"
+                android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_hq"
                 tools:text="Hybernska 69 Praha"
                 />
             <ImageView

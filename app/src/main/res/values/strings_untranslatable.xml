@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="formatting_company_founder" translatable="false">founded by %1s in %2s</string>
+
+</resources>
