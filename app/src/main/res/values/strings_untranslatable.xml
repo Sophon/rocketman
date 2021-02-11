@@ -2,5 +2,6 @@
 <resources>
 
     <string name="formatting_company_founder" translatable="false">founded by %1s in %2s</string>
+    <string name="formatting_valuation_usd" translatable="false">$%.2f bn</string>
 
 </resources>

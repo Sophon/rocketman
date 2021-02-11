@@ -55,7 +55,10 @@ class CompanyFragment: Fragment() {
                 txtVehicles.text = company.vehicles.toString()
                 txtLaunch.text = company.launchSites.toString()
                 txtTest.text = company.testSites.toString()
-                txtValuation.text = company.valuation.toString()
+                txtValuation.text = String.format(
+                    getString(R.string.formatting_valuation_usd),
+                    company.valuation / 1000000000.0
+                )
                 txtHq.text = company.headquarters.toString()
             }
 
