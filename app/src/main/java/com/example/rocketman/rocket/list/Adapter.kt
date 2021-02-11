@@ -1,5 +1,6 @@
 package com.example.rocketman.rocket.list
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -7,10 +8,13 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.rocketman.databinding.ItemRocketBinding
 import com.example.rocketman.rocket.Rocket
 
-class Adapter: ListAdapter<Rocket, Holder>(DiffCallback()) {
+class Adapter(
+    private val context: Context
+): ListAdapter<Rocket, Holder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(
+            context,
             ItemRocketBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,

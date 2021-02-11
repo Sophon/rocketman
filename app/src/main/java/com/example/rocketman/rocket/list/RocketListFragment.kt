@@ -13,7 +13,7 @@ import com.example.rocketman.rocket.Repo
 import com.example.rocketman.rocket.Rocket
 import timber.log.Timber
 
-class RocketList: Fragment() {
+class RocketListFragment: Fragment() {
 
     private lateinit var binding: FragmentRocketsDataBinding
     private val vm by lazy {
@@ -48,7 +48,7 @@ class RocketList: Fragment() {
     private fun setupRecyclerView() {
         binding.rvRockets.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = Adapter()
+            adapter = Adapter(requireContext())
         }
     }
 
