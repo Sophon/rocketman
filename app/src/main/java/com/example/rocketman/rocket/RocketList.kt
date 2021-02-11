@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.rocketman.databinding.FragmentRocketsDataBinding
 
-class RocketsDataFragment: Fragment() {
+class RocketList: Fragment() {
 
     private lateinit var binding: FragmentRocketsDataBinding
 
