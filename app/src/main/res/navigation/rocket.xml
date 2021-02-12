@@ -18,7 +18,7 @@
             >
             <argument
                 android:name="rocket"
-                app:argType="com.example.rocketman.Rocket"
+                app:argType="com.example.rocketman.rocket.Rocket"
                 />
         </action>
     </fragment>

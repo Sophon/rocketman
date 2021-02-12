@@ -52,14 +52,15 @@ data class Rocket(
     val wikipedia: String = ""
 ): Parcelable
 
-
+@Parcelize
 data class Diameter(
     @SerializedName("feet")
     val feet: Double = 0.0,
     @SerializedName("meters")
     val meters: Double = 0.0
-)
+): Parcelable
 
+@Parcelize
 data class Engines(
     @SerializedName("engine_loss_max")
     val engineLossMax: Int = 0,
@@ -83,8 +84,9 @@ data class Engines(
     val type: String = "",
     @SerializedName("version")
     val version: String = ""
-)
+): Parcelable
 
+@Parcelize
 data class FirstStage(
     @SerializedName("burn_time_sec")
     val burnTimeSec: Int = 0,
@@ -98,29 +100,33 @@ data class FirstStage(
     val thrustSeaLevel: ThrustSeaLevel = ThrustSeaLevel(),
     @SerializedName("thrust_vacuum")
     val thrustVacuum: ThrustVacuum = ThrustVacuum()
-)
+): Parcelable
 
+@Parcelize
 data class Height(
     @SerializedName("feet")
     val feet: Double = 0.0,
     @SerializedName("meters")
     val meters: Double = 0.0
-)
+): Parcelable
 
+@Parcelize
 data class LandingLegs(
     @SerializedName("material")
     val material: String = "",
     @SerializedName("number")
     val number: Int = 0
-)
+): Parcelable
 
+@Parcelize
 data class Mass(
     @SerializedName("kg")
     val kg: Int = 0,
     @SerializedName("lb")
     val lb: Int = 0
-)
+): Parcelable
 
+@Parcelize
 data class PayloadWeight(
     @SerializedName("id")
     val id: String = "",
@@ -130,8 +136,9 @@ data class PayloadWeight(
     val lb: Int = 0,
     @SerializedName("name")
     val name: String = ""
-)
+): Parcelable
 
+@Parcelize
 data class SecondStage(
     @SerializedName("burn_time_sec")
     val burnTimeSec: Int = 0,
@@ -145,46 +152,52 @@ data class SecondStage(
     val reusable: Boolean = false,
     @SerializedName("thrust")
     val thrust: Thrust = Thrust()
-)
+): Parcelable
 
+@Parcelize
 data class Isp(
     @SerializedName("sea_level")
     val seaLevel: Int = 0,
     @SerializedName("vacuum")
     val vacuum: Int = 0
-)
+): Parcelable
 
+@Parcelize
 data class ThrustSeaLevel(
     @SerializedName("kN")
     val kN: Int = 0,
     @SerializedName("lbf")
     val lbf: Int = 0
-)
+): Parcelable
 
+@Parcelize
 data class ThrustVacuum(
     @SerializedName("kN")
     val kN: Int = 0,
     @SerializedName("lbf")
     val lbf: Int = 0
-)
+): Parcelable
 
+@Parcelize
 data class Payloads(
     @SerializedName("composite_fairing")
     val compositeFairing: CompositeFairing = CompositeFairing(),
     @SerializedName("option_1")
     val option1: String = ""
-)
+): Parcelable
 
+@Parcelize
 data class Thrust(
     @SerializedName("kN")
     val kN: Int = 0,
     @SerializedName("lbf")
     val lbf: Int = 0
-)
+): Parcelable
 
+@Parcelize
 data class CompositeFairing(
     @SerializedName("diameter")
     val diameter: Diameter = Diameter(),
     @SerializedName("height")
     val height: Height = Height()
-)
+): Parcelable
