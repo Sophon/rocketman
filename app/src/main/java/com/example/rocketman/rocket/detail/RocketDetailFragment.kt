@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.rocketman.databinding.FragmentRocketDetailBinding
 import com.example.rocketman.rocket.Rocket
+import kotlinx.android.synthetic.main.fragment_rocket_detail.*
 
 class RocketDetailFragment: Fragment() {
 
@@ -39,6 +40,16 @@ class RocketDetailFragment: Fragment() {
     private fun setupUI() {
         binding.apply {
             txtName.text = rocket.name
+            checkActive.isChecked = rocket.active
+            txtFirstFlight.text = "First flight: ${rocket.firstFlight}"
+            txt_stages.text = "Stages: ${rocket.stages}"
+            txtBoosters.text = "Boosters: ${rocket.boosters}"
+            txtCost.text = "Cost per launch: ${rocket.costPerLaunch}"
+            txtSuccess.text = "Success pct: ${rocket.successRatePct}%"
+            txtCountry.text = "Country: ${rocket.country}"
+            txtHeight.text = rocket.height.toString()
+            txtMass.text = rocket.mass.toString()
+            txtDescription.text = rocket.description
         }
     }
 
