@@ -1,12 +1,18 @@
 package com.example.rocketman.company
 
 import android.content.Context
+import androidx.room.Room
 import com.example.rocketman.common.BASE_URL_SPACEX
+import com.example.rocketman.db.Database
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import timber.log.Timber
 import java.lang.IllegalStateException
 
 private const val ERROR_MSG_NO_INSTANCE = "Company repository must be initialized!"
+private const val ERROR_MSG_API = "failed to fetch remote company info"
+private const val SUCCESS_MSG_API = "successfully fetched remote company info"
+private const val TAG = "CompanyRepo"
 
 class Repo private constructor(context: Context) {
 
@@ -18,7 +24,28 @@ class Repo private constructor(context: Context) {
             .create(Api::class.java)
     }
 
-    suspend fun getCompanyData() = api.getCompanyInfo()
+    private val dao: Database = Room.databaseBuilder(
+        context,
+        Database::class.java,
+        Database.NAME_DB
+    ).build()
+
+    suspend fun getRemoteCompanyData() = api.getCompanyInfo()
+
+    fun getLocalCompanyData() = dao.companyDao().getCompanyData()
+
+    suspend fun updateLocalCompanyData() {
+        val response = getRemoteCompanyData()
+
+        if(response.isSuccessful) {
+            Timber.d("$TAG: $SUCCESS_MSG_API")
+            response.body()?.let {
+                dao.companyDao().saveCompanyData(it)
+            }
+        } else {
+            Timber.d("$TAG: $ERROR_MSG_API")
+        }
+    }
 
     companion object {
         private var INSTANCE: Repo? = null

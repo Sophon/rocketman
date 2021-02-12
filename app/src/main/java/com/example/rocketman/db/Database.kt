@@ -18,4 +18,8 @@ import com.example.rocketman.company.Dao
 abstract class Database: RoomDatabase() {
 
     abstract fun companyDao(): Dao
+
+    companion object {
+        const val NAME_DB = "Rocket database"
+    }
 }
