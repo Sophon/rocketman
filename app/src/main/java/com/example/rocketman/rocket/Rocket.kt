@@ -108,7 +108,15 @@ data class Height(
     val feet: Double = 0.0,
     @SerializedName("meters")
     val meters: Double = 0.0
-): Parcelable
+): Parcelable {
+    fun toStringMetric(): String {
+        return "Height: $meters m"
+    }
+
+    fun toStringImperial(): String {
+        return "Height: $feet ft"
+    }
+}
 
 @Parcelize
 data class LandingLegs(
@@ -124,7 +132,15 @@ data class Mass(
     val kg: Int = 0,
     @SerializedName("lb")
     val lb: Int = 0
-): Parcelable
+): Parcelable {
+    fun toStringMetric(): String {
+        return "Mass: $kg kg"
+    }
+
+    fun toStringImperial(): String {
+        return "Mass: $lb lbs"
+    }
+}
 
 @Parcelize
 data class PayloadWeight(

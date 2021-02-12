@@ -4,5 +4,10 @@
     <string name="formatting_company_founder" translatable="false">founded by %1s in %2s</string>
     <string name="formatting_valuation_usd" translatable="false">$%.2f bn</string>
     <string name="formatting_rocket_first_flight" translatable="false">First flight: %1s</string>
+    <string name="formatting_rocket_boosters" translatable="false">Boosters: %1d</string>
+    <string name="formatting_rocket_stages" translatable="false">Stages: %1d</string>
+    <string name="formatting_rocket_cost" translatable="false">Cost per launch: $%1d</string>
+    <string name="formatting_rocket_success" translatable="false">Success rate pct: %1d</string>
+    <string name="formatting_rocket_country" translatable="false">Country: %1s</string>
 
 </resources>
