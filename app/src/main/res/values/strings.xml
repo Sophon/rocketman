@@ -20,4 +20,6 @@
     <string name="label_company_valuation">Valuation</string>
     <string name="label_company_hq">Headquarters</string>
 
+    <string name="check_rocket_detail_active">Active</string>
+
 </resources>
