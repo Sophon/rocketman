@@ -22,5 +22,6 @@
     <dimen name="size_height_rocket_desc">100dp</dimen>
 
     <dimen name="size_rocket_detail_technical">120dp</dimen>
+    <dimen name="size_rocket_detail_img">200dp</dimen>
 
 </resources>

@@ -115,4 +115,14 @@
         tools:text="Very very long text"
         />
 
+    <ImageView
+        android:id="@+id/img_rocket"
+        android:layout_width="@dimen/size_rocket_detail_img"
+        android:layout_height="@dimen/size_rocket_detail_img"
+        android:layout_marginTop="@dimen/widget_margin_large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_description"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

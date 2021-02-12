@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentRocketDetailBinding
 import com.example.rocketman.rocket.Rocket
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_rocket_detail.*
 
 class RocketDetailFragment: Fragment() {
@@ -57,6 +58,15 @@ class RocketDetailFragment: Fragment() {
             txtHeight.text = rocket.height.toStringMetric()
             txtMass.text = rocket.mass.toStringMetric()
             txtDescription.text = rocket.description
+
+            if(rocket.flickrImages.isNotEmpty()) {
+                Picasso.get()
+                    .load(rocket.flickrImages[0])
+                    .placeholder(R.drawable.ic_rocket)
+                    .fit()
+                    .centerCrop()
+                    .into(imgRocket)
+            }
         }
     }
 
