@@ -15,7 +15,7 @@ class Repo private constructor(context: Context) {
             .baseUrl(BASE_URL_SPACEX)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(SpaceXApi::class.java)
+            .create(Api::class.java)
     }
 
     suspend fun getCompanyData() = api.getCompanyInfo()
