@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_rocket"
-    app:startDestination="@id/rocketsDataFragment"
+    app:startDestination="@id/rocketListFragment"
     >
 
     <fragment
-        android:id="@+id/rocketsDataFragment"
+        android:id="@+id/rocketListFragment"
         android:name="com.example.rocketman.rocket.list.RocketListFragment"
-        android:label="RocketsData"
+        android:label="@string/nav_menu_rocket_list"
         tools:layout="@layout/fragment_rocket_list"
         />
 

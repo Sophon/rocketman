@@ -7,15 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.ListAdapter
-import com.example.rocketman.databinding.FragmentRocketsDataBinding
+import com.example.rocketman.databinding.FragmentRocketListBinding
 import com.example.rocketman.rocket.Repo
 import com.example.rocketman.rocket.Rocket
-import timber.log.Timber
 
 class RocketListFragment: Fragment() {
 
-    private lateinit var binding: FragmentRocketsDataBinding
+    private lateinit var binding: FragmentRocketListBinding
     private val vm by lazy {
         ViewModelProvider(this).get(RocketListVM::class.java)
     }
@@ -31,7 +29,7 @@ class RocketListFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentRocketsDataBinding.inflate(inflater)
+        binding = FragmentRocketListBinding.inflate(inflater)
 
         setupRecyclerView()
 
