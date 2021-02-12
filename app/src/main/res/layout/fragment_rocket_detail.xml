@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/widget_margin_medium">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/size_text_header"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Elton John"
+        />
+
+    <CheckBox
+        android:id="@+id/check_active"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/widget_margin_medium"
+        android:clickable="false"
+        android:text="@string/check_rocket_detail_active"
+        android:textSize="@dimen/size_text_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_name"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_first_flight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/check_active"
+        tools:text="first flight here and there"
+        />
+
+    <ScrollView
+        android:id="@+id/layout_technical"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/widget_margin_medium"
+        android:layout_height="@dimen/size_rocket_detail_technical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_first_flight"
+        android:fadeScrollbars="false"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_stages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Stages: 2"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_boosters"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Boosters: 3"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Cost per launch: 99999"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_success"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Success rate: 150%"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Country: USA"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Height: 300m"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_mass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Mass: 200kg"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/widget_margin_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_technical"
+        tools:text="Very very long text"
+        />
+
+    <ImageView
+        android:id="@+id/img_rocket"
+        android:layout_width="@dimen/size_rocket_detail_img"
+        android:layout_height="@dimen/size_rocket_detail_img"
+        android:layout_marginTop="@dimen/widget_margin_large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_description"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

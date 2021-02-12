@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'androidx.navigation.safeargs'
+    id 'org.jetbrains.kotlin.android.extensions'
 }
 
 android {
@@ -61,4 +63,7 @@ dependencies {
 
     //Logging
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

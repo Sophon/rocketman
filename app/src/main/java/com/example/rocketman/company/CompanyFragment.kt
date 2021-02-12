@@ -44,7 +44,7 @@ class CompanyFragment: Fragment() {
             viewLifecycleOwner
         ) { company ->
             binding.apply {
-                //TODO: use databinding
+                //TODO: use databinding?
                 txtFounder.text = String.format(
                     getString(R.string.formatting_company_founder),
                     company.founder,
