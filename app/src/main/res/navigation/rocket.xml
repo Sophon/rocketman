@@ -10,7 +10,7 @@
         android:id="@+id/rocketsDataFragment"
         android:name="com.example.rocketman.rocket.list.RocketListFragment"
         android:label="RocketsData"
-        tools:layout="@layout/fragment_rockets_data"
+        tools:layout="@layout/fragment_rocket_list"
         />
 
 </navigation>
