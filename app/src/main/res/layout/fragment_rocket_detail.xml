@@ -39,71 +39,69 @@
         tools:text="first flight here and there"
         />
 
-    <LinearLayout
+    <ScrollView
         android:id="@+id/layout_technical"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="@dimen/size_rocket_detail_technical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_first_flight"
-        android:orientation="vertical"
         >
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/txt_stages"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Stages: 2"
-            />
+            android:orientation="vertical"
+            >
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_stages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Stages: 2"
+                />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/txt_boosters"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Boosters: 3"
-            />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_boosters"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Boosters: 3"
+                />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/txt_cost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Cost per launch: 99999"
-            />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Cost per launch: 99999"
+                />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/txt_success"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Success rate: 150%"
-            />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_success"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Success rate: 150%"
+                />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/txt_country"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Country: USA"
-            />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Country: USA"
+                />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/txt_height"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Height: 300m"
-            />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Height: 300m"
+                />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/txt_width"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Width: 100m"
-            />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_mass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Mass: 200kg"
+                />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/txt_mass"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Mass: 200kg"
-            />
-
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_description"
