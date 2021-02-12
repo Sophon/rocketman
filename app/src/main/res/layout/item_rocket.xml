@@ -43,7 +43,7 @@
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_description"
         android:layout_width="@dimen/size_width_rocket_desc"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/size_height_rocket_desc"
         android:textSize="@dimen/size_text_info"
         app:layout_constraintBottom_toBottomOf="@id/img_rocket"
         app:layout_constraintEnd_toEndOf="parent"

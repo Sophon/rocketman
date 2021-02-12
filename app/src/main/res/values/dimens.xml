@@ -18,5 +18,6 @@
     <dimen name="size_item_rocket">174dp</dimen>
     <dimen name="size_img_rocket">150dp</dimen>
     <dimen name="size_width_rocket_desc">160dp</dimen>
+    <dimen name="size_height_rocket_desc">100dp</dimen>
 
 </resources>
