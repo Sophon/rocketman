@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Rocketman</string>
+    <string name="app_name">RocketMan</string>
     <string name="app_slogan">Sky is NOT the limit!</string>
 
     <string name="open">Open</string>
@@ -11,6 +11,7 @@
     <string name="nav_menu_launches">Launches</string>
     <string name="nav_menu_launches_past">Past launches</string>
     <string name="nav_menu_launches_upcoming">Upcoming launches</string>
+    <string name="nav_rocket_detail">Rocket detail</string>
 
     <string name="label_company_employees">Employees</string>
     <string name="label_company_vehicles">Vehicles</string>

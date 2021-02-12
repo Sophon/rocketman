@@ -11,6 +11,27 @@
         android:name="com.example.rocketman.rocket.list.RocketListFragment"
         android:label="@string/nav_menu_rocket_list"
         tools:layout="@layout/fragment_rocket_list"
-        />
+        >
+        <action
+            android:id="@+id/action_rocket_list_to_rocket_detail"
+            app:destination="@+id/rocketsDetailFragment"
+            >
+            <argument
+                android:name="rocketId"
+                app:argType="string"
+                />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/rocketsDetailFragment"
+        android:name="com.example.rocketman.rocket.detail.RocketDetailFragment"
+        android:label="@string/nav_rocket_detail"
+        >
+        <argument
+            android:name="rocketId"
+            app:argType="string"
+            />
+    </fragment>
 
 </navigation>
