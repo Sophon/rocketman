@@ -1,7 +1,10 @@
-package com.example.rocketman.company.model
+package com.example.rocketman.company
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity
 data class Company(
     @SerializedName("ceo")
     val ceo: String = "",
@@ -19,6 +22,7 @@ data class Company(
     val founder: String = "",
     @SerializedName("headquarters")
     val headquarters: Headquarters = Headquarters(),
+    @PrimaryKey
     @SerializedName("id")
     val id: String = "",
     @SerializedName("launch_sites")
@@ -59,4 +63,8 @@ data class Links(
     val twitter: String = "",
     @SerializedName("website")
     val website: String = ""
-)
+) {
+    override fun toString(): String {
+        return "$elonTwitter;$flickr;$twitter;$website"
+    }
+}

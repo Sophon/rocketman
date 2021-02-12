@@ -3,7 +3,6 @@ package com.example.rocketman.company
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rocketman.company.model.Company
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
