@@ -17,8 +17,8 @@
             app:destination="@+id/rocketsDetailFragment"
             >
             <argument
-                android:name="rocketId"
-                app:argType="string"
+                android:name="rocket"
+                app:argType="com.example.rocketman.Rocket"
                 />
         </action>
     </fragment>
@@ -29,8 +29,8 @@
         android:label="@string/nav_rocket_detail"
         >
         <argument
-            android:name="rocketId"
-            app:argType="string"
+            android:name="rocket"
+            app:argType="com.example.rocketman.rocket.Rocket"
             />
     </fragment>
 

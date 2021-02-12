@@ -2,6 +2,7 @@ package com.example.rocketman.rocket.list
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.View
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -16,7 +17,7 @@ class Holder(
     private val binding: ItemRocketBinding
 ): RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
-    private lateinit var rocketId: String
+    private lateinit var rocket: Rocket
 
     init {
         itemView.setOnClickListener(this)
@@ -24,13 +25,13 @@ class Holder(
 
     override fun onClick(v: View?) {
         val args = Bundle().apply {
-            putSerializable(RocketDetailFragment.ARG_ROCKET_ID, rocketId)
+            putParcelable(RocketDetailFragment.ARG_ROCKET_ID, rocket)
         }
         v?.findNavController()?.navigate(R.id.action_rocket_list_to_rocket_detail, args)
     }
 
     fun bind(rocket: Rocket) {
-        rocketId = rocket.id
+        this.rocket = rocket
 
         binding.apply {
             txtName.text = rocket.name

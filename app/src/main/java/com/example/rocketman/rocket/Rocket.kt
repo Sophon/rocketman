@@ -1,7 +1,10 @@
 package com.example.rocketman.rocket
+
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 data class Rocket(
     @SerializedName("active")
     val active: Boolean = false,
@@ -47,7 +50,8 @@ data class Rocket(
     val type: String = "",
     @SerializedName("wikipedia")
     val wikipedia: String = ""
-)
+): Parcelable
+
 
 data class Diameter(
     @SerializedName("feet")
