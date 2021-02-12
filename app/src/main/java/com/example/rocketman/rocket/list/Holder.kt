@@ -19,6 +19,7 @@ class Holder(
                 context.getString(R.string.formatting_rocket_first_flight),
                 rocket.firstFlight
             )
+            txtDescription.text = rocket.description
 
             if(rocket.flickrImages.isNotEmpty()) {
                 Picasso.get()

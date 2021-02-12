@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/size_item_rocket"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginVertical="@dimen/widget_margin_small"
+    android:layout_margin="@dimen/widget_margin_medium"
     >
 
     <ImageView
         android:id="@+id/img_rocket"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="@dimen/size_img_rocket"
+        android:layout_height="@dimen/size_img_rocket"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        tools:background="@drawable/ic_rocket"
         />
-
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_name"
@@ -25,7 +26,7 @@
         android:textSize="@dimen/size_text_header"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/img_rocket"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/img_rocket"
         tools:text="Elton John"
         />
 
@@ -37,6 +38,20 @@
         app:layout_constraintStart_toStartOf="@id/txt_name"
         android:textSize="@dimen/size_text_info"
         tools:text="2020-12-02"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_description"
+        android:layout_width="@dimen/size_width_rocket_desc"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/size_text_info"
+        app:layout_constraintBottom_toBottomOf="@id/img_rocket"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/txt_name"
+        app:layout_constraintTop_toBottomOf="@id/txt_first_flight"
+        app:layout_constraintVertical_bias="0"
+        tools:text="Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum "
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
