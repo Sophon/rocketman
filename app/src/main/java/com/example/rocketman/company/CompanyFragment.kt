@@ -20,8 +20,6 @@ class CompanyFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setHasOptionsMenu(true)
-
         Repo.init(requireContext())
     }
 
@@ -31,7 +29,6 @@ class CompanyFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCompanyDataBinding.inflate(inflater)
-        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbarCompany)
         return binding.root
     }
 
@@ -47,18 +44,6 @@ class CompanyFragment: Fragment() {
         setupObservers()
     }
     //endregion
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
-            R.id.update -> {
-                vm.updateCompanyInfo()
-                true
-            }
-            else -> {
-                super.onOptionsItemSelected(item)
-            }
-        }
-    }
 
     private fun setupObservers() {
         vm.companyData.observe(
