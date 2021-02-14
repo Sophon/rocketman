@@ -2,7 +2,7 @@ package com.example.rocketman.company
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.rocketman.R
@@ -31,7 +31,7 @@ class CompanyFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCompanyDataBinding.inflate(inflater)
-
+        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbarCompany)
         return binding.root
     }
 
