@@ -32,7 +32,7 @@ class Repo private constructor(context: Context) {
         Database.NAME_DB
     ).build()
 
-    suspend fun getRemoteCompanyData() = api.getCompanyInfo()
+    private suspend fun getRemoteCompanyData() = api.getCompanyInfo()
 
     fun getLocalCompanyData() = dao.companyDao().getCompanyData()
 
