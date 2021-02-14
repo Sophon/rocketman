@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentDrawerBinding
+import kotlinx.android.synthetic.main.fragment_drawer.*
 
 private const val KEY_SELECTED_DRAWER_ITEM = "DRAWER_SELECTED_ITEM_ID_KEY"
 
@@ -24,6 +26,7 @@ class DrawerFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDrawerBinding.inflate(inflater)
+        (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar_home)
         return binding.root
     }
 

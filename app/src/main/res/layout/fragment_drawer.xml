@@ -18,13 +18,18 @@
         tools:context="com.example.rocketman.drawer.DrawerFragment"
         >
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar_home"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/midnight_blue"
-            app:titleTextColor="@color/white"
-            />
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/midnight_blue"
+                app:titleTextColor="@color/white"
+                />
+        </com.google.android.material.appbar.AppBarLayout>
 
         <!-- Do not add: app:navGraph="@navigation/graph"
         or: android:name="androidx.navigation.fragment.NavHostFragment" -->
