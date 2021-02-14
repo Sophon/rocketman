@@ -18,9 +18,10 @@ class CompanyVM: ViewModel() {
 
     init {
         getCompanyInfo()
+        updateCompanyInfo()
     }
 
-    fun updateCompanyInfo() {
+    private fun updateCompanyInfo() {
         viewModelScope.launch {
             repo.updateLocalCompanyData()
             getCompanyInfo()
