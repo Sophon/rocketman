@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import com.example.rocketman.common.BASE_URL_SPACEX
 import com.example.rocketman.db.Database
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
@@ -40,7 +42,9 @@ class Repo private constructor(context: Context) {
         if(response.isSuccessful) {
             Timber.d("$TAG: $SUCCESS_MSG_API")
             response.body()?.let {
-                dao.companyDao().saveCompanyData(it)
+                withContext(Dispatchers.IO) {
+                    dao.companyDao().saveCompanyData(it)
+                }
             }
         } else {
             Timber.d("$TAG: $ERROR_MSG_API")
