@@ -2,7 +2,6 @@ package com.example.rocketman.rocket.list
 
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -58,8 +57,12 @@ class RocketListFragment: Fragment() {
     private fun setupToolbar() {
         requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
             toolbar = this
-            menu.clear()
             inflateMenu(R.menu.rocket_list)
+
+            vm.activeOnly.observe(viewLifecycleOwner) {
+                menu.findItem(R.id.menu_check_active).isChecked = it
+            }
+
             setOnMenuItemClickListener {
                 when(it.itemId) {
                     R.id.menu_check_active -> {
