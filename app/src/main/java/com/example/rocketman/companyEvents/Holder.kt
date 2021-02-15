@@ -1,10 +1,6 @@
 package com.example.rocketman.companyEvents
 
-import android.content.Context
-import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rocketman.R
 import com.example.rocketman.databinding.ItemEventBinding
 
 class Holder(

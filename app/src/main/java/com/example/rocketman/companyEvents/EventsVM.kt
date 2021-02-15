@@ -14,9 +14,6 @@ class EventsVM: ViewModel() {
         getEvents()
     }
 
-    fun updateEvents() {
-    }
-
     fun getEvents() {
         viewModelScope.launch {
             repo.getRemoteEvents().body()?.let {
