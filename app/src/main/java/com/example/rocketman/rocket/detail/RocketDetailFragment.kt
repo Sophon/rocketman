@@ -14,14 +14,9 @@ import kotlinx.android.synthetic.main.fragment_rocket_detail.*
 
 class RocketDetailFragment: Fragment() {
 
-    private lateinit var rocket: Rocket
-
     private lateinit var binding: FragmentRocketDetailBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        rocket = arguments?.getParcelable(ARG_ROCKET_ID)!!
+    private val vm by lazy {
+        ViewModelProvider(this).get(RocketDetailVM::class.java)
     }
 
     override fun onCreateView(
@@ -36,38 +31,45 @@ class RocketDetailFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupUI()
+        setupObservers()
+        loadRocket()
     }
 
-    private fun setupUI() {
-        binding.apply {
-            txtName.text = rocket.name
-            checkActive.isChecked = rocket.active
-            txtFirstFlight.text = String
-                .format(getString(R.string.formatting_rocket_first_flight), rocket.firstFlight)
-            txt_stages.text = String
-                .format(getString(R.string.formatting_rocket_stages), rocket.stages)
-            txtBoosters.text = String
-                .format(getString(R.string.formatting_rocket_boosters), rocket.boosters)
-            txtCost.text = String
-                .format(getString(R.string.formatting_rocket_cost), rocket.costPerLaunch)
-            txtSuccess.text = String
-                .format(getString(R.string.formatting_rocket_success), rocket.successRatePct)
-            txtCountry.text = String
-                .format(getString(R.string.formatting_rocket_country), rocket.country)
-            txtHeight.text = rocket.height.toStringMetric()
-            txtMass.text = rocket.mass.toStringMetric()
-            txtDescription.text = rocket.description
+    private fun setupObservers() {
+        vm.rocket.observe(viewLifecycleOwner) { rocket ->
+            binding.apply {
+                txtName.text = rocket.name
+                checkActive.isChecked = rocket.active
+                txtFirstFlight.text = String
+                    .format(getString(R.string.formatting_rocket_first_flight), rocket.firstFlight)
+                txt_stages.text = String
+                    .format(getString(R.string.formatting_rocket_stages), rocket.stages)
+                txtBoosters.text = String
+                    .format(getString(R.string.formatting_rocket_boosters), rocket.boosters)
+                txtCost.text = String
+                    .format(getString(R.string.formatting_rocket_cost), rocket.costPerLaunch)
+                txtSuccess.text = String
+                    .format(getString(R.string.formatting_rocket_success), rocket.successRatePct)
+                txtCountry.text = String
+                    .format(getString(R.string.formatting_rocket_country), rocket.country)
+                txtHeight.text = rocket.height.toStringMetric()
+                txtMass.text = rocket.mass.toStringMetric()
+                txtDescription.text = rocket.description
 
-            if(rocket.flickrImages.isNotEmpty()) {
-                Picasso.get()
-                    .load(rocket.flickrImages[0])
-                    .placeholder(R.drawable.ic_rocket)
-                    .fit()
-                    .centerCrop()
-                    .into(imgRocket)
+                if(rocket.flickrImages.isNotEmpty()) {
+                    Picasso.get()
+                        .load(rocket.flickrImages[0])
+                        .placeholder(R.drawable.ic_rocket)
+                        .fit()
+                        .centerCrop()
+                        .into(imgRocket)
+                }
             }
         }
+    }
+
+    private fun loadRocket() {
+        vm.rocket.postValue(arguments?.getParcelable(ARG_ROCKET_ID))
     }
 
     companion object {
