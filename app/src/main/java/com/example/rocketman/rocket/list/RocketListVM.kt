@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rocketman.rocket.Repo
 import com.example.rocketman.rocket.Rocket
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -19,19 +20,20 @@ class RocketListVM: ViewModel() {
 
     init {
         getRockets()
+        updateRockets()
+    }
+
+    private fun updateRockets() {
+        viewModelScope.launch {
+            repo.updateLocalRockets()
+            getRockets()
+        }
     }
 
     private fun getRockets() {
         viewModelScope.launch {
-            val response = repo.getRockets()
-            if(response.isSuccessful) {
-                Timber.d("$TAG: $MSG_SUCCESS")
-                response.body()?.let {
-                    Timber.d("$TAG: ${it.size} rockets fetched")
-                    rockets.postValue(it)
-                }
-            } else {
-                Timber.e("$TAG: $MSG_ERROR")
+            repo.getLocalRockets().collect {
+                rockets.postValue(it)
             }
         }
     }
