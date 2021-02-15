@@ -6,14 +6,20 @@ import androidx.room.TypeConverters
 import com.example.rocketman.company.Company
 import com.example.rocketman.company.CompanyTypeConverter
 import com.example.rocketman.company.Dao
+import com.example.rocketman.rocket.Rocket
+import com.example.rocketman.rocket.RocketTypeConverter
 
 @Database(
-    entities = [ Company::class ],
+    entities = [
+        Company::class,
+        Rocket::class
+    ],
     exportSchema = true,
-    version = 1
+    version = 2
 )
 @TypeConverters(
-    CompanyTypeConverter::class
+    CompanyTypeConverter::class,
+    RocketTypeConverter::class
 )
 abstract class Database: RoomDatabase() {
 
