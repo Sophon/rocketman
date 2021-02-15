@@ -1,26 +1,26 @@
-package com.example.rocketman.rocket.list
+package com.example.rocketman.companyEvents
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rocketman.R
-import com.example.rocketman.databinding.FragmentRocketListBinding
-import com.example.rocketman.rocket.Repo
-import com.example.rocketman.rocket.Rocket
+import com.example.rocketman.databinding.FragmentEventsBinding
 import com.google.android.material.appbar.MaterialToolbar
-import timber.log.Timber
+import kotlinx.android.synthetic.main.fragment_drawer.view.*
 
-class RocketListFragment: Fragment() {
+class EventsFragment: Fragment() {
 
-    private lateinit var binding: FragmentRocketListBinding
+    private lateinit var binding: FragmentEventsBinding
     private lateinit var toolbar: MaterialToolbar
     private val vm by lazy {
-        ViewModelProvider(this).get(RocketListVM::class.java)
+        ViewModelProvider(this).get(EventsVM::class.java)
     }
 
-    //region lifecycle
+    //region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -32,7 +32,7 @@ class RocketListFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentRocketListBinding.inflate(inflater)
+        binding = FragmentEventsBinding.inflate(inflater)
 
         setupRecyclerView()
 
@@ -54,56 +54,52 @@ class RocketListFragment: Fragment() {
     override fun onPause() {
         super.onPause()
 
-        Timber.d("toolbar: clearing up")
         toolbar.menu.clear()
     }
-
     //endregion
 
-    private fun setupToolbar() {
-        Timber.d("toolbar: setting up")
-        requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
-            toolbar = this
-            inflateMenu(R.menu.rocket_list)
-
-            vm.activeOnly.observe(viewLifecycleOwner) {
-                menu.findItem(R.id.menu_check_active).isChecked = it
-            }
-
-            setOnMenuItemClickListener {
-                when(it.itemId) {
-                    R.id.menu_check_active -> {
-                        vm.toggleActiveOnly()
-                        true
-                    }
-                    R.id.menu_refresh -> {
-                        vm.updateRockets()
-                        true
-                    }
-                    else -> {
-                        true
-                    }
-                }
-            }
-        }
-    }
-
-    //region RecyclerView
+    //region RV
     private fun setupRecyclerView() {
-        binding.rvRockets.apply {
+        binding.rvEvents.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = Adapter(requireContext())
         }
     }
 
-    private fun updateList(rocketList: List<Rocket>) {
-        (binding.rvRockets.adapter as Adapter).submitList(rocketList)
+    private fun updateList(eventList: List<Event>) {
+        (binding.rvEvents.adapter as Adapter).submitList(eventList)
     }
     //endregion
 
     private fun setupObservers() {
-        vm.rockets.observe(viewLifecycleOwner) {
+        vm.events.observe(viewLifecycleOwner) {
             updateList(it)
+        }
+    }
+
+    private fun setupToolbar() {
+        requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
+            toolbar = this
+            inflateMenu(R.menu.events)
+            setOnMenuItemClickListener {
+                when(it.itemId) {
+                    R.id.menu_refresh -> {
+                        vm.getEvents()
+                        true
+                    }
+                    R.id.ascending -> {
+                        it.isChecked = true
+                        vm.sortAscending()
+                        true
+                    }
+                    R.id.descending -> {
+                        it.isChecked = true
+                        vm.sortDescending()
+                        true
+                    }
+                    else -> super.onOptionsItemSelected(it)
+                }
+            }
         }
     }
 }

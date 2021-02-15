@@ -38,7 +38,8 @@ class RocketListVM: ViewModel() {
         }
     }
 
-    private fun updateRockets() {
+    fun updateRockets() {
+        Timber.d("$TAG: refreshing")
         viewModelScope.launch {
             repo.updateLocalRockets()
             getRockets()

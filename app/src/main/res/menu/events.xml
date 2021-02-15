@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_refresh"
+        android:title="@string/menu_refresh"
+        android:icon="@drawable/ic_baseline_refresh_24"
+        app:showAsAction="ifRoom"
+        />
+
+    <group
+        android:checkableBehavior="single"
+        >
+        <item
+            android:id="@+id/ascending"
+            android:title="@string/menu_sort_asc"
+            app:showAsAction="never"
+            />
+        <item
+            android:id="@+id/descending"
+            android:checked="true"
+            android:title="@string/menu_sort_desc"
+            app:showAsAction="never"
+            />
+    </group>
+
+</menu>
