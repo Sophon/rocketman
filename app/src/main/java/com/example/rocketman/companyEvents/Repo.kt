@@ -18,7 +18,7 @@ class Repo private constructor(context: Context) {
             .create(Api::class.java)
     }
 
-    private suspend fun getRemoteEvents() = api.getEvents()
+    suspend fun getRemoteEvents() = api.getEvents()
 
     companion object {
         private var INSTANCE: Repo? = null
