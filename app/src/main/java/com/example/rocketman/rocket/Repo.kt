@@ -32,7 +32,7 @@ class Repo private constructor(context: Context) {
         Database.NAME_DB,
     ).build()
 
-    suspend fun getRemoteRockets() = api.getRockets()
+    private suspend fun getRemoteRockets() = api.getRockets()
 
     fun getLocalRockets() = dao.rocketDao().getRockets()
 

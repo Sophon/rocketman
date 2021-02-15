@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.Flow
 interface CompanyDao {
 
     @Query("SELECT * FROM company LIMIT 1")
-    abstract fun getCompanyData(): Flow<Company>
+    fun getCompanyData(): Flow<Company>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun saveCompanyData(company: Company)
+    fun saveCompanyData(company: Company)
 }
