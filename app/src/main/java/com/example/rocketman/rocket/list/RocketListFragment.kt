@@ -59,6 +59,7 @@ class RocketListFragment: Fragment() {
         return when(item.itemId) {
             R.id.menu_check_active -> {
                 vm.toggleActiveOnly()
+                item.isChecked = !item.isChecked
                 true
             } else -> {
                 super.onOptionsItemSelected(item)
