@@ -7,18 +7,26 @@ import com.example.rocketman.rocket.Repo
 import com.example.rocketman.rocket.Rocket
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import timber.log.Timber
+
+private const val TAG = "RocketDetail"
+private const val MSG_EXCEPTION_ROCKET_NULL = "cached rocket shouldn't be null"
 
 class RocketDetailVM: ViewModel() {
 
     val rocket = MutableLiveData<Rocket>()
     private val repo = Repo.get()
 
-    fun updateRocket(rocketId: String) {
+    fun updateRocket() {
         viewModelScope.launch {
+            Timber.d("$TAG: refreshing")
             repo.updateLocalRockets()
-            repo.getLocalRocket(rocketId).collect {
-                rocket.postValue(it)
-            }
+
+            rocket.value?.let { cachedRocket ->
+                repo.getLocalRocket(cachedRocket.id).collect { newRocket ->
+                    rocket.postValue(newRocket)
+                }
+            } ?: Timber.e("$TAG: $MSG_EXCEPTION_ROCKET_NULL")
         }
     }
 }

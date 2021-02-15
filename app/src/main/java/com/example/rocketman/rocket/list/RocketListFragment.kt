@@ -10,6 +10,7 @@ import com.example.rocketman.databinding.FragmentRocketListBinding
 import com.example.rocketman.rocket.Repo
 import com.example.rocketman.rocket.Rocket
 import com.google.android.material.appbar.MaterialToolbar
+import timber.log.Timber
 
 class RocketListFragment: Fragment() {
 
@@ -33,8 +34,6 @@ class RocketListFragment: Fragment() {
     ): View {
         binding = FragmentRocketListBinding.inflate(inflater)
 
-        setupToolbar()
-
         setupRecyclerView()
 
         return binding.root
@@ -46,15 +45,23 @@ class RocketListFragment: Fragment() {
         setupObservers()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        setupToolbar()
+    }
+
     override fun onPause() {
         super.onPause()
 
+        Timber.d("toolbar: clearing up")
         toolbar.menu.clear()
     }
 
     //endregion
 
     private fun setupToolbar() {
+        Timber.d("toolbar: setting up")
         requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
             toolbar = this
             inflateMenu(R.menu.rocket_list)

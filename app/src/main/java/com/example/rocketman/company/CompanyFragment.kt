@@ -2,12 +2,12 @@ package com.example.rocketman.company
 
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentCompanyDataBinding
 import com.google.android.material.appbar.MaterialToolbar
+import timber.log.Timber
 
 class CompanyFragment: Fragment() {
 
@@ -31,9 +31,6 @@ class CompanyFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCompanyDataBinding.inflate(inflater)
-
-        setupToolbar()
-
         return binding.root
     }
 
@@ -42,9 +39,23 @@ class CompanyFragment: Fragment() {
 
         setupObservers()
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        setupToolbar()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        Timber.d("toolbar: clearing up")
+        toolbar.menu.clear()
+    }
     //endregion
 
     private fun setupToolbar() {
+        Timber.d("toolbar: setting up")
         requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
             toolbar = this
             inflateMenu(R.menu.refresh_only)

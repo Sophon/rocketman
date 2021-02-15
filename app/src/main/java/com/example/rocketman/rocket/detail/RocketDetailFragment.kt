@@ -9,16 +9,20 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentRocketDetailBinding
 import com.example.rocketman.rocket.Rocket
+import com.google.android.material.appbar.MaterialToolbar
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_rocket_detail.*
+import timber.log.Timber
 
 class RocketDetailFragment: Fragment() {
 
     private lateinit var binding: FragmentRocketDetailBinding
+    private lateinit var toolbar: MaterialToolbar
     private val vm by lazy {
         ViewModelProvider(this).get(RocketDetailVM::class.java)
     }
 
+    //region Lifecycle
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,6 +38,20 @@ class RocketDetailFragment: Fragment() {
         setupObservers()
         loadRocket()
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        setupToolbar()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        Timber.d("toolbar: clearing up")
+        toolbar.menu.clear()
+    }
+    //endregion
 
     private fun setupObservers() {
         vm.rocket.observe(viewLifecycleOwner) { rocket ->
@@ -70,6 +88,18 @@ class RocketDetailFragment: Fragment() {
 
     private fun loadRocket() {
         vm.rocket.postValue(arguments?.getParcelable(ARG_ROCKET_ID))
+    }
+
+    private fun setupToolbar() {
+        Timber.d("toolbar: setting up")
+        requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
+            toolbar = this
+            inflateMenu(R.menu.refresh_only)
+            setOnMenuItemClickListener {
+                vm.updateRocket()
+                true
+            }
+        }
     }
 
     companion object {
