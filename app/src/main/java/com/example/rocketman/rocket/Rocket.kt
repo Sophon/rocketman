@@ -2,6 +2,7 @@ package com.example.rocketman.rocket
 
 import android.os.Parcelable
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -32,6 +33,7 @@ data class Rocket(
     val flickrImages: List<String> = listOf(),
     @SerializedName("height")
     val height: Height = Height(),
+    @PrimaryKey
     @SerializedName("id")
     val id: String = "",
     @SerializedName("landing_legs")

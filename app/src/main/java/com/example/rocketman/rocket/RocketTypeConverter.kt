@@ -259,4 +259,39 @@ class RocketTypeConverter {
             )
         }
     }
+
+    @TypeConverter
+    fun fromFlickrImagesToString(flickrImages: List<String>): String {
+        var imagesString = ""
+        for(image in flickrImages) {
+            imagesString += "$image;"
+        }
+        return imagesString.substring(0, (imagesString.length - 1))
+    }
+
+    @TypeConverter
+    fun fromStringToFlickrImages(str: String): List<String> {
+        return str.split(";")
+    }
+
+    @TypeConverter
+    fun fromPayloadWeightsToString(payloadWeights: List<PayloadWeight>): String {
+        var weightsString = ""
+        for(weight in payloadWeights) {
+            weightsString += fromPayLoadWeightToString(weight) + ";"
+        }
+        return weightsString.substring(0, (weightsString.length - 1))
+    }
+
+    @TypeConverter
+    fun fromStringToPayloadWeights(str: String): List<PayloadWeight> {
+        val weights = mutableListOf<PayloadWeight>()
+        str.split(";").also {
+            for(payloadWeight in it) {
+                weights.add(fromStringToPayloadWeight(payloadWeight))
+            }
+        }
+
+        return weights
+    }
 }

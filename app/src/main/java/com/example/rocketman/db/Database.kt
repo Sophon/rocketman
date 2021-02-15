@@ -15,7 +15,7 @@ import com.example.rocketman.rocket.RocketTypeConverter
         Rocket::class
     ],
     exportSchema = true,
-    version = 2
+    version = 1
 )
 @TypeConverters(
     CompanyTypeConverter::class,

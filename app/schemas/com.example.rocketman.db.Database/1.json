@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a679b456d3f2517e9658c9893a5e58bd",
+    "identityHash": "1fcedcc7364e6b2e50d9cb65cfe70506",
     "entities": [
       {
         "tableName": "Company",
@@ -113,12 +113,158 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "Rocket",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`active` INTEGER NOT NULL, `boosters` INTEGER NOT NULL, `company` TEXT NOT NULL, `costPerLaunch` INTEGER NOT NULL, `country` TEXT NOT NULL, `description` TEXT NOT NULL, `diameter` TEXT NOT NULL, `engines` TEXT NOT NULL, `firstFlight` TEXT NOT NULL, `firstStage` TEXT NOT NULL, `flickrImages` TEXT NOT NULL, `height` TEXT NOT NULL, `id` TEXT NOT NULL, `landingLegs` TEXT NOT NULL, `mass` TEXT NOT NULL, `name` TEXT NOT NULL, `payloadWeights` TEXT NOT NULL, `secondStage` TEXT NOT NULL, `stages` INTEGER NOT NULL, `successRatePct` INTEGER NOT NULL, `type` TEXT NOT NULL, `wikipedia` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "active",
+            "columnName": "active",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "boosters",
+            "columnName": "boosters",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "company",
+            "columnName": "company",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "costPerLaunch",
+            "columnName": "costPerLaunch",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "country",
+            "columnName": "country",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "diameter",
+            "columnName": "diameter",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "engines",
+            "columnName": "engines",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstFlight",
+            "columnName": "firstFlight",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstStage",
+            "columnName": "firstStage",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "flickrImages",
+            "columnName": "flickrImages",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "height",
+            "columnName": "height",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "landingLegs",
+            "columnName": "landingLegs",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mass",
+            "columnName": "mass",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "payloadWeights",
+            "columnName": "payloadWeights",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "secondStage",
+            "columnName": "secondStage",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stages",
+            "columnName": "stages",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "successRatePct",
+            "columnName": "successRatePct",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wikipedia",
+            "columnName": "wikipedia",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a679b456d3f2517e9658c9893a5e58bd')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1fcedcc7364e6b2e50d9cb65cfe70506')"
     ]
   }
 }
