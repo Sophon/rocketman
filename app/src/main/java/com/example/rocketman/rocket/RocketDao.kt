@@ -12,6 +12,9 @@ interface RocketDao {
     @Query("SELECT * FROM rocket")
     fun getRockets(): Flow<List<Rocket>>
 
+    @Query("SELECT * FROM rocket WHERE id IS :id LIMIT 1")
+    fun getRocket(id: String): Flow<Rocket>
+
     @Query("SELECT * FROM rocket WHERE active IS 1")
     fun getActiveRockets(): Flow<List<Rocket>>
 

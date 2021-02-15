@@ -9,10 +9,4 @@
         app:showAsAction="ifRoom"
         />
 
-    <item
-        android:id="@+id/menu_check_active"
-        android:checkable="true"
-        android:title="@string/check_rocket_detail_active"
-        app:showAsAction="never"
-        />
 </menu>

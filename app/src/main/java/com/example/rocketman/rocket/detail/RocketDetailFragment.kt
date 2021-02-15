@@ -9,21 +9,20 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentRocketDetailBinding
 import com.example.rocketman.rocket.Rocket
+import com.google.android.material.appbar.MaterialToolbar
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_rocket_detail.*
+import timber.log.Timber
 
 class RocketDetailFragment: Fragment() {
 
-    private lateinit var rocket: Rocket
-
     private lateinit var binding: FragmentRocketDetailBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        rocket = arguments?.getParcelable(ARG_ROCKET_ID)!!
+    private lateinit var toolbar: MaterialToolbar
+    private val vm by lazy {
+        ViewModelProvider(this).get(RocketDetailVM::class.java)
     }
 
+    //region Lifecycle
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,36 +35,69 @@ class RocketDetailFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupUI()
+        setupObservers()
+        loadRocket()
     }
 
-    private fun setupUI() {
-        binding.apply {
-            txtName.text = rocket.name
-            checkActive.isChecked = rocket.active
-            txtFirstFlight.text = String
-                .format(getString(R.string.formatting_rocket_first_flight), rocket.firstFlight)
-            txt_stages.text = String
-                .format(getString(R.string.formatting_rocket_stages), rocket.stages)
-            txtBoosters.text = String
-                .format(getString(R.string.formatting_rocket_boosters), rocket.boosters)
-            txtCost.text = String
-                .format(getString(R.string.formatting_rocket_cost), rocket.costPerLaunch)
-            txtSuccess.text = String
-                .format(getString(R.string.formatting_rocket_success), rocket.successRatePct)
-            txtCountry.text = String
-                .format(getString(R.string.formatting_rocket_country), rocket.country)
-            txtHeight.text = rocket.height.toStringMetric()
-            txtMass.text = rocket.mass.toStringMetric()
-            txtDescription.text = rocket.description
+    override fun onResume() {
+        super.onResume()
 
-            if(rocket.flickrImages.isNotEmpty()) {
-                Picasso.get()
-                    .load(rocket.flickrImages[0])
-                    .placeholder(R.drawable.ic_rocket)
-                    .fit()
-                    .centerCrop()
-                    .into(imgRocket)
+        setupToolbar()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        Timber.d("toolbar: clearing up")
+        toolbar.menu.clear()
+    }
+    //endregion
+
+    private fun setupObservers() {
+        vm.rocket.observe(viewLifecycleOwner) { rocket ->
+            binding.apply {
+                txtName.text = rocket.name
+                checkActive.isChecked = rocket.active
+                txtFirstFlight.text = String
+                    .format(getString(R.string.formatting_rocket_first_flight), rocket.firstFlight)
+                txt_stages.text = String
+                    .format(getString(R.string.formatting_rocket_stages), rocket.stages)
+                txtBoosters.text = String
+                    .format(getString(R.string.formatting_rocket_boosters), rocket.boosters)
+                txtCost.text = String
+                    .format(getString(R.string.formatting_rocket_cost), rocket.costPerLaunch)
+                txtSuccess.text = String
+                    .format(getString(R.string.formatting_rocket_success), rocket.successRatePct)
+                txtCountry.text = String
+                    .format(getString(R.string.formatting_rocket_country), rocket.country)
+                txtHeight.text = rocket.height.toStringMetric()
+                txtMass.text = rocket.mass.toStringMetric()
+                txtDescription.text = rocket.description
+
+                if(rocket.flickrImages.isNotEmpty()) {
+                    Picasso.get()
+                        .load(rocket.flickrImages[0])
+                        .placeholder(R.drawable.ic_rocket)
+                        .fit()
+                        .centerCrop()
+                        .into(imgRocket)
+                }
+            }
+        }
+    }
+
+    private fun loadRocket() {
+        vm.rocket.postValue(arguments?.getParcelable(ARG_ROCKET_ID))
+    }
+
+    private fun setupToolbar() {
+        Timber.d("toolbar: setting up")
+        requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
+            toolbar = this
+            inflateMenu(R.menu.refresh_only)
+            setOnMenuItemClickListener {
+                vm.updateRocket()
+                true
             }
         }
     }

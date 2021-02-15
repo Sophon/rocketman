@@ -2,7 +2,6 @@ package com.example.rocketman.rocket.list
 
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,10 +9,13 @@ import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentRocketListBinding
 import com.example.rocketman.rocket.Repo
 import com.example.rocketman.rocket.Rocket
+import com.google.android.material.appbar.MaterialToolbar
+import timber.log.Timber
 
 class RocketListFragment: Fragment() {
 
     private lateinit var binding: FragmentRocketListBinding
+    private lateinit var toolbar: MaterialToolbar
     private val vm by lazy {
         ViewModelProvider(this).get(RocketListVM::class.java)
     }
@@ -21,8 +23,6 @@ class RocketListFragment: Fragment() {
     //region lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        setHasOptionsMenu(true)
 
         Repo.init(requireContext())
     }
@@ -34,8 +34,6 @@ class RocketListFragment: Fragment() {
     ): View {
         binding = FragmentRocketListBinding.inflate(inflater)
 
-        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbarRocket)
-
         setupRecyclerView()
 
         return binding.root
@@ -46,33 +44,49 @@ class RocketListFragment: Fragment() {
 
         setupObservers()
     }
-    //endregion
 
-    //region menu
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
+    override fun onResume() {
+        super.onResume()
 
-        inflater.inflate(R.menu.rocket_list, menu)
-
-        val checkbox = menu.findItem(R.id.menu_check_active)
-        vm.activeOnly.observe(viewLifecycleOwner) {
-            checkbox.isChecked = it
-        }
+        setupToolbar()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
-            R.id.menu_check_active -> {
-                vm.toggleActiveOnly()
-                true
-            } else -> {
-                super.onOptionsItemSelected(item)
+    override fun onPause() {
+        super.onPause()
+
+        Timber.d("toolbar: clearing up")
+        toolbar.menu.clear()
+    }
+
+    //endregion
+
+    private fun setupToolbar() {
+        Timber.d("toolbar: setting up")
+        requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
+            toolbar = this
+            inflateMenu(R.menu.rocket_list)
+
+            vm.activeOnly.observe(viewLifecycleOwner) {
+                menu.findItem(R.id.menu_check_active).isChecked = it
+            }
+
+            setOnMenuItemClickListener {
+                when(it.itemId) {
+                    R.id.menu_check_active -> {
+                        vm.toggleActiveOnly()
+                        true
+                    }
+                    R.id.menu_refresh -> {
+                        vm.updateRockets()
+                        true
+                    }
+                    else -> {
+                        true
+                    }
+                }
             }
         }
-    //        return super.onOptionsItemSelected(item)
     }
-
-    //endregion
 
     //region RecyclerView
     private fun setupRecyclerView() {

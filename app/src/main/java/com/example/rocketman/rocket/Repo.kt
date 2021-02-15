@@ -36,6 +36,8 @@ class Repo private constructor(context: Context) {
 
     fun getLocalRockets() = dao.rocketDao().getRockets()
 
+    fun getLocalRocket(rocketId: String) = dao.rocketDao().getRocket(rocketId)
+
     fun getActiveLocalRockets() = dao.rocketDao().getActiveRockets()
 
     suspend fun updateLocalRockets() {
