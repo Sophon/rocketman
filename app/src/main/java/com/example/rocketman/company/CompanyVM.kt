@@ -3,7 +3,7 @@ package com.example.rocketman.company
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rocketman.company.model.Company
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -18,20 +18,20 @@ class CompanyVM: ViewModel() {
 
     init {
         getCompanyInfo()
+        updateCompanyInfo()
+    }
+
+    private fun updateCompanyInfo() {
+        viewModelScope.launch {
+            repo.updateLocalCompanyData()
+            getCompanyInfo()
+        }
     }
 
     private fun getCompanyInfo() {
         viewModelScope.launch {
-            val response = repo.getCompanyData()
-
-            if(response.isSuccessful) {
-                Timber.d("$TAG: $MSG_SUCCESS")
-                response.body()?.let {
-                    Timber.d("$TAG: $it")
-                    companyData.postValue(it)
-                }
-            } else {
-                Timber.e("$TAG: $MSG_ERROR")
+            repo.getLocalCompanyData().collect {
+                companyData.postValue(it)
             }
         }
     }

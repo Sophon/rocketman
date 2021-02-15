@@ -1,10 +1,8 @@
 package com.example.rocketman.company
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.rocketman.R
@@ -17,6 +15,8 @@ class CompanyFragment: Fragment() {
         ViewModelProvider(this).get(CompanyVM::class.java)
     }
 
+
+    //region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -29,7 +29,6 @@ class CompanyFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCompanyDataBinding.inflate(inflater)
-
         return binding.root
     }
 
@@ -38,30 +37,32 @@ class CompanyFragment: Fragment() {
 
         setupObservers()
     }
+    //endregion
 
     private fun setupObservers() {
         vm.companyData.observe(
             viewLifecycleOwner
         ) { company ->
-            binding.apply {
-                //TODO: use databinding?
-                txtFounder.text = String.format(
-                    getString(R.string.formatting_company_founder),
-                    company.founder,
-                    company.founded
-                )
-                txtDescription.text = company.summary
-                txtEmployees.text = company.employees.toString()
-                txtVehicles.text = company.vehicles.toString()
-                txtLaunch.text = company.launchSites.toString()
-                txtTest.text = company.testSites.toString()
-                txtValuation.text = String.format(
-                    getString(R.string.formatting_valuation_usd),
-                    company.valuation / 1000000000.0
-                )
-                txtHq.text = company.headquarters.toString()
+            if(company != null) {
+                binding.apply {
+                    //TODO: use databinding?
+                    txtFounder.text = String.format(
+                        getString(R.string.formatting_company_founder),
+                        company.founder,
+                        company.founded
+                    )
+                    txtDescription.text = company.summary
+                    txtEmployees.text = company.employees.toString()
+                    txtVehicles.text = company.vehicles.toString()
+                    txtLaunch.text = company.launchSites.toString()
+                    txtTest.text = company.testSites.toString()
+                    txtValuation.text = String.format(
+                        getString(R.string.formatting_valuation_usd),
+                        company.valuation / 1000000000.0
+                    )
+                    txtHq.text = company.headquarters.toString()
+                }
             }
-
         }
     }
 }
