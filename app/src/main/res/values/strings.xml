@@ -5,7 +5,7 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
 
-    <string name="nav_menu_home">Home</string>
+    <string name="nav_menu_events">Events</string>
     <string name="nav_menu_company_data">About company</string>
     <string name="nav_menu_rocket_list">Rocket list</string>
     <string name="nav_rocket_detail">Rocket detail</string>
