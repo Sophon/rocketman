@@ -7,10 +7,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentCompanyDataBinding
+import com.google.android.material.appbar.MaterialToolbar
 
 class CompanyFragment: Fragment() {
 
     private lateinit var binding: FragmentCompanyDataBinding
+    private lateinit var toolbar: MaterialToolbar
     private val vm by lazy {
         ViewModelProvider(this).get(CompanyVM::class.java)
     }
@@ -29,6 +31,9 @@ class CompanyFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCompanyDataBinding.inflate(inflater)
+
+        setupToolbar()
+
         return binding.root
     }
 
@@ -38,6 +43,17 @@ class CompanyFragment: Fragment() {
         setupObservers()
     }
     //endregion
+
+    private fun setupToolbar() {
+        requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
+            toolbar = this
+            inflateMenu(R.menu.refresh_only)
+            setOnMenuItemClickListener {
+                vm.updateCompanyInfo()
+                true
+            }
+        }
+    }
 
     private fun setupObservers() {
         vm.companyData.observe(

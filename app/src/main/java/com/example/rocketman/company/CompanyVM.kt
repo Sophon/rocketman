@@ -21,7 +21,8 @@ class CompanyVM: ViewModel() {
         updateCompanyInfo()
     }
 
-    private fun updateCompanyInfo() {
+    fun updateCompanyInfo() {
+        Timber.d("$TAG: updating")
         viewModelScope.launch {
             repo.updateLocalCompanyData()
             getCompanyInfo()
