@@ -15,6 +15,7 @@ import com.google.android.material.appbar.MaterialToolbar
 class RocketListFragment: Fragment() {
 
     private lateinit var binding: FragmentRocketListBinding
+    private lateinit var toolbar: MaterialToolbar
     private val vm by lazy {
         ViewModelProvider(this).get(RocketListVM::class.java)
     }
@@ -22,8 +23,6 @@ class RocketListFragment: Fragment() {
     //region lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        setHasOptionsMenu(true)
 
         Repo.init(requireContext())
     }
@@ -34,8 +33,6 @@ class RocketListFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentRocketListBinding.inflate(inflater)
-
-//        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbarRocket)
 
         setupToolbar()
 
@@ -49,10 +46,19 @@ class RocketListFragment: Fragment() {
 
         setupObservers()
     }
+
+    override fun onPause() {
+        super.onPause()
+
+        toolbar.menu.clear()
+    }
+
     //endregion
 
     private fun setupToolbar() {
         requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
+            toolbar = this
+            menu.clear()
             inflateMenu(R.menu.rocket_list)
             setOnMenuItemClickListener {
                 when(it.itemId) {
