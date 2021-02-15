@@ -16,11 +16,26 @@ private const val MSG_ERROR = "failed to fetch"
 class RocketListVM: ViewModel() {
 
     val rockets = MutableLiveData<List<Rocket>>()
+    var activeOnly = MutableLiveData(false)
     private val repo = Repo.get()
 
     init {
         getRockets()
         updateRockets()
+    }
+
+    fun toggleActiveOnly() {
+        activeOnly.value = activeOnly.value != true //only works with a variable for whatever reason
+
+        viewModelScope.launch {
+            if(activeOnly.value == true) {
+                repo.getActiveLocalRockets().collect {
+                    rockets.postValue(it)
+                }
+            } else {
+                getRockets()
+            }
+        }
     }
 
     private fun updateRockets() {

@@ -19,8 +19,8 @@
     <string name="label_company_test">Test sites</string>
     <string name="label_company_valuation">Valuation</string>
     <string name="label_company_hq">Headquarters</string>
-    <string name="menu_company_update">Update</string>
 
     <string name="check_rocket_detail_active">Active</string>
+    <string name="text_toolbar_rocket_list_active">Active rockets only?</string>
 
 </resources>
