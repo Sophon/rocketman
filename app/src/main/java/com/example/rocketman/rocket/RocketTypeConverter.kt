@@ -7,14 +7,14 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromDiameterToString(diam: Diameter?): String? {
         return diam?.let {
-            "${diam.feet};${diam.meters}"
+            "${diam.feet}diameter${diam.meters}"
         }
     }
 
     @TypeConverter
     fun fromStringToDiameter(str: String?): Diameter? {
         str?.let {
-            str.split(";").also {
+            str.split("diameter").also {
                 return Diameter(
                     feet = it[0].toDouble(),
                     meters = it[1].toDouble()
@@ -29,16 +29,16 @@ class RocketTypeConverter {
         engines?.let {
             engines.apply {
                 return "$engineLossMax" +
-                        ";" + fromIspToString(isp) +
-                        ";" + layout +
-                        ";" + "$number" +
-                        ";" + propellant1 +
-                        ";" + propellant2 +
-                        ";" + fromThrustSeaLevelToString(thrustSeaLevel) +
-                        ";" + "$thrustToWeight" +
-                        ";" + fromThrustVacuumToString(thrustVacuum) +
-                        ";" + type +
-                        ";" + version
+                        "engine" + fromIspToString(isp) +
+                        "engine" + layout +
+                        "engine" + "$number" +
+                        "engine" + propellant1 +
+                        "engine" + propellant2 +
+                        "engine" + fromThrustSeaLevelToString(thrustSeaLevel) +
+                        "engine" + "$thrustToWeight" +
+                        "engine" + fromThrustVacuumToString(thrustVacuum) +
+                        "engine" + type +
+                        "engine" + version
             }
         }
         return null
@@ -47,7 +47,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromStringToEngines(str: String?): Engines? {
         str?.let {
-            str.split(";").also {
+            str.split("engine").also {
                 val isp = fromStringToIsp(it[1])
                 val thrustSeaLevel = fromStringToThrustSeaLevel(it[6])
                 val thrustVacuum = fromStringToThrustVacuum(it[8])
@@ -78,11 +78,11 @@ class RocketTypeConverter {
         firstStage?.let {
             firstStage.apply {
                 return "$burnTimeSec" +
-                        ";" + "$engines" +
-                        ";" + "$fuelAmountTons" +
-                        ";" + (if(reusable) "1" else "0") +
-                        ";" +  fromThrustSeaLevelToString(thrustSeaLevel) +
-                        ";" + fromThrustVacuumToString(thrustVacuum)
+                        "stage" + "$engines" +
+                        "stage" + "$fuelAmountTons" +
+                        "stage" + (if(reusable) "1" else "0") +
+                        "stage" +  fromThrustSeaLevelToString(thrustSeaLevel) +
+                        "stage" + fromThrustVacuumToString(thrustVacuum)
             }
         }
         return null
@@ -91,7 +91,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromStringToFirstStage(str: String?): FirstStage? {
         str?.let {
-            str.split(";").also {
+            str.split("stage").also {
                 val thrustSeaLevel = fromStringToThrustSeaLevel(it[4])
                 val thrustVacuum = fromStringToThrustVacuum(it[5])
                 return if(thrustSeaLevel != null && thrustVacuum != null) {
@@ -114,7 +114,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromHeightToString(height: Height?): String? {
         height?.let {
-            return "${height.feet};${height.meters}"
+            return "${height.feet}height${height.meters}"
         }
         return null
     }
@@ -122,7 +122,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromStringToHeight(str: String?): Height? {
         str?.let {
-            str.split(";").also {
+            str.split("height").also {
                 return Height(
                     feet = it[0].toDouble(),
                     meters = it[1].toDouble()
@@ -135,7 +135,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromLadingLegsToString(landingLegs: LandingLegs?): String? {
         landingLegs?.let {
-            return "${landingLegs.material};${landingLegs.number}"
+            return "${landingLegs.material}landingLegs${landingLegs.number}"
         }
         return null
     }
@@ -143,7 +143,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromStringToLandingLegs(str: String?): LandingLegs? {
         str?.let {
-            str.split(";").also {
+            str.split("landingLegs").also {
                 return LandingLegs(
                     material = it[0],
                     number = it[1].toInt()
@@ -156,7 +156,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromMassToString(mass: Mass?): String? {
         mass?.let {
-            return "${mass.kg};${mass.lb}"
+            return "${mass.kg}mass${mass.lb}"
         }
         return null
     }
@@ -164,7 +164,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromStringToMass(str: String?): Mass? {
         str?.let {
-            str.split(";").also {
+            str.split("mass").also {
                 return Mass(
                     kg = it[0].toInt(),
                     lb = it[1].toInt()
@@ -177,7 +177,10 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromPayLoadWeightToString(payloadWeight: PayloadWeight?): String? {
         payloadWeight?.let {
-            return "${payloadWeight.id};${payloadWeight.kg};${payloadWeight.lb};${payloadWeight.name}"
+            return "${payloadWeight.id} +" +
+                    "payloadWeight" + payloadWeight.kg +
+                    "payloadWeight" + payloadWeight.lb +
+                    "payloadWeight" + payloadWeight.name
         }
         return null
     }
@@ -185,7 +188,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromStringToPayloadWeight(str: String?): PayloadWeight? {
         str?.let {
-            str.split(";").also {
+            str.split("payloadWeight").also {
                 return PayloadWeight(
                     id = it[0],
                     kg = it[1].toInt(),
@@ -202,11 +205,11 @@ class RocketTypeConverter {
         secondStage?.let {
             secondStage.apply {
                 return "$burnTimeSec" +
-                        ";" + "$engines" +
-                        ";" + "$fuelAmountTons" +
-                        ";" + fromPayloadsToString(payloads) +
-                        ";" + (if(reusable) "1" else "0") +
-                        ";" + fromThrustToString(thrust)
+                        "secondStage" + "$engines" +
+                        "secondStage" + "$fuelAmountTons" +
+                        "secondStage" + fromPayloadsToString(payloads) +
+                        "secondStage" + (if(reusable) "1" else "0") +
+                        "secondStage" + fromThrustToString(thrust)
             }
         }
         return null
@@ -215,7 +218,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromStringToSecondStage(str: String?): SecondStage? {
         str?.let {
-            str.split(";").also {
+            str.split("secondStage").also {
                 val payloads = fromStringToPayloads(it[3])
                 val thrust = fromStringToThrust(it[5])
                 return if(payloads != null && thrust != null) {
@@ -238,7 +241,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromThrustToString(thrust: Thrust?): String? {
         thrust?.let {
-            return "${thrust.kN};${thrust.lbf}"
+            return "${thrust.kN}thrust${thrust.lbf}"
         }
         return null
     }
@@ -246,7 +249,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromStringToThrust(str: String?): Thrust? {
         str?.let {
-            str.split(";").also {
+            str.split("thrust").also {
                 return Thrust(
                     kN = it[0].toInt(),
                     lbf = it[1].toInt()
@@ -259,7 +262,8 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromPayloadsToString(payloads: Payloads?): String? {
         payloads?.let {
-            return fromCompositeFairingToString(payloads.compositeFairing) + payloads.option1
+            return fromCompositeFairingToString(payloads.compositeFairing) +
+                    "payloads" + payloads.option1
         }
         return null
     }
@@ -267,7 +271,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromStringToPayloads(str: String?): Payloads? {
         str?.let {
-            str.split(";").also {
+            str.split("payloads").also {
                 fromStringToCompositeFairing(it[0])?.let { compositeFairing ->
                     return Payloads(
                         compositeFairing = compositeFairing,
@@ -283,7 +287,7 @@ class RocketTypeConverter {
     fun fromCompositeFairingToString(compositeFairing: CompositeFairing?): String? {
         compositeFairing?.let {
             return fromDiameterToString(compositeFairing.diameter) +
-                    fromHeightToString(compositeFairing.height)
+                    "compositeFairing" + fromHeightToString(compositeFairing.height)
         }
         return null
     }
@@ -291,7 +295,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromStringToCompositeFairing(str: String?): CompositeFairing? {
         str?.let {
-            str.split(";").also {
+            str.split("compositeFairing").also {
                 val diameter = fromStringToDiameter(it[0])
                 val height = fromStringToHeight(it[1])
                 return if(diameter != null && height != null) {
@@ -310,7 +314,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromIspToString(isp: Isp?): String? {
         isp?.let {
-            return "${isp.seaLevel};${isp.vacuum}"
+            return "${isp.seaLevel}isp${isp.vacuum}"
         }
         return null
     }
@@ -318,7 +322,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromStringToIsp(str: String?): Isp? {
         str?.let {
-            str.split(";").also {
+            str.split("isp").also {
                 return Isp(
                     seaLevel = it[0].toInt(),
                     vacuum = it[1].toInt()
@@ -331,7 +335,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromThrustSeaLevelToString(thrustSeaLevel: ThrustSeaLevel?): String? {
         thrustSeaLevel?.let {
-            return "${thrustSeaLevel.kN};${thrustSeaLevel.lbf}"
+            return "${thrustSeaLevel.kN}thrustSeaLevel${thrustSeaLevel.lbf}"
         }
         return null
     }
@@ -339,7 +343,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromStringToThrustSeaLevel(str: String?): ThrustSeaLevel? {
         str?.let {
-            str.split(";").also {
+            str.split("thrustSeaLevel").also {
                 return ThrustSeaLevel(
                     kN = str[0].toInt(),
                     lbf = str[1].toInt()
@@ -352,7 +356,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromThrustVacuumToString(thrustVacuum: ThrustVacuum?): String? {
         thrustVacuum?.let {
-            return "${thrustVacuum.kN};${thrustVacuum.lbf}"
+            return "${thrustVacuum.kN}thrustVacuum${thrustVacuum.lbf}"
         }
         return null
     }
@@ -360,7 +364,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromStringToThrustVacuum(str: String?): ThrustVacuum? {
         str?.let {
-            str.split(";").also {
+            str.split("thrustVacuum").also {
                 return ThrustVacuum(
                     kN = str[0].toInt(),
                     lbf = str[1].toInt()
@@ -375,7 +379,7 @@ class RocketTypeConverter {
         flickrImages?.let {
             var imagesString = ""
             for(image in flickrImages) {
-                imagesString += "$image;"
+                imagesString += "$image!"
             }
             return imagesString.substring(0, (imagesString.length - 1))
         }
@@ -385,7 +389,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromStringToFlickrImages(str: String?): List<String>? {
         str?.let {
-            return str.split(";")
+            return str.split("!")
         }
         return null
     }
@@ -395,7 +399,7 @@ class RocketTypeConverter {
         payloadWeights?.let {
             var weightsString = ""
             for(weight in payloadWeights) {
-                weightsString += fromPayLoadWeightToString(weight) + ";"
+                weightsString += fromPayLoadWeightToString(weight) + "&"
             }
             return weightsString.substring(0, (weightsString.length - 1))
         }
@@ -406,7 +410,7 @@ class RocketTypeConverter {
     fun fromStringToPayloadWeights(str: String?): List<PayloadWeight>? {
         str?.let {
             val weights = mutableListOf<PayloadWeight>()
-            str.split(";").also {
+            str.split("&").also {
                 for(payloadWeight in it) {
                     fromStringToPayloadWeight(payloadWeight)?.let { payloadWeight ->
                         weights.add(payloadWeight)
