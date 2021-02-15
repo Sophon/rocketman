@@ -29,7 +29,7 @@ class Repo private constructor(context: Context) {
     private val dao: Database = Room.databaseBuilder(
         context,
         Database::class.java,
-        Database.NAME_DB,
+        Database.NAME_DB
     ).build()
 
     private suspend fun getRemoteRockets() = api.getRockets()
