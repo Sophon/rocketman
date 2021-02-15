@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_rocket"
+    app:startDestination="@id/rocketListFragment"
+    >
+
+    <fragment
+        android:id="@+id/rocketListFragment"
+        android:name="com.example.rocketman.rocket.list.RocketListFragment"
+        android:label="@string/nav_menu_rocket_list"
+        tools:layout="@layout/fragment_rocket_list"
+        >
+        <action
+            android:id="@+id/action_rocket_list_to_rocket_detail"
+            app:destination="@+id/rocketsDetailFragment"
+            >
+            <argument
+                android:name="rocket"
+                app:argType="com.example.rocketman.rocket.Rocket"
+                />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/rocketsDetailFragment"
+        android:name="com.example.rocketman.rocket.detail.RocketDetailFragment"
+        android:label="@string/nav_rocket_detail"
+        >
+        <argument
+            android:name="rocket"
+            app:argType="com.example.rocketman.rocket.Rocket"
+            />
+    </fragment>
+
+</navigation>
