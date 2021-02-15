@@ -53,13 +53,17 @@ class RocketListFragment: Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
 
         inflater.inflate(R.menu.rocket_list, menu)
+
+        val checkbox = menu.findItem(R.id.menu_check_active)
+        vm.activeOnly.observe(viewLifecycleOwner) {
+            checkbox.isChecked = it
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.menu_check_active -> {
                 vm.toggleActiveOnly()
-                item.isChecked = !item.isChecked
                 true
             } else -> {
                 super.onOptionsItemSelected(item)
