@@ -7,11 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentEventsBinding
+import com.google.android.material.appbar.MaterialToolbar
+import kotlinx.android.synthetic.main.fragment_drawer.view.*
 
 class EventsFragment: Fragment() {
 
     private lateinit var binding: FragmentEventsBinding
+    private lateinit var toolbar: MaterialToolbar
     private val vm by lazy {
         ViewModelProvider(this).get(EventsVM::class.java)
     }
@@ -40,6 +44,19 @@ class EventsFragment: Fragment() {
 
         setupObservers()
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        setupToolbar()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        toolbar.menu.clear()
+    }
+
     //endregion
 
     //region RV
@@ -58,6 +75,17 @@ class EventsFragment: Fragment() {
     private fun setupObservers() {
         vm.events.observe(viewLifecycleOwner) {
             updateList(it)
+        }
+    }
+
+    private fun setupToolbar() {
+        requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
+            toolbar = this
+            inflateMenu(R.menu.refresh_only)
+            setOnMenuItemClickListener {
+                vm.getEvents()
+                true
+            }
         }
     }
 }
