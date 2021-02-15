@@ -56,7 +56,6 @@ class EventsFragment: Fragment() {
 
         toolbar.menu.clear()
     }
-
     //endregion
 
     //region RV
@@ -81,10 +80,25 @@ class EventsFragment: Fragment() {
     private fun setupToolbar() {
         requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
             toolbar = this
-            inflateMenu(R.menu.refresh_only)
+            inflateMenu(R.menu.events)
             setOnMenuItemClickListener {
-                vm.getEvents()
-                true
+                when(it.itemId) {
+                    R.id.menu_refresh -> {
+                        vm.getEvents()
+                        true
+                    }
+                    R.id.ascending -> {
+                        it.isChecked = true
+                        vm.sortAscending()
+                        true
+                    }
+                    R.id.descending -> {
+                        it.isChecked = true
+                        vm.sortDescending()
+                        true
+                    }
+                    else -> super.onOptionsItemSelected(it)
+                }
             }
         }
     }
