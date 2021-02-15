@@ -1,12 +1,12 @@
 package com.example.rocketman.rocket.list
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentRocketListBinding
 import com.example.rocketman.rocket.Repo
 import com.example.rocketman.rocket.Rocket
@@ -18,8 +18,11 @@ class RocketListFragment: Fragment() {
         ViewModelProvider(this).get(RocketListVM::class.java)
     }
 
+    //region lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setHasOptionsMenu(true)
 
         Repo.init(requireContext())
     }
@@ -31,6 +34,8 @@ class RocketListFragment: Fragment() {
     ): View {
         binding = FragmentRocketListBinding.inflate(inflater)
 
+        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbarRocket)
+
         setupRecyclerView()
 
         return binding.root
@@ -41,6 +46,28 @@ class RocketListFragment: Fragment() {
 
         setupObservers()
     }
+    //endregion
+
+    //region menu
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        inflater.inflate(R.menu.rocket_list, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.menu_check_active -> {
+                vm.toggleActiveOnly()
+                true
+            } else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
+    //        return super.onOptionsItemSelected(item)
+    }
+
+    //endregion
 
     //region RecyclerView
     private fun setupRecyclerView() {

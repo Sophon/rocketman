@@ -36,6 +36,8 @@ class Repo private constructor(context: Context) {
 
     fun getLocalRockets() = dao.rocketDao().getRockets()
 
+    fun getActiveLocalRockets() = dao.rocketDao().getActiveRockets()
+
     suspend fun updateLocalRockets() {
         val response = getRemoteRockets()
 
