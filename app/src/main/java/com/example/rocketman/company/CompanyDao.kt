@@ -7,7 +7,7 @@ import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface Dao {
+interface CompanyDao {
 
     @Query("SELECT * FROM company LIMIT 1")
     abstract fun getCompanyData(): Flow<Company>

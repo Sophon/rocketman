@@ -5,7 +5,7 @@ import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface Dao {
+interface RocketDao {
 
     @Query("SELECT * FROM rocket")
     fun getRockets(): Flow<List<Rocket>>

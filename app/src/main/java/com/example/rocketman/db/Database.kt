@@ -5,8 +5,9 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.rocketman.company.Company
 import com.example.rocketman.company.CompanyTypeConverter
-import com.example.rocketman.company.Dao
+import com.example.rocketman.company.CompanyDao
 import com.example.rocketman.rocket.Rocket
+import com.example.rocketman.rocket.RocketDao
 import com.example.rocketman.rocket.RocketTypeConverter
 
 @Database(
@@ -23,7 +24,8 @@ import com.example.rocketman.rocket.RocketTypeConverter
 )
 abstract class Database: RoomDatabase() {
 
-    abstract fun companyDao(): Dao
+    abstract fun companyDao(): CompanyDao
+    abstract fun rocketDao(): RocketDao
 
     companion object {
         const val NAME_DB = "Rocket database"
