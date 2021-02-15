@@ -49,13 +49,11 @@ class CompanyFragment: Fragment() {
     override fun onPause() {
         super.onPause()
 
-        Timber.d("toolbar: clearing up")
         toolbar.menu.clear()
     }
     //endregion
 
     private fun setupToolbar() {
-        Timber.d("toolbar: setting up")
         requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
             toolbar = this
             inflateMenu(R.menu.refresh_only)

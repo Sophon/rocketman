@@ -5,11 +5,11 @@
         android:id="@+id/menu_home"
         >
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_events"
             android:checked="true"
             android:checkable="true"
-            android:icon="@drawable/ic_home"
-            android:title="@string/nav_menu_home"
+            android:icon="@drawable/ic_event"
+            android:title="@string/nav_menu_events"
             />
     </group>
 
