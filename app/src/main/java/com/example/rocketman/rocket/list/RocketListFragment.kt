@@ -10,6 +10,7 @@ import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentRocketListBinding
 import com.example.rocketman.rocket.Repo
 import com.example.rocketman.rocket.Rocket
+import com.google.android.material.appbar.MaterialToolbar
 
 class RocketListFragment: Fragment() {
 
@@ -22,7 +23,7 @@ class RocketListFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setHasOptionsMenu(true)
+//        setHasOptionsMenu(true)
 
         Repo.init(requireContext())
     }
@@ -34,7 +35,9 @@ class RocketListFragment: Fragment() {
     ): View {
         binding = FragmentRocketListBinding.inflate(inflater)
 
-        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbarRocket)
+//        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbarRocket)
+
+        setupToolbar()
 
         setupRecyclerView()
 
@@ -48,31 +51,26 @@ class RocketListFragment: Fragment() {
     }
     //endregion
 
-    //region menu
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-
-        inflater.inflate(R.menu.rocket_list, menu)
-
-        val checkbox = menu.findItem(R.id.menu_check_active)
-        vm.activeOnly.observe(viewLifecycleOwner) {
-            checkbox.isChecked = it
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
-            R.id.menu_check_active -> {
-                vm.toggleActiveOnly()
-                true
-            } else -> {
-                super.onOptionsItemSelected(item)
+    private fun setupToolbar() {
+        requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
+            inflateMenu(R.menu.rocket_list)
+            setOnMenuItemClickListener {
+                when(it.itemId) {
+                    R.id.menu_check_active -> {
+                        vm.toggleActiveOnly()
+                        true
+                    }
+                    R.id.menu_refresh -> {
+                        vm.updateRockets()
+                        true
+                    }
+                    else -> {
+                        true
+                    }
+                }
             }
         }
-    //        return super.onOptionsItemSelected(item)
     }
-
-    //endregion
 
     //region RecyclerView
     private fun setupRecyclerView() {
