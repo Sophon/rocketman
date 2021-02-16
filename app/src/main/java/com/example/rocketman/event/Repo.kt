@@ -1,4 +1,4 @@
-package com.example.rocketman.companyEvents
+package com.example.rocketman.event
 
 import android.content.Context
 import com.example.rocketman.common.BASE_URL_SPACEX

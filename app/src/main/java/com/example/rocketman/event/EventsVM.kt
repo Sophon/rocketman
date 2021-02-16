@@ -1,4 +1,4 @@
-package com.example.rocketman.companyEvents
+package com.example.rocketman.event
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

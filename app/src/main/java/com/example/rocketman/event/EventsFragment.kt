@@ -1,4 +1,4 @@
-package com.example.rocketman.companyEvents
+package com.example.rocketman.event
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentEventsBinding
 import com.google.android.material.appbar.MaterialToolbar
-import kotlinx.android.synthetic.main.fragment_drawer.view.*
 
 class EventsFragment: Fragment() {
 

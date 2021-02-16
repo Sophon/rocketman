@@ -1,4 +1,4 @@
-package com.example.rocketman.companyEvents
+package com.example.rocketman.event
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rocketman.databinding.ItemEventBinding
