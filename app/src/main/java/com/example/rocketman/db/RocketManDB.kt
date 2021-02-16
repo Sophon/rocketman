@@ -22,7 +22,7 @@ import com.example.rocketman.rocket.RocketTypeConverter
         Event::class
     ],
     exportSchema = true,
-    version = 2
+    version = 1
 )
 @TypeConverters(
     CompanyTypeConverter::class,
