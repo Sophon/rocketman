@@ -13,6 +13,7 @@ class EventsVM: ViewModel() {
 
     init {
         getEvents()
+        updateEvents()
     }
 
     fun getEvents() {
@@ -20,6 +21,13 @@ class EventsVM: ViewModel() {
             repo.getRemoteEvents().body()?.let { eventList ->
                 events.postValue(eventList.sortedByDescending { it.eventDateUnix })
             }
+        }
+    }
+
+    fun updateEvents() {
+        viewModelScope.launch {
+            repo.updateLocalEvents()
+            getEvents()
         }
     }
 

@@ -2,6 +2,9 @@ package com.example.rocketman.event
 
 import android.content.Context
 import com.example.rocketman.common.BASE_URL_SPACEX
+import com.example.rocketman.db.RocketManDB
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.IllegalStateException
@@ -18,7 +21,23 @@ class Repo private constructor(context: Context) {
             .create(Api::class.java)
     }
 
+    private val dao: RocketManDB = RocketManDB.build(context)
+
     suspend fun getRemoteEvents() = api.getEvents()
+
+    fun getLocalEvents() = dao.eventDao().getEvents()
+
+    suspend fun updateLocalEvents() {
+        val response = getRemoteEvents()
+
+        if(response.isSuccessful) {
+            response.body()?.let {
+                withContext(Dispatchers.IO) {
+                    dao.eventDao().saveEvents(it)
+                }
+            }
+        }
+    }
 
     companion object {
         private var INSTANCE: Repo? = null
