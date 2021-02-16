@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "1fcedcc7364e6b2e50d9cb65cfe70506",
+    "identityHash": "f8648f6f12f827e703b998e6b8421155",
     "entities": [
       {
         "tableName": "Company",
@@ -259,12 +259,56 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "Event",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`details` TEXT NOT NULL, `eventDateUnix` INTEGER NOT NULL, `eventDateUtc` TEXT NOT NULL, `links` TEXT, `title` TEXT NOT NULL, PRIMARY KEY(`eventDateUnix`))",
+        "fields": [
+          {
+            "fieldPath": "details",
+            "columnName": "details",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "eventDateUnix",
+            "columnName": "eventDateUnix",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "eventDateUtc",
+            "columnName": "eventDateUtc",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "links",
+            "columnName": "links",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "eventDateUnix"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1fcedcc7364e6b2e50d9cb65cfe70506')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f8648f6f12f827e703b998e6b8421155')"
     ]
   }
 }

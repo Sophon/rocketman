@@ -16,7 +16,7 @@ class Holder(
             txtTitle.text = event.title
             txtDate.text = event.eventDateUtc
             txtDetails.text = event.details
-            txtLink.text = event.links.article
+            txtLink.text = event.links?.article
         }
     }
 }
