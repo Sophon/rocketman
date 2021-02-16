@@ -3,7 +3,7 @@ package com.example.rocketman.company
 import android.content.Context
 import androidx.room.Room
 import com.example.rocketman.common.BASE_URL_SPACEX
-import com.example.rocketman.db.Database
+import com.example.rocketman.db.RocketManDB
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
@@ -26,11 +26,7 @@ class Repo private constructor(context: Context) {
             .create(Api::class.java)
     }
 
-    private val dao: Database = Room.databaseBuilder(
-        context,
-        Database::class.java,
-        Database.NAME_DB
-    ).build()
+    private val dao: RocketManDB = RocketManDB.build(context)
 
     private suspend fun getRemoteCompanyData() = api.getCompanyInfo()
 
