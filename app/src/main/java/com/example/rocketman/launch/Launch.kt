@@ -1,7 +1,9 @@
 package com.example.rocketman.launch
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
 @Parcelize
 data class Launch(
@@ -12,7 +14,7 @@ data class Launch(
     @SerializedName("cores")
     val cores: List<Core> = listOf(),
     @SerializedName("crew")
-    val crew: List<Any> = listOf(),
+    val crew: List<@RawValue Any> = listOf(),
     @SerializedName("date_local")
     val dateLocal: String = "",
     @SerializedName("date_precision")
@@ -24,9 +26,10 @@ data class Launch(
     @SerializedName("details")
     val details: String = "",
     @SerializedName("failures")
-    val failures: List<Any> = listOf(),
+    @Transient
+    val failures: List<@RawValue Any> = listOf(),
     @SerializedName("fairings")
-    val fairings: Any? = null,
+    val fairings: @RawValue Any? = null,
     @SerializedName("flight_number")
     val flightNumber: Int = 0,
     @SerializedName("id")
@@ -44,7 +47,7 @@ data class Launch(
     @SerializedName("rocket")
     val rocket: String = "",
     @SerializedName("ships")
-    val ships: List<Any> = listOf(),
+    val ships: List<@RawValue Any> = listOf(),
     @SerializedName("static_fire_date_unix")
     val staticFireDateUnix: Int = 0,
     @SerializedName("static_fire_date_utc")
@@ -57,8 +60,9 @@ data class Launch(
     val upcoming: Boolean = false,
     @SerializedName("window")
     val window: Int = 0
-)
+): Parcelable
 
+@Parcelize
 data class Core(
     @SerializedName("core")
     val core: String = "",
@@ -78,8 +82,9 @@ data class Core(
     val legs: Boolean = false,
     @SerializedName("reused")
     val reused: Boolean = false
-)
+): Parcelable
 
+@Parcelize
 data class Links(
     @SerializedName("article")
     val article: String = "",
@@ -97,22 +102,25 @@ data class Links(
     val wikipedia: String = "",
     @SerializedName("youtube_id")
     val youtubeId: String = ""
-)
+): Parcelable
 
+@Parcelize
 data class Flickr(
     @SerializedName("original")
     val original: List<String> = listOf(),
     @SerializedName("small")
-    val small: List<Any> = listOf()
-)
+    val small: List<@RawValue Any> = listOf()
+): Parcelable
 
+@Parcelize
 data class Patch(
     @SerializedName("large")
     val large: String = "",
     @SerializedName("small")
     val small: String = ""
-)
+): Parcelable
 
+@Parcelize
 data class Reddit(
     @SerializedName("campaign")
     val campaign: String = "",
@@ -121,5 +129,5 @@ data class Reddit(
     @SerializedName("media")
     val media: String = "",
     @SerializedName("recovery")
-    val recovery: Any? = null
-)
+    val recovery: @RawValue Any? = null
+): Parcelable
