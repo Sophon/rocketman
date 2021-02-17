@@ -5,10 +5,11 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
 
-    <string name="nav_menu_events">Events</string>
-    <string name="nav_menu_company_data">About company</string>
-    <string name="nav_menu_rocket_list">Rocket list</string>
+    <string name="nav_events">Events</string>
+    <string name="nav_company_data">About company</string>
+    <string name="nav_rocket_list">Rocket list</string>
     <string name="nav_rocket_detail">Rocket detail</string>
+    <string name="nav_launch_list">Launches</string>
 
     <string name="label_company_employees">Employees</string>
     <string name="label_company_vehicles">Vehicles</string>
@@ -24,5 +25,9 @@
 
     <string name="menu_sort_asc">Ascending</string>
     <string name="menu_sort_desc">Descending</string>
+
+    <string name="menu_launch_past">Past launches</string>
+    <string name="menu_launch_upcoming">Upcoming launches</string>
+    <string name="menu_launch_all">All launches</string>
 
 </resources>

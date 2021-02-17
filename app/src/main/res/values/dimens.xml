@@ -24,4 +24,7 @@
     <dimen name="size_rocket_detail_technical">120dp</dimen>
     <dimen name="size_rocket_detail_img">200dp</dimen>
 
+    <dimen name="size_img_launch_success">100dp</dimen>
+    <dimen name="size_height_launch_desc">50dp</dimen>
+
 </resources>
