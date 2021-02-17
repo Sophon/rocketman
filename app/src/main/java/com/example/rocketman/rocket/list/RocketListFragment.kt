@@ -80,9 +80,7 @@ class RocketListFragment: Fragment() {
                         vm.updateRockets()
                         true
                     }
-                    else -> {
-                        true
-                    }
+                    else -> super.onOptionsItemSelected(it)
                 }
             }
         }

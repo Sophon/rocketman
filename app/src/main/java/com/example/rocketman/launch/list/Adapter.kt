@@ -30,7 +30,7 @@ class Adapter(
 
 private class DiffCallback: DiffUtil.ItemCallback<Launch>() {
     override fun areItemsTheSame(oldItem: Launch, newItem: Launch): Boolean {
-        return oldItem.name == newItem.name
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: Launch, newItem: Launch): Boolean {
