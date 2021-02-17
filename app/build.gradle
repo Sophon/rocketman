@@ -91,6 +91,5 @@ dependencies {
     implementation 'androidx.datastore:datastore-preferences:1.0.0-alpha06'
 
     //Mockito
-    testImplementation 'org.mockito:mockito-core:2.25.0'
-    testImplementation 'org.mockito:mockito-inline:2.25.0'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
 }
