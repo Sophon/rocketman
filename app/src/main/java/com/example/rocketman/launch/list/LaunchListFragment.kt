@@ -4,8 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.createDataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentLaunchListBinding
@@ -13,6 +19,10 @@ import com.example.rocketman.launch.Launch
 import com.example.rocketman.launch.Repo
 import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.android.synthetic.main.fragment_drawer.view.*
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+
+private const val FILTER_LAUNCH_KEY = "com.example.rocketman.launch.filter"
 
 class LaunchListFragment: Fragment() {
 
@@ -21,12 +31,15 @@ class LaunchListFragment: Fragment() {
     private val vm by lazy {
         ViewModelProvider(this).get(LaunchListVM::class.java)
     }
+    private lateinit var dataStore: DataStore<Preferences>
 
     //region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         Repo.init(requireContext())
+
+        dataStore = requireContext().createDataStore(name = "launches-settings")
     }
 
     override fun onCreateView(
@@ -60,49 +73,6 @@ class LaunchListFragment: Fragment() {
     }
     //endregion
 
-    private fun setupToolbar() {
-        requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
-            toolbar = this
-            inflateMenu(R.menu.launch_list)
-
-            vm.launchStatus.observe(viewLifecycleOwner) {
-                when(it) {
-                    LaunchFilter.UPCOMING -> {
-                        menu.findItem(R.id.menu_upcoming).isChecked = true
-                    }
-                    LaunchFilter.PAST -> {
-                        menu.findItem(R.id.menu_past).isChecked = true
-                    }
-                    LaunchFilter.ALL -> {
-                        menu.findItem(R.id.menu_all).isChecked = true
-                    }
-                }
-            }
-
-            setOnMenuItemClickListener {
-                when(it.itemId) {
-                    R.id.menu_refresh -> {
-                        vm.updateLaunches()
-                        true
-                    }
-                    R.id.menu_past -> {
-                        vm.filterLaunches(LaunchFilter.PAST)
-                        true
-                    }
-                    R.id.menu_upcoming -> {
-                        vm.filterLaunches(LaunchFilter.UPCOMING)
-                        true
-                    }
-                    R.id.menu_all -> {
-                        vm.filterLaunches(LaunchFilter.ALL)
-                        true
-                    }
-                    else -> super.onOptionsItemSelected(it)
-                }
-            }
-        }
-    }
-
     //region RecyclerView
     private fun setupRecyclerView() {
         binding.rvLaunches.apply {
@@ -116,9 +86,87 @@ class LaunchListFragment: Fragment() {
     }
     //endregion
 
+    //region DataStore
+    private suspend fun savePreference(key: String, filter: LaunchFilter) {
+        val dataStoreKey = stringPreferencesKey(key)
+        dataStore.edit { settings ->
+            settings[dataStoreKey] = filter.toString()
+        }
+    }
+
+    private suspend fun getPreference(key: String): LaunchFilter? {
+        val dataStoreKey = stringPreferencesKey(key)
+        return dataStore.data.first()[dataStoreKey]?.let {
+            LaunchFilter.valueOf(it)
+        }
+    }
+    //endregion
+
     private fun setupObservers() {
         vm.launches.observe(viewLifecycleOwner) {
             updateList(it)
         }
     }
+
+    private fun setupToolbar() {
+        requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
+            toolbar = this
+            inflateMenu(R.menu.launch_list)
+
+            setOnMenuItemClickListener {
+                when(it.itemId) {
+                    R.id.menu_refresh -> {
+                        vm.updateLaunches()
+                        true
+                    }
+                    R.id.menu_past -> {
+                        it.isChecked = true
+                        filterLaunches(LaunchFilter.PAST)
+                        true
+                    }
+                    R.id.menu_upcoming -> {
+                        it.isChecked = true
+                        filterLaunches(LaunchFilter.UPCOMING)
+                        true
+                    }
+                    R.id.menu_all -> {
+                        it.isChecked = true
+                        filterLaunches(LaunchFilter.ALL)
+                        true
+                    }
+                    else -> super.onOptionsItemSelected(it)
+                }
+            }
+
+            getFilterFromDataStore()
+        }
+    }
+
+    //region Filter
+    private fun getFilterFromDataStore() {
+        toolbar.apply {
+            lifecycleScope.launch {
+                getPreference(FILTER_LAUNCH_KEY)?.let { filter ->
+                    menu.findItem(
+                        when(filter) {
+                            LaunchFilter.PAST -> R.id.menu_past
+                            LaunchFilter.UPCOMING -> R.id.menu_upcoming
+                            else -> R.id.menu_all
+                        }
+                    ).isChecked = true
+
+                    vm.filterLaunches(filter)
+                } ?: vm.filterLaunches()
+            }
+        }
+    }
+
+    private fun filterLaunches(filter: LaunchFilter) {
+        lifecycleScope.launch {
+            savePreference(FILTER_LAUNCH_KEY, filter)
+        }
+
+        vm.filterLaunches(filter)
+    }
+    //endregion
 }

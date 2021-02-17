@@ -105,7 +105,6 @@ class RocketListFragment: Fragment() {
     }
 
     private fun setupToolbar() {
-        Timber.d("toolbar: setting up")
         requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
             toolbar = this
             inflateMenu(R.menu.rocket_list)
@@ -132,6 +131,7 @@ class RocketListFragment: Fragment() {
         }
     }
 
+    //region Active only
     private fun getActiveOnlyFromDataStore() {
         toolbar.apply {
             lifecycleScope.launch {
@@ -150,4 +150,5 @@ class RocketListFragment: Fragment() {
 
         vm.toggleActiveOnly(activeOnly)
     }
+    //endregion
 }
