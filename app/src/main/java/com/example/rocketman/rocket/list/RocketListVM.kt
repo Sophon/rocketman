@@ -18,7 +18,6 @@ class RocketListVM: ViewModel() {
     private val repo = Repo.get()
 
     init {
-        Timber.d("activeOnly: initialising")
         toggleActiveOnly()
         updateRockets()
     }
