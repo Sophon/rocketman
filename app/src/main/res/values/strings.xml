@@ -26,4 +26,8 @@
     <string name="menu_sort_asc">Ascending</string>
     <string name="menu_sort_desc">Descending</string>
 
+    <string name="menu_launch_past">Past launches</string>
+    <string name="menu_launch_upcoming">Upcoming launches</string>
+    <string name="menu_launch_all">All launches</string>
+
 </resources>
