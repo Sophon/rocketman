@@ -1,19 +1,21 @@
-package com.example.rocketman.companyEvents
+package com.example.rocketman.launch.list
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.rocketman.databinding.ItemEventBinding
+import com.example.rocketman.databinding.ItemLaunchBinding
+import com.example.rocketman.launch.Launch
 
 class Adapter(
     private val context: Context
-): ListAdapter<Event, Holder>(DiffCallback()) {
+): ListAdapter<Launch, Holder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(
-            ItemEventBinding.inflate(
+            context,
+            ItemLaunchBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -26,12 +28,12 @@ class Adapter(
     }
 }
 
-private class DiffCallback: DiffUtil.ItemCallback<Event>() {
-    override fun areItemsTheSame(oldItem: Event, newItem: Event): Boolean {
-        return oldItem.eventDateUtc == newItem.eventDateUtc
+private class DiffCallback: DiffUtil.ItemCallback<Launch>() {
+    override fun areItemsTheSame(oldItem: Launch, newItem: Launch): Boolean {
+        return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Event, newItem: Event): Boolean {
+    override fun areContentsTheSame(oldItem: Launch, newItem: Launch): Boolean {
         return oldItem == newItem
     }
 }

@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/rocketListFragment"
         android:name="com.example.rocketman.rocket.list.RocketListFragment"
-        android:label="@string/nav_menu_rocket_list"
+        android:label="@string/nav_rocket_list"
         tools:layout="@layout/fragment_rocket_list"
         >
         <action
