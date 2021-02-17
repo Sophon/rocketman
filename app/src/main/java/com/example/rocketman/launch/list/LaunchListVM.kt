@@ -10,10 +10,21 @@ import kotlinx.coroutines.launch
 class LaunchListVM: ViewModel() {
 
     val launches = MutableLiveData<List<Launch>>()
+    val launchStatus = MutableLiveData<LaunchFilter>()
     private val repo = Repo.get()
 
     init {
         getLaunches()
+    }
+
+    fun filterLaunches(filter: LaunchFilter) {
+        launchStatus.postValue(filter)
+
+        //TODO: database shit
+    }
+
+    fun updateLaunches() {
+        //TODO: database shit
     }
 
     private fun getLaunches() {
