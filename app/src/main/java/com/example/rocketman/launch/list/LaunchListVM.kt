@@ -6,43 +6,40 @@ import androidx.lifecycle.viewModelScope
 import com.example.rocketman.launch.Launch
 import com.example.rocketman.launch.Repo
 import kotlinx.coroutines.launch
-import retrofit2.Response
+import timber.log.Timber
+
+private const val TAG = "LaunchList"
 
 class LaunchListVM: ViewModel() {
 
     val launches = MutableLiveData<List<Launch>>()
-    val launchStatus = MutableLiveData<LaunchFilter>()
+    var filter = LaunchFilter.ALL
     private val repo = Repo.get()
 
-    init {
-        getLaunches(repo::getRemoteAllLaunches)
-    }
+    fun filterLaunches(newFilter: LaunchFilter = LaunchFilter.ALL) {
+        filter = newFilter
 
-    fun filterLaunches(filter: LaunchFilter) {
-        launchStatus.postValue(filter)
-
-        getLaunches(
-            when(filter) {
-                LaunchFilter.ALL -> {
-                    repo::getRemoteAllLaunches
-                }
-                LaunchFilter.PAST -> {
-                    repo::getRemotePastLaunches
-                }
-                LaunchFilter.UPCOMING -> {
-                    repo::getUpcomingPastLaunches
-                }
-            }
-        )
+        getRemoteLaunches()
     }
 
     fun updateLaunches() {
-        getLaunches(repo::getRemoteAllLaunches)
+        Timber.d("$TAG: refreshing")
+        getRemoteLaunches()
     }
 
-    private fun getLaunches(call: suspend () -> Response<List<Launch>>) {
+    private fun getRemoteLaunches() {
         viewModelScope.launch {
-            val response = call.invoke()
+            val response = when(filter) {
+                LaunchFilter.PAST -> {
+                    repo.getPastRemoteLaunches()
+                }
+                LaunchFilter.UPCOMING -> {
+                    repo.getUpcomingRemoteLaunches()
+                }
+                else -> {
+                    repo.getAllRemoteLaunches()
+                }
+            }
 
             if(response.isSuccessful) {
                 response.body()?.let {

@@ -3,45 +3,42 @@ package com.example.rocketman.event
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class EventsVM: ViewModel() {
 
     val events = MutableLiveData<List<Event>>()
+    var sorting = Sorting.DESCENDING
     private val repo = Repo.get()
 
     init {
-        getEvents()
+        updateSorting()
         updateEvents()
     }
 
-    fun getEvents() {
-        viewModelScope.launch {
-            repo.getRemoteEvents().body()?.let { eventList ->
-                events.postValue(eventList.sortedByDescending { it.eventDateUnix })
-            }
-        }
+    fun updateSorting(newSorting: Sorting = Sorting.DESCENDING) {
+        sorting = newSorting
+
+        getSortedLocalEvents()
     }
 
     fun updateEvents() {
         viewModelScope.launch {
             repo.updateLocalEvents()
-            getEvents()
+            getSortedLocalEvents()
         }
     }
 
-    fun sortAscending() {
-        Timber.d("Sorting: ascending")
-        events.value?.let { eventList ->
-            events.postValue(eventList.sortedBy { it.eventDateUnix })
-        }
-    }
-
-    fun sortDescending() {
-        Timber.d("Sorting: descending")
-        events.value?.let { eventList ->
-            events.postValue(eventList.sortedByDescending { it.eventDateUnix })
+    private fun getSortedLocalEvents() {
+        viewModelScope.launch {
+            repo.getLocalEvents().collect { eventList ->
+                if(sorting == Sorting.ASCENDING) {
+                    events.postValue(eventList.sortedBy { it.eventDateUnix })
+                } else {
+                    events.postValue(eventList.sortedByDescending { it.eventDateUnix })
+                }
+            }
         }
     }
 }
