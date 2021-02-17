@@ -31,4 +31,8 @@
     <string name="menu_launch_all">All launches</string>
     <string name="nav_launch_detail">Launch detail</string>
 
+    <string name="check_launch_detail_success">Successful</string>
+    <string name="check_launch_detail_tdb">TDB</string>
+    <string name="check_launch_detail_net">Net</string>
+
 </resources>

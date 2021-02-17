@@ -24,6 +24,8 @@ class Repo private constructor(context: Context) {
 
     suspend fun getUpcomingRemoteLaunches() = api.getUpcomingLaunches()
 
+    suspend fun getRemoteLaunch(id: String) = api.getLaunch(id)
+
     companion object {
         private var INSTANCE: Repo? = null
 

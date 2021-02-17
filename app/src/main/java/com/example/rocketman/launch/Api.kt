@@ -2,6 +2,8 @@ package com.example.rocketman.launch
 
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface Api {
 
@@ -13,4 +15,7 @@ interface Api {
 
     @GET("launches/upcoming")
     suspend fun getUpcomingLaunches(): Response<List<Launch>>
+
+    @GET("launches")
+    suspend fun getLaunch(@Query("id") id: String): Response<Launch>
 }
