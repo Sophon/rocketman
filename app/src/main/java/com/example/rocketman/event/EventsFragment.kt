@@ -134,6 +134,13 @@ class EventsFragment: Fragment() {
                 }
             }
 
+            updateMenuSorting()
+        }
+    }
+
+    //region Sorting
+    private fun updateMenuSorting() {
+        toolbar.apply {
             lifecycleScope.launch {
                 getPreference(SORT_PREF_KEY)?.let { sorting ->
                     menu.findItem(
@@ -154,4 +161,5 @@ class EventsFragment: Fragment() {
 
         vm.updateSorting(sorting)
     }
+    //endregion
 }
