@@ -2,15 +2,25 @@ package com.example.rocketman.rocket.list
 
 import android.os.Bundle
 import android.view.*
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.createDataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentRocketListBinding
 import com.example.rocketman.rocket.Repo
 import com.example.rocketman.rocket.Rocket
 import com.google.android.material.appbar.MaterialToolbar
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import timber.log.Timber
+
+private const val ROCKETS_ACTIVE_KEY = "com.example.rockeman.rocket.activeOnlyKey"
 
 class RocketListFragment: Fragment() {
 
@@ -19,12 +29,15 @@ class RocketListFragment: Fragment() {
     private val vm by lazy {
         ViewModelProvider(this).get(RocketListVM::class.java)
     }
+    private lateinit var dataStore: DataStore<Preferences>
 
     //region lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         Repo.init(requireContext())
+
+        dataStore = requireContext().createDataStore(name = "rocket-list-settings")
     }
 
     override fun onCreateView(
@@ -54,37 +67,9 @@ class RocketListFragment: Fragment() {
     override fun onPause() {
         super.onPause()
 
-        Timber.d("toolbar: clearing up")
         toolbar.menu.clear()
     }
-
     //endregion
-
-    private fun setupToolbar() {
-        Timber.d("toolbar: setting up")
-        requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
-            toolbar = this
-            inflateMenu(R.menu.rocket_list)
-
-            vm.activeOnly.observe(viewLifecycleOwner) {
-                menu.findItem(R.id.menu_check_active).isChecked = it
-            }
-
-            setOnMenuItemClickListener {
-                when(it.itemId) {
-                    R.id.menu_check_active -> {
-                        vm.toggleActiveOnly()
-                        true
-                    }
-                    R.id.menu_refresh -> {
-                        vm.updateRockets()
-                        true
-                    }
-                    else -> super.onOptionsItemSelected(it)
-                }
-            }
-        }
-    }
 
     //region RecyclerView
     private fun setupRecyclerView() {
@@ -99,9 +84,71 @@ class RocketListFragment: Fragment() {
     }
     //endregion
 
+    //region DataStore
+    private suspend fun savePreference(key: String, activeOnly: Boolean) {
+        val dataStoreKey = booleanPreferencesKey(key)
+        dataStore.edit { settings ->
+            settings[dataStoreKey] = activeOnly
+        }
+    }
+
+    private suspend fun getPreference(key: String): Boolean? {
+        val dataStoreKey = booleanPreferencesKey(key)
+        return dataStore.data.first()[dataStoreKey]
+    }
+    //endregion
+
     private fun setupObservers() {
         vm.rockets.observe(viewLifecycleOwner) {
             updateList(it)
         }
     }
+
+    private fun setupToolbar() {
+        requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
+            toolbar = this
+            inflateMenu(R.menu.rocket_list)
+
+            setOnMenuItemClickListener {
+                when(it.itemId) {
+                    R.id.menu_check_active_rockets_only -> {
+                        vm.activeOnly.apply {
+                            it.isChecked = !this
+                            toggleActiveOnly(!this)
+                        }
+
+                        true
+                    }
+                    R.id.menu_refresh -> {
+                        vm.updateRockets()
+                        true
+                    }
+                    else -> super.onOptionsItemSelected(it)
+                }
+            }
+
+            getActiveOnlyFromDataStore()
+        }
+    }
+
+    //region Active only
+    private fun getActiveOnlyFromDataStore() {
+        toolbar.apply {
+            lifecycleScope.launch {
+                getPreference(ROCKETS_ACTIVE_KEY)?.let { activeOnly ->
+                    menu.findItem(R.id.menu_check_active_rockets_only).isChecked = activeOnly
+                    vm.toggleActiveOnly(activeOnly)
+                }
+            }
+        }
+    }
+
+    private fun toggleActiveOnly(activeOnly: Boolean) {
+        lifecycleScope.launch {
+            savePreference(ROCKETS_ACTIVE_KEY, activeOnly)
+        }
+
+        vm.toggleActiveOnly(activeOnly)
+    }
+    //endregion
 }

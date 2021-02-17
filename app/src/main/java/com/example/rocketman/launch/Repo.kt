@@ -18,11 +18,13 @@ class Repo private constructor(context: Context) {
             .create(Api::class.java)
     }
 
-    suspend fun getRemoteAllLaunches() = api.getAllLaunches()
+    suspend fun getAllRemoteLaunches() = api.getAllLaunches()
 
-    suspend fun getRemotePastLaunches() = api.getPastLaunches()
+    suspend fun getPastRemoteLaunches() = api.getPastLaunches()
 
-    suspend fun getUpcomingPastLaunches() = api.getUpcomingLaunches()
+    suspend fun getUpcomingRemoteLaunches() = api.getUpcomingLaunches()
+
+    suspend fun getRemoteLaunch(id: String) = api.getLaunch(id)
 
     companion object {
         private var INSTANCE: Repo? = null

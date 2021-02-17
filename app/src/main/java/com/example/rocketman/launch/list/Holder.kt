@@ -1,11 +1,14 @@
 package com.example.rocketman.launch.list
 
 import android.content.Context
+import android.os.Bundle
 import android.view.View
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rocketman.R
 import com.example.rocketman.databinding.ItemLaunchBinding
 import com.example.rocketman.launch.Launch
+import com.example.rocketman.launch.detail.LaunchDetailFragment
 import com.squareup.picasso.Picasso
 
 class Holder(
@@ -20,7 +23,10 @@ class Holder(
     }
 
     override fun onClick(v: View?) {
-        TODO("Not yet implemented")
+        val args = Bundle().apply {
+            putParcelable(LaunchDetailFragment.ARG_LAUNCH_ID, launch)
+        }
+        v?.findNavController()?.navigate(R.id.action_launch_list_to_launch_detail, args)
     }
 
     fun bind(launch: Launch) {

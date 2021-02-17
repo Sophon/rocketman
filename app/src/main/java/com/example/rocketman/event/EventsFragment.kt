@@ -4,12 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.datastore.core.DataStore
+import androidx.datastore.createDataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.createDataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentEventsBinding
 import com.google.android.material.appbar.MaterialToolbar
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+
+private const val SORT_PREF_KEY = "com.example.rocketman.event.sortPrefKey"
 
 class EventsFragment: Fragment() {
 
@@ -18,12 +29,15 @@ class EventsFragment: Fragment() {
     private val vm by lazy {
         ViewModelProvider(this).get(EventsVM::class.java)
     }
+    private lateinit var dataStore: DataStore<Preferences>
 
     //region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         Repo.init(requireContext())
+
+        dataStore = requireContext().createDataStore(name = "events-settings")
     }
 
     override fun onCreateView(
@@ -70,6 +84,22 @@ class EventsFragment: Fragment() {
     }
     //endregion
 
+    //region Datastore
+    private suspend fun savePreference(key: String, sorting: Sorting) {
+        val dataStoreKey = stringPreferencesKey(key)
+        dataStore.edit { settings ->
+            settings[dataStoreKey] = sorting.toString()
+        }
+    }
+
+    private suspend fun getPreference(key: String): Sorting? {
+        val dataStoreKey = stringPreferencesKey(key)
+        return dataStore.data.first()[dataStoreKey]?.let {
+            Sorting.valueOf(it)
+        }
+    }
+    //endregion
+
     private fun setupObservers() {
         vm.events.observe(viewLifecycleOwner) {
             updateList(it)
@@ -83,22 +113,53 @@ class EventsFragment: Fragment() {
             setOnMenuItemClickListener {
                 when(it.itemId) {
                     R.id.menu_refresh -> {
-                        vm.getEvents()
+                        vm.updateEvents()
                         true
                     }
                     R.id.ascending -> {
                         it.isChecked = true
-                        vm.sortAscending()
+
+                        sortEvents(Sorting.ASCENDING)
+
                         true
                     }
                     R.id.descending -> {
                         it.isChecked = true
-                        vm.sortDescending()
+
+                        sortEvents(Sorting.DESCENDING)
+
                         true
                     }
                     else -> super.onOptionsItemSelected(it)
                 }
             }
+
+            updateMenuSorting()
         }
     }
+
+    //region Sorting
+    private fun updateMenuSorting() {
+        toolbar.apply {
+            lifecycleScope.launch {
+                getPreference(SORT_PREF_KEY)?.let { sorting ->
+                    menu.findItem(
+                        if(sorting == Sorting.ASCENDING) R.id.ascending
+                        else R.id.descending
+                    ).isChecked = true
+
+                    vm.updateSorting(sorting)
+                }
+            }
+        }
+    }
+
+    private fun sortEvents(sorting: Sorting) {
+        lifecycleScope.launch {
+            savePreference(SORT_PREF_KEY, sorting)
+        }
+
+        vm.updateSorting(sorting)
+    }
+    //endregion
 }
