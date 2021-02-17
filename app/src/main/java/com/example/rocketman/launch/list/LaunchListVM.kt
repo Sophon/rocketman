@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.rocketman.launch.Launch
 import com.example.rocketman.launch.Repo
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 class LaunchListVM: ViewModel() {
 
@@ -14,22 +15,34 @@ class LaunchListVM: ViewModel() {
     private val repo = Repo.get()
 
     init {
-        getLaunches()
+        getLaunches(repo::getRemoteAllLaunches)
     }
 
     fun filterLaunches(filter: LaunchFilter) {
         launchStatus.postValue(filter)
 
-        //TODO: database shit
+        getLaunches(
+            when(filter) {
+                LaunchFilter.ALL -> {
+                    repo::getRemoteAllLaunches
+                }
+                LaunchFilter.PAST -> {
+                    repo::getRemotePastLaunches
+                }
+                LaunchFilter.UPCOMING -> {
+                    repo::getUpcomingPastLaunches
+                }
+            }
+        )
     }
 
     fun updateLaunches() {
-        //TODO: database shit
+        getLaunches(repo::getRemoteAllLaunches)
     }
 
-    private fun getLaunches() {
+    private fun getLaunches(call: suspend () -> Response<List<Launch>>) {
         viewModelScope.launch {
-            val response = repo.getRemoteRockets()
+            val response = call.invoke()
 
             if(response.isSuccessful) {
                 response.body()?.let {

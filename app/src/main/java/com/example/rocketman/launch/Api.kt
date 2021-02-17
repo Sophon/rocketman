@@ -6,5 +6,11 @@ import retrofit2.http.GET
 interface Api {
 
     @GET("launches")
-    suspend fun getLaunches(): Response<List<Launch>>
+    suspend fun getAllLaunches(): Response<List<Launch>>
+
+    @GET("launches/past")
+    suspend fun getPastLaunches(): Response<List<Launch>>
+
+    @GET("launches/upcoming")
+    suspend fun getUpcomingLaunches(): Response<List<Launch>>
 }

@@ -11,8 +11,6 @@ import com.example.rocketman.company.CompanyDao
 import com.example.rocketman.event.Event
 import com.example.rocketman.event.EventDao
 import com.example.rocketman.event.EventTypeConverter
-import com.example.rocketman.launch.Launch
-import com.example.rocketman.launch.LaunchDao
 import com.example.rocketman.rocket.Rocket
 import com.example.rocketman.rocket.RocketDao
 import com.example.rocketman.rocket.RocketTypeConverter
@@ -21,8 +19,7 @@ import com.example.rocketman.rocket.RocketTypeConverter
     entities = [
         Company::class,
         Rocket::class,
-        Event::class,
-        Launch::class
+        Event::class
     ],
     exportSchema = true,
     version = 1
@@ -37,7 +34,6 @@ abstract class RocketManDB: RoomDatabase() {
     abstract fun companyDao(): CompanyDao
     abstract fun rocketDao(): RocketDao
     abstract fun eventDao(): EventDao
-    abstract fun launchDao(): LaunchDao
 
     companion object {
         const val NAME_DB = "Rocket database"
