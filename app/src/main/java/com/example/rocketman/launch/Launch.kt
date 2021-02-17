@@ -1,10 +1,13 @@
 package com.example.rocketman.launch
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 
+@Entity
 @Parcelize
 data class Launch(
     @SerializedName("auto_update")
@@ -33,6 +36,7 @@ data class Launch(
     @SerializedName("flight_number")
     val flightNumber: Int = 0,
     @SerializedName("id")
+    @PrimaryKey
     val id: String = "",
     @SerializedName("launchpad")
     val launchpad: String = "",
