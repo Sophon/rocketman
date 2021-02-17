@@ -3,8 +3,8 @@ package com.example.rocketman.event
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class EventsVM: ViewModel() {
 
@@ -13,48 +13,32 @@ class EventsVM: ViewModel() {
     private val repo = Repo.get()
 
     init {
-        getEvents()
+        updateSorting()
         updateEvents()
     }
 
-    fun updateSorting(newSorting: Sorting) {
+    fun updateSorting(newSorting: Sorting = Sorting.DESCENDING) {
         sorting = newSorting
-        if(newSorting == Sorting.ASCENDING) {
-            sortAscending()
-        } else {
-            sortDescending()
-        }
-    }
 
-    private fun getEvents() {
-        viewModelScope.launch {
-            repo.getRemoteEvents().body()?.let { eventList ->
-                events.postValue(
-                    if(sorting == Sorting.ASCENDING) eventList.sortedBy { it.eventDateUnix }
-                    else eventList.sortedByDescending { it.eventDateUnix }
-                )
-            }
-        }
+        getSortedLocalEvents()
     }
 
     fun updateEvents() {
         viewModelScope.launch {
             repo.updateLocalEvents()
-            getEvents()
+            getSortedLocalEvents()
         }
     }
 
-    private fun sortAscending() {
-        Timber.d("Sorting: ascending")
-        events.value?.let { eventList ->
-            events.postValue(eventList.sortedBy { it.eventDateUnix })
-        }
-    }
-
-    private fun sortDescending() {
-        Timber.d("Sorting: descending")
-        events.value?.let { eventList ->
-            events.postValue(eventList.sortedByDescending { it.eventDateUnix })
+    private fun getSortedLocalEvents() {
+        viewModelScope.launch {
+            repo.getLocalEvents().collect { eventList ->
+                if(sorting == Sorting.ASCENDING) {
+                    events.postValue(eventList.sortedBy { it.eventDateUnix })
+                } else {
+                    events.postValue(eventList.sortedByDescending { it.eventDateUnix })
+                }
+            }
         }
     }
 }
