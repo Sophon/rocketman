@@ -30,11 +30,11 @@ class Repo private constructor(context: Context) {
 
     private suspend fun getRemoteRockets() = api.getRockets()
 
-    fun getLocalRockets() = dao.rocketDao().getRockets()
+    fun getAllLocalRockets() = dao.rocketDao().getRockets()
 
     fun getLocalRocket(rocketId: String) = dao.rocketDao().getRocket(rocketId)
 
-    fun getActiveLocalRockets() = dao.rocketDao().getActiveRockets()
+    fun getActiveOnlyLocalRockets() = dao.rocketDao().getActiveRockets()
 
     suspend fun updateLocalRockets() {
         val response = getRemoteRockets()
