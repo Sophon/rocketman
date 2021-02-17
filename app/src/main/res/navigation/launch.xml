@@ -11,6 +11,27 @@
         android:name="com.example.rocketman.launch.list.LaunchListFragment"
         android:label="@string/nav_launch_list"
         tools:layout="@layout/fragment_launch_list"
-        />
+        >
+        <action
+            android:id="@+id/action_launch_list_to_launch_detail"
+            app:destination="@id/launchDetailFragment"
+            >
+            <argument
+                android:name="launch"
+                app:argType="com.example.rocketman.launch.Launch"
+                />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/launchDetailFragment"
+        android:name="com.example.rocketman.launch.detail.LaunchDetailFragment"
+        android:label="@string/nav_launch_detail"
+        >
+        <argument
+            android:name="launch"
+            app:argType="com.example.rocketman.launch.Launch"
+            />
+    </fragment>
 
 </navigation>
