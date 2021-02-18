@@ -1,4 +1,4 @@
-package com.example.rocketman.launch.list
+package com.example.rocketman.features.launch.list
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.rocketman.databinding.ItemLaunchBinding
-import com.example.rocketman.launch.Launch
+import com.example.rocketman.features.launch.Launch
 
 class Adapter(
     private val context: Context

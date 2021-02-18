@@ -1,10 +1,4 @@
-package com.example.rocketman.launch
-
-import android.content.Context
-import com.example.rocketman.common.BASE_URL_SPACEX
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.IllegalStateException
+package com.example.rocketman.features.launch
 
 private const val ERROR_MSG_NO_INSTANCE = "Launch repository must be initialized!"
 

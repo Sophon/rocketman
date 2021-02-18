@@ -1,4 +1,4 @@
-package com.example.rocketman.launch.list
+package com.example.rocketman.features.launch.list
 
 enum class LaunchFilter(value: String) {
     ALL("launch-filter-all"),

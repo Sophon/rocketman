@@ -1,4 +1,4 @@
-package com.example.rocketman.launch.list
+package com.example.rocketman.features.launch.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,15 +10,12 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.createDataStore
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentLaunchListBinding
-import com.example.rocketman.launch.Launch
-import com.example.rocketman.launch.Repo
+import com.example.rocketman.features.launch.Launch
 import com.google.android.material.appbar.MaterialToolbar
-import kotlinx.android.synthetic.main.fragment_drawer.view.*
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel

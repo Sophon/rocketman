@@ -1,4 +1,4 @@
-package com.example.rocketman.launch
+package com.example.rocketman.features.launch
 
 import android.os.Parcelable
 import androidx.room.Entity

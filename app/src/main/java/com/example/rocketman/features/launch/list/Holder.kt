@@ -1,4 +1,4 @@
-package com.example.rocketman.launch.list
+package com.example.rocketman.features.launch.list
 
 import android.content.Context
 import android.os.Bundle
@@ -7,8 +7,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rocketman.R
 import com.example.rocketman.databinding.ItemLaunchBinding
-import com.example.rocketman.launch.Launch
-import com.example.rocketman.launch.detail.LaunchDetailFragment
+import com.example.rocketman.features.launch.Launch
+import com.example.rocketman.features.launch.detail.LaunchDetailFragment
 import com.squareup.picasso.Picasso
 
 class Holder(

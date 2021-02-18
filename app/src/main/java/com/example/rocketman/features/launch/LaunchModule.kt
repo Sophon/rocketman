@@ -1,7 +1,7 @@
-package com.example.rocketman.launch
+package com.example.rocketman.features.launch
 
-import com.example.rocketman.launch.detail.LaunchDetailVM
-import com.example.rocketman.launch.list.LaunchListVM
+import com.example.rocketman.features.launch.detail.LaunchDetailVM
+import com.example.rocketman.features.launch.list.LaunchListVM
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit

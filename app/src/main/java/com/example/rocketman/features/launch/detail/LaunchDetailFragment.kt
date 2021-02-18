@@ -1,11 +1,10 @@
-package com.example.rocketman.launch.detail
+package com.example.rocketman.features.launch.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentLaunchDetailBinding
 import com.google.android.material.appbar.MaterialToolbar
