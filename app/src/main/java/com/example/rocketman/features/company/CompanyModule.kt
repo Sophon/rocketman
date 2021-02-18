@@ -1,4 +1,4 @@
-package com.example.rocketman.company
+package com.example.rocketman.features.company
 
 import com.example.rocketman.db.RocketManDB
 import org.koin.androidx.viewmodel.dsl.viewModel

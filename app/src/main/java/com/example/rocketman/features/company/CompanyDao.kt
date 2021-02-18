@@ -1,4 +1,4 @@
-package com.example.rocketman.company
+package com.example.rocketman.features.company
 
 import androidx.room.Dao
 import androidx.room.Insert

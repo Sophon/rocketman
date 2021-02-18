@@ -1,4 +1,4 @@
-package com.example.rocketman.company
+package com.example.rocketman.features.company
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

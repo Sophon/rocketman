@@ -1,4 +1,4 @@
-package com.example.rocketman.company
+package com.example.rocketman.features.company
 
 import retrofit2.Response
 import retrofit2.http.GET

@@ -1,4 +1,4 @@
-package com.example.rocketman.company
+package com.example.rocketman.features.company
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
