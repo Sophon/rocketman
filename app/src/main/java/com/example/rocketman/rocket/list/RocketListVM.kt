@@ -11,11 +11,10 @@ import timber.log.Timber
 
 private const val TAG = "RocketApi"
 
-class RocketListVM: ViewModel() {
+class RocketListVM(private val repo: Repo): ViewModel() {
 
     val rockets = MutableLiveData<List<Rocket>>()
     var activeOnly = false
-    private val repo = Repo.get()
 
     init {
         toggleActiveOnly()

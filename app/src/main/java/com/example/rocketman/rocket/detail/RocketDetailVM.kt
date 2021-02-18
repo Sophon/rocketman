@@ -12,10 +12,9 @@ import timber.log.Timber
 private const val TAG = "RocketDetail"
 private const val MSG_EXCEPTION_ROCKET_NULL = "cached rocket shouldn't be null"
 
-class RocketDetailVM: ViewModel() {
+class RocketDetailVM(private val repo: Repo): ViewModel() {
 
     val rocket = MutableLiveData<Rocket>()
-    private val repo = Repo.get()
 
     fun updateRocket() {
         viewModelScope.launch {

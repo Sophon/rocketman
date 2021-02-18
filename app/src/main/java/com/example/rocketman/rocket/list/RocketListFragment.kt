@@ -18,6 +18,7 @@ import com.example.rocketman.rocket.Rocket
 import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 private const val ROCKETS_ACTIVE_KEY = "com.example.rockeman.rocket.activeOnlyKey"
@@ -26,16 +27,12 @@ class RocketListFragment: Fragment() {
 
     private lateinit var binding: FragmentRocketListBinding
     private lateinit var toolbar: MaterialToolbar
-    private val vm by lazy {
-        ViewModelProvider(this).get(RocketListVM::class.java)
-    }
+    private val vm by viewModel<RocketListVM>()
     private lateinit var dataStore: DataStore<Preferences>
 
     //region lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        Repo.init(requireContext())
 
         dataStore = requireContext().createDataStore(name = "rocket-list-settings")
     }

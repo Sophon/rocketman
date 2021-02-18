@@ -12,15 +12,14 @@ import com.example.rocketman.rocket.Rocket
 import com.google.android.material.appbar.MaterialToolbar
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_rocket_detail.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class RocketDetailFragment: Fragment() {
 
     private lateinit var binding: FragmentRocketDetailBinding
     private lateinit var toolbar: MaterialToolbar
-    private val vm by lazy {
-        ViewModelProvider(this).get(RocketDetailVM::class.java)
-    }
+    private val vm by viewModel<RocketDetailVM>()
 
     //region Lifecycle
     override fun onCreateView(
