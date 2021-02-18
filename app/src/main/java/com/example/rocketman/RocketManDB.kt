@@ -1,4 +1,4 @@
-package com.example.rocketman.db
+package com.example.rocketman
 
 import android.content.Context
 import androidx.room.Database

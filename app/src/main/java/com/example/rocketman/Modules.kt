@@ -3,7 +3,7 @@ package com.example.rocketman.di
 import androidx.room.Room
 import com.example.rocketman.common.BASE_URL_SPACEX
 import com.example.rocketman.features.company.companyModule
-import com.example.rocketman.db.RocketManDB
+import com.example.rocketman.RocketManDB
 import com.example.rocketman.features.event.eventModule
 import com.example.rocketman.features.launch.launchModule
 import com.example.rocketman.features.rocket.rocketModule

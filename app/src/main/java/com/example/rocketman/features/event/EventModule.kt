@@ -1,6 +1,6 @@
 package com.example.rocketman.features.event
 
-import com.example.rocketman.db.RocketManDB
+import com.example.rocketman.RocketManDB
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
