@@ -11,9 +11,9 @@ import com.example.rocketman.features.company.CompanyDao
 import com.example.rocketman.event.Event
 import com.example.rocketman.event.EventDao
 import com.example.rocketman.event.EventTypeConverter
-import com.example.rocketman.rocket.Rocket
-import com.example.rocketman.rocket.RocketDao
-import com.example.rocketman.rocket.RocketTypeConverter
+import com.example.rocketman.features.rocket.Rocket
+import com.example.rocketman.features.rocket.RocketDao
+import com.example.rocketman.features.rocket.RocketTypeConverter
 
 @Database(
     entities = [

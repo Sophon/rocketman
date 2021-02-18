@@ -1,19 +1,16 @@
-package com.example.rocketman.rocket.detail
+package com.example.rocketman.features.rocket.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentRocketDetailBinding
-import com.example.rocketman.rocket.Rocket
 import com.google.android.material.appbar.MaterialToolbar
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_rocket_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class RocketDetailFragment: Fragment() {
 

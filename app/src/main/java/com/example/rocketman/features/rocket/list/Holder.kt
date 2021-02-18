@@ -1,15 +1,14 @@
-package com.example.rocketman.rocket.list
+package com.example.rocketman.features.rocket.list
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.View
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rocketman.R
 import com.example.rocketman.databinding.ItemRocketBinding
-import com.example.rocketman.rocket.Rocket
-import com.example.rocketman.rocket.detail.RocketDetailFragment
+import com.example.rocketman.features.rocket.Rocket
+import com.example.rocketman.features.rocket.detail.RocketDetailFragment
 import com.squareup.picasso.Picasso
 
 class Holder(

@@ -1,4 +1,4 @@
-package com.example.rocketman.rocket.list
+package com.example.rocketman.features.rocket.list
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.rocketman.databinding.ItemRocketBinding
-import com.example.rocketman.rocket.Rocket
+import com.example.rocketman.features.rocket.Rocket
 
 class Adapter(
     private val context: Context

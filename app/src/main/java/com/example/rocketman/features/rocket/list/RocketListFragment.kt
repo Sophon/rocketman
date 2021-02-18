@@ -1,4 +1,4 @@
-package com.example.rocketman.rocket.list
+package com.example.rocketman.features.rocket.list
 
 import android.os.Bundle
 import android.view.*
@@ -8,18 +8,15 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.createDataStore
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentRocketListBinding
-import com.example.rocketman.rocket.Repo
-import com.example.rocketman.rocket.Rocket
+import com.example.rocketman.features.rocket.Rocket
 import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 private const val ROCKETS_ACTIVE_KEY = "com.example.rockeman.rocket.activeOnlyKey"
 

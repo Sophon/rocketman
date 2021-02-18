@@ -1,10 +1,10 @@
-package com.example.rocketman.rocket.detail
+package com.example.rocketman.features.rocket.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rocketman.rocket.Repo
-import com.example.rocketman.rocket.Rocket
+import com.example.rocketman.features.rocket.Repo
+import com.example.rocketman.features.rocket.Rocket
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber

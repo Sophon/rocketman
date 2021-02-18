@@ -6,7 +6,7 @@ import com.example.rocketman.features.company.companyModule
 import com.example.rocketman.db.RocketManDB
 import com.example.rocketman.event.eventModule
 import com.example.rocketman.launch.launchModule
-import com.example.rocketman.rocket.rocketModule
+import com.example.rocketman.features.rocket.rocketModule
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 import retrofit2.Retrofit

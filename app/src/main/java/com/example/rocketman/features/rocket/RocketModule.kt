@@ -1,8 +1,8 @@
-package com.example.rocketman.rocket
+package com.example.rocketman.features.rocket
 
 import com.example.rocketman.db.RocketManDB
-import com.example.rocketman.rocket.detail.RocketDetailVM
-import com.example.rocketman.rocket.list.RocketListVM
+import com.example.rocketman.features.rocket.detail.RocketDetailVM
+import com.example.rocketman.features.rocket.list.RocketListVM
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
