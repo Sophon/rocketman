@@ -1,5 +1,7 @@
 package com.example.rocketman.event
 
+import com.example.rocketman.features.event.EventTypeConverter
+import com.example.rocketman.features.event.Links
 import org.hamcrest.core.Is.`is`
 import org.hamcrest.core.IsNull.nullValue
 import org.junit.Before

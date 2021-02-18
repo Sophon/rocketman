@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/launchListFragment"
-        android:name="com.example.rocketman.launch.list.LaunchListFragment"
+        android:name="com.example.rocketman.features.launch.list.LaunchListFragment"
         android:label="@string/nav_launch_list"
         tools:layout="@layout/fragment_launch_list"
         >
@@ -18,19 +18,19 @@
             >
             <argument
                 android:name="launch"
-                app:argType="com.example.rocketman.launch.Launch"
+                app:argType="com.example.rocketman.features.launch.Launch"
                 />
         </action>
     </fragment>
 
     <fragment
         android:id="@+id/launchDetailFragment"
-        android:name="com.example.rocketman.launch.detail.LaunchDetailFragment"
+        android:name="com.example.rocketman.features.launch.detail.LaunchDetailFragment"
         android:label="@string/nav_launch_detail"
         >
         <argument
             android:name="launch"
-            app:argType="com.example.rocketman.launch.Launch"
+            app:argType="com.example.rocketman.features.launch.Launch"
             />
     </fragment>
 

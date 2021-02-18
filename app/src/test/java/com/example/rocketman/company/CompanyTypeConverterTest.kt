@@ -1,5 +1,8 @@
 package com.example.rocketman.company
 
+import com.example.rocketman.features.company.CompanyTypeConverter
+import com.example.rocketman.features.company.Headquarters
+import com.example.rocketman.features.company.Links
 import org.hamcrest.core.Is.`is`
 import org.hamcrest.core.IsNull.nullValue
 import org.junit.Before

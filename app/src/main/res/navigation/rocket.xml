@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/rocketListFragment"
-        android:name="com.example.rocketman.rocket.list.RocketListFragment"
+        android:name="com.example.rocketman.features.rocket.list.RocketListFragment"
         android:label="@string/nav_rocket_list"
         tools:layout="@layout/fragment_rocket_list"
         >
@@ -18,19 +18,19 @@
             >
             <argument
                 android:name="rocket"
-                app:argType="com.example.rocketman.rocket.Rocket"
+                app:argType="com.example.rocketman.features.rocket.Rocket"
                 />
         </action>
     </fragment>
 
     <fragment
         android:id="@+id/rocketsDetailFragment"
-        android:name="com.example.rocketman.rocket.detail.RocketDetailFragment"
+        android:name="com.example.rocketman.features.rocket.detail.RocketDetailFragment"
         android:label="@string/nav_rocket_detail"
         >
         <argument
             android:name="rocket"
-            app:argType="com.example.rocketman.rocket.Rocket"
+            app:argType="com.example.rocketman.features.rocket.Rocket"
             />
     </fragment>
 
