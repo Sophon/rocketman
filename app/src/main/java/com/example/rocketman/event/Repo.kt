@@ -11,21 +11,14 @@ import java.lang.IllegalStateException
 
 private const val ERROR_MSG_NO_INSTANCE = "Events repository must be initialized!"
 
-class Repo private constructor(context: Context) {
-
-    private val api by lazy {
-        Retrofit.Builder()
-            .baseUrl(BASE_URL_SPACEX)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(Api::class.java)
-    }
-
-    private val dao: RocketManDB = RocketManDB.build(context)
+class Repo(
+    private val api: Api,
+    private val dao: EventDao
+) {
 
     suspend fun getRemoteEvents() = api.getEvents()
 
-    fun getLocalEvents() = dao.eventDao().getEvents()
+    fun getLocalEvents() = dao.getEvents()
 
     suspend fun updateLocalEvents() {
         val response = getRemoteEvents()
@@ -33,23 +26,9 @@ class Repo private constructor(context: Context) {
         if(response.isSuccessful) {
             response.body()?.let {
                 withContext(Dispatchers.IO) {
-                    dao.eventDao().saveEvents(it)
+                    dao.saveEvents(it)
                 }
             }
-        }
-    }
-
-    companion object {
-        private var INSTANCE: Repo? = null
-
-        fun init(context: Context) {
-            if(INSTANCE == null) {
-                INSTANCE = Repo(context)
-            }
-        }
-
-        fun get(): Repo {
-            return INSTANCE ?: throw IllegalStateException(ERROR_MSG_NO_INSTANCE)
         }
     }
 }

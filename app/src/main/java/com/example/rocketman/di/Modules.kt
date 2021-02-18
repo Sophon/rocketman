@@ -4,6 +4,7 @@ import androidx.room.Room
 import com.example.rocketman.common.BASE_URL_SPACEX
 import com.example.rocketman.company.companyModule
 import com.example.rocketman.db.RocketManDB
+import com.example.rocketman.event.eventModule
 import com.example.rocketman.rocket.Repo
 import com.example.rocketman.rocket.Api
 import com.example.rocketman.rocket.detail.RocketDetailVM
@@ -42,5 +43,6 @@ val allModules = listOf(
     networkModule,
     persistenceModule,
     companyModule,
+    eventModule,
     rocketModule
 )

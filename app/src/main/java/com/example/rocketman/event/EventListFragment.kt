@@ -5,13 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.datastore.core.DataStore
-import androidx.datastore.createDataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.createDataStore
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rocketman.R
@@ -19,23 +17,20 @@ import com.example.rocketman.databinding.FragmentEventsBinding
 import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val SORT_PREF_KEY = "com.example.rocketman.event.sortPrefKey"
 
-class EventsFragment: Fragment() {
+class EventListFragment: Fragment() {
 
     private lateinit var binding: FragmentEventsBinding
     private lateinit var toolbar: MaterialToolbar
-    private val vm by lazy {
-        ViewModelProvider(this).get(EventsVM::class.java)
-    }
+    private val vm by viewModel<EventListVM>()
     private lateinit var dataStore: DataStore<Preferences>
 
     //region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        Repo.init(requireContext())
 
         dataStore = requireContext().createDataStore(name = "events-settings")
     }
