@@ -1,6 +1,5 @@
 package com.example.rocketman.rocket
 
-import com.example.rocketman.db.RocketManDB
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber

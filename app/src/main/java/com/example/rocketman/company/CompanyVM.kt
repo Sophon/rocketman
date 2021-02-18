@@ -11,10 +11,9 @@ private const val TAG = "CompanyApi"
 private const val MSG_SUCCESS = "successfully fetched"
 private const val MSG_ERROR = "failed to fetch"
 
-class CompanyVM: ViewModel() {
+class CompanyVM(private val repo: Repo): ViewModel() {
 
     val companyData = MutableLiveData<Company>()
-    private val repo = Repo.get()
 
     init {
         getCompanyInfo()

@@ -2,6 +2,7 @@ package com.example.rocketman.di
 
 import androidx.room.Room
 import com.example.rocketman.common.BASE_URL_SPACEX
+import com.example.rocketman.company.companyModule
 import com.example.rocketman.db.RocketManDB
 import com.example.rocketman.rocket.Repo
 import com.example.rocketman.rocket.Api
@@ -40,5 +41,6 @@ val persistenceModule = module {
 val allModules = listOf(
     networkModule,
     persistenceModule,
+    companyModule,
     rocketModule
 )

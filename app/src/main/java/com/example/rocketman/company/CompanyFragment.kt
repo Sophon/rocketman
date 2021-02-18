@@ -7,24 +7,16 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentCompanyDataBinding
 import com.google.android.material.appbar.MaterialToolbar
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class CompanyFragment: Fragment() {
 
     private lateinit var binding: FragmentCompanyDataBinding
     private lateinit var toolbar: MaterialToolbar
-    private val vm by lazy {
-        ViewModelProvider(this).get(CompanyVM::class.java)
-    }
-
+    private val vm by viewModel<CompanyVM>()
 
     //region Lifecycle
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        Repo.init(requireContext())
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
