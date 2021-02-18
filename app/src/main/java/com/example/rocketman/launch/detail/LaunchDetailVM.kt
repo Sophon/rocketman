@@ -11,10 +11,9 @@ import timber.log.Timber
 private const val TAG = "LaunchDetail"
 private const val MSG_EXCEPTION_LAUNCH_NULL = "cached launch shouldn't be null"
 
-class LaunchDetailVM: ViewModel() {
+class LaunchDetailVM(private val repo: Repo): ViewModel() {
 
     val launch = MutableLiveData<Launch>()
-    private val repo = Repo.get()
 
     fun updateLaunch() {
         Timber.d("$TAG: refreshing")

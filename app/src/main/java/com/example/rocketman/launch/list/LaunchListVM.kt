@@ -10,11 +10,10 @@ import timber.log.Timber
 
 private const val TAG = "LaunchList"
 
-class LaunchListVM: ViewModel() {
+class LaunchListVM(private val repo: Repo): ViewModel() {
 
     val launches = MutableLiveData<List<Launch>>()
     var filter = LaunchFilter.ALL
-    private val repo = Repo.get()
 
     fun filterLaunches(newFilter: LaunchFilter = LaunchFilter.ALL) {
         filter = newFilter

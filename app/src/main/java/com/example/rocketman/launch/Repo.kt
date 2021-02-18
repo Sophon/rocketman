@@ -8,15 +8,9 @@ import java.lang.IllegalStateException
 
 private const val ERROR_MSG_NO_INSTANCE = "Launch repository must be initialized!"
 
-class Repo private constructor(context: Context) {
-
-    private val api by lazy {
-        Retrofit.Builder()
-            .baseUrl(BASE_URL_SPACEX)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(Api::class.java)
-    }
+class Repo(
+    private val api: Api
+) {
 
     suspend fun getAllRemoteLaunches() = api.getAllLaunches()
 
@@ -25,18 +19,4 @@ class Repo private constructor(context: Context) {
     suspend fun getUpcomingRemoteLaunches() = api.getUpcomingLaunches()
 
     suspend fun getRemoteLaunch(id: String) = api.getLaunch(id)
-
-    companion object {
-        private var INSTANCE: Repo? = null
-
-        fun init(context: Context) {
-            if(INSTANCE == null) {
-                INSTANCE = Repo(context)
-            }
-        }
-
-        fun get(): Repo {
-            return INSTANCE ?: throw IllegalStateException(ERROR_MSG_NO_INSTANCE)
-        }
-    }
 }

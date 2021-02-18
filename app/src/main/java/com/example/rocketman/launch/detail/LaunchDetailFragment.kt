@@ -10,14 +10,13 @@ import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentLaunchDetailBinding
 import com.google.android.material.appbar.MaterialToolbar
 import com.squareup.picasso.Picasso
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LaunchDetailFragment: Fragment() {
 
     private lateinit var binding: FragmentLaunchDetailBinding
     private lateinit var toolbar: MaterialToolbar
-    private val vm by lazy {
-        ViewModelProvider(this).get(LaunchDetailVM::class.java)
-    }
+    private val vm by viewModel<LaunchDetailVM>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

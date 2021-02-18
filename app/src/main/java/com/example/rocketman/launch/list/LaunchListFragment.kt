@@ -21,6 +21,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.android.synthetic.main.fragment_drawer.view.*
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val FILTER_LAUNCH_KEY = "com.example.rocketman.launch.filter"
 
@@ -28,16 +29,12 @@ class LaunchListFragment: Fragment() {
 
     private lateinit var binding: FragmentLaunchListBinding
     private lateinit var toolbar: MaterialToolbar
-    private val vm by lazy {
-        ViewModelProvider(this).get(LaunchListVM::class.java)
-    }
+    private val vm by viewModel<LaunchListVM>()
     private lateinit var dataStore: DataStore<Preferences>
 
     //region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        Repo.init(requireContext())
 
         dataStore = requireContext().createDataStore(name = "launches-settings")
     }
