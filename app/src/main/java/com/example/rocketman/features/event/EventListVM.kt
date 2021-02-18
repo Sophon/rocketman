@@ -1,4 +1,4 @@
-package com.example.rocketman.event
+package com.example.rocketman.features.event
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

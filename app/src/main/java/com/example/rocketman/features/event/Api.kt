@@ -1,4 +1,4 @@
-package com.example.rocketman.event
+package com.example.rocketman.features.event
 
 import retrofit2.Response
 import retrofit2.http.GET

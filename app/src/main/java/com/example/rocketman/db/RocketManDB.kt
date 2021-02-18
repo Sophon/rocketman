@@ -8,9 +8,9 @@ import androidx.room.TypeConverters
 import com.example.rocketman.features.company.Company
 import com.example.rocketman.features.company.CompanyTypeConverter
 import com.example.rocketman.features.company.CompanyDao
-import com.example.rocketman.event.Event
-import com.example.rocketman.event.EventDao
-import com.example.rocketman.event.EventTypeConverter
+import com.example.rocketman.features.event.Event
+import com.example.rocketman.features.event.EventDao
+import com.example.rocketman.features.event.EventTypeConverter
 import com.example.rocketman.features.rocket.Rocket
 import com.example.rocketman.features.rocket.RocketDao
 import com.example.rocketman.features.rocket.RocketTypeConverter

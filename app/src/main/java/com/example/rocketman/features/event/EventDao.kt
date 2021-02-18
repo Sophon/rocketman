@@ -1,4 +1,4 @@
-package com.example.rocketman.event
+package com.example.rocketman.features.event
 
 import androidx.room.Dao
 import androidx.room.Insert

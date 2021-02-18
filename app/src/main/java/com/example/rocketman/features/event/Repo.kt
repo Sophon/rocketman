@@ -1,13 +1,7 @@
-package com.example.rocketman.event
+package com.example.rocketman.features.event
 
-import android.content.Context
-import com.example.rocketman.common.BASE_URL_SPACEX
-import com.example.rocketman.db.RocketManDB
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.IllegalStateException
 
 private const val ERROR_MSG_NO_INSTANCE = "Events repository must be initialized!"
 

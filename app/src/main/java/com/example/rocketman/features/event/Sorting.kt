@@ -1,4 +1,4 @@
-package com.example.rocketman.event
+package com.example.rocketman.features.event
 
 enum class Sorting(value: String) {
     ASCENDING("event-sorting-ascending"),

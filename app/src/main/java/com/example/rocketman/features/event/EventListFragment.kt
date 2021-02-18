@@ -1,4 +1,4 @@
-package com.example.rocketman.event
+package com.example.rocketman.features.event
 
 import android.os.Bundle
 import android.view.LayoutInflater

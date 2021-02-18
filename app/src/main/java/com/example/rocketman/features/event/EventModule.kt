@@ -1,4 +1,4 @@
-package com.example.rocketman.event
+package com.example.rocketman.features.event
 
 import com.example.rocketman.db.RocketManDB
 import org.koin.androidx.viewmodel.dsl.viewModel
