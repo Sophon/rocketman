@@ -10,7 +10,7 @@ private const val SUCCESS_MSG_API = "successfully fetched remote rocket list"
 private const val TAG = "RocketRepo"
 
 class Repo(
-    private val api: RocketApi,
+    private val api: Api,
     private val dao: RocketManDB
 ) {
 

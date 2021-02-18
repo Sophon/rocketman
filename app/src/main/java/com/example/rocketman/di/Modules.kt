@@ -4,9 +4,10 @@ import androidx.room.Room
 import com.example.rocketman.common.BASE_URL_SPACEX
 import com.example.rocketman.db.RocketManDB
 import com.example.rocketman.rocket.Repo
-import com.example.rocketman.rocket.RocketApi
+import com.example.rocketman.rocket.Api
 import com.example.rocketman.rocket.detail.RocketDetailVM
 import com.example.rocketman.rocket.list.RocketListVM
+import com.example.rocketman.rocket.rocketModule
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -22,12 +23,7 @@ val networkModule = module {
             .build()
     }
 
-    fun provideRocketApi(retrofit: Retrofit): RocketApi {
-        return retrofit.create(RocketApi::class.java)
-    }
-
     single { provideRetrofit() }
-    single { provideRocketApi(get()) }
 }
 
 val persistenceModule = module {
@@ -39,25 +35,10 @@ val persistenceModule = module {
         )
             .build()
     }
-
-    single { get<RocketManDB>().rocketDao() }
-}
-
-val repoModule = module {
-
-    single {
-        Repo(get(), get())
-    }
-}
-
-val viewModelModule = module {
-    viewModel { RocketListVM(get()) }
-    viewModel { RocketDetailVM(get()) }
 }
 
 val allModules = listOf(
     networkModule,
     persistenceModule,
-    repoModule,
-    viewModelModule
+    rocketModule
 )
