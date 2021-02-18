@@ -11,16 +11,16 @@ private const val TAG = "RocketRepo"
 
 class Repo(
     private val api: Api,
-    private val dao: RocketManDB
+    private val dao: RocketDao
 ) {
 
     private suspend fun getRemoteRockets() = api.getRockets()
 
-    fun getAllLocalRockets() = dao.rocketDao().getRockets()
+    fun getAllLocalRockets() = dao.getRockets()
 
-    fun getLocalRocket(rocketId: String) = dao.rocketDao().getRocket(rocketId)
+    fun getLocalRocket(rocketId: String) = dao.getRocket(rocketId)
 
-    fun getActiveOnlyLocalRockets() = dao.rocketDao().getActiveRockets()
+    fun getActiveOnlyLocalRockets() = dao.getActiveRockets()
 
     suspend fun updateLocalRockets() {
         val response = getRemoteRockets()
@@ -29,7 +29,7 @@ class Repo(
             Timber.d("$TAG: $SUCCESS_MSG_API")
             response.body()?.let {
                 withContext(Dispatchers.IO) {
-                    dao.rocketDao().saveRockets(it)
+                    dao.saveRockets(it)
                 }
             }
         } else {
