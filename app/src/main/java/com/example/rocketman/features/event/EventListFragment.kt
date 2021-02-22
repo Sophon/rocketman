@@ -70,7 +70,7 @@ class EventListFragment: Fragment() {
     private fun setupRecyclerView() {
         binding.rvEvents.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = Adapter(requireContext())
+            adapter = Adapter()
         }
     }
 

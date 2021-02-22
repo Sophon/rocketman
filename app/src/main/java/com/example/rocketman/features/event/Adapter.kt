@@ -7,9 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.rocketman.databinding.ItemEventBinding
 
-class Adapter(
-    private val context: Context
-): ListAdapter<Event, Holder>(DiffCallback()) {
+class Adapter: ListAdapter<Event, Holder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(
