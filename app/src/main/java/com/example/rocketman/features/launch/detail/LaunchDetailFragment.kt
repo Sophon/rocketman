@@ -17,6 +17,7 @@ class LaunchDetailFragment: Fragment() {
     private lateinit var toolbar: MaterialToolbar
     private val vm by viewModel<LaunchDetailVM>()
 
+    //region Lifecycle
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,6 +32,30 @@ class LaunchDetailFragment: Fragment() {
 
         setupObservers()
         loadRocket()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        setupToolbar()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        toolbar.menu.clear()
+    }
+    //endregion
+
+    private fun setupToolbar() {
+        requireActivity().findViewById<MaterialToolbar>(R.id.toolbar_home).apply {
+            toolbar = this
+            inflateMenu(R.menu.refresh_only)
+            setOnMenuItemClickListener {
+                vm.updateLaunch()
+                true
+            }
+        }
     }
 
     private fun setupObservers() {
