@@ -10,7 +10,7 @@ class Repo(
     private val dao: EventDao
 ) {
 
-    suspend fun getRemoteEvents() = api.getEvents()
+    private suspend fun getRemoteEvents() = api.getEvents()
 
     fun getLocalEvents() = dao.getEvents()
 
