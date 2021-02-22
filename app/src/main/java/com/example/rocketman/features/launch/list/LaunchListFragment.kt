@@ -71,7 +71,7 @@ class LaunchListFragment: Fragment() {
     private fun setupRecyclerView() {
         binding.rvLaunches.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = Adapter(requireContext())
+            adapter = Adapter()
         }
     }
 

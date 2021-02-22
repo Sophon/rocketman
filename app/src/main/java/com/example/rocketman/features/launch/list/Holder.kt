@@ -1,6 +1,5 @@
 package com.example.rocketman.features.launch.list
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.findNavController
@@ -12,7 +11,6 @@ import com.example.rocketman.features.launch.detail.LaunchDetailFragment
 import com.squareup.picasso.Picasso
 
 class Holder(
-    private val context: Context,
     private val binding: ItemLaunchBinding
 ): RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
