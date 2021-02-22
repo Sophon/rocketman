@@ -1,6 +1,5 @@
 package com.example.rocketman.features.launch
 
-import com.example.rocketman.features.launch.detail.LaunchDetailVM
 import com.example.rocketman.features.launch.list.LaunchListVM
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -16,5 +15,4 @@ val launchModule = module {
     single { Repo(get()) }
 
     viewModel { LaunchListVM(get()) }
-    viewModel { LaunchDetailVM(get()) }
 }
