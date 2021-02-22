@@ -20,8 +20,6 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-private const val FILTER_LAUNCH_KEY = "com.example.rocketman.launch.filter"
-
 class LaunchListFragment: Fragment() {
 
     private lateinit var binding: FragmentLaunchListBinding
@@ -164,3 +162,5 @@ class LaunchListFragment: Fragment() {
     }
     //endregion
 }
+
+private const val FILTER_LAUNCH_KEY = "com.example.rocketman.launch.filter"

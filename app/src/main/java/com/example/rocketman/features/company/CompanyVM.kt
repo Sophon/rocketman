@@ -7,10 +7,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-private const val TAG = "CompanyApi"
-private const val MSG_SUCCESS = "successfully fetched"
-private const val MSG_ERROR = "failed to fetch"
-
 class CompanyVM(private val repo: Repo): ViewModel() {
 
     val companyData = MutableLiveData<Company>()
@@ -36,3 +32,7 @@ class CompanyVM(private val repo: Repo): ViewModel() {
         }
     }
 }
+
+private const val TAG = "CompanyApi"
+private const val MSG_SUCCESS = "successfully fetched"
+private const val MSG_ERROR = "failed to fetch"

@@ -18,7 +18,6 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-private const val ROCKETS_ACTIVE_KEY = "com.example.rockeman.rocket.activeOnlyKey"
 
 class RocketListFragment: Fragment() {
 
@@ -146,3 +145,5 @@ class RocketListFragment: Fragment() {
     }
     //endregion
 }
+
+private const val ROCKETS_ACTIVE_KEY = "com.example.rockeman.rocket.activeOnlyKey"

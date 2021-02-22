@@ -4,10 +4,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-private const val ERROR_MSG_API = "failed to fetch remote company info"
-private const val SUCCESS_MSG_API = "successfully fetched remote company info"
-private const val TAG = "CompanyRepo"
-
 class Repo(
     private val dao: CompanyDao,
     private val api: Api
@@ -32,3 +28,7 @@ class Repo(
         }
     }
 }
+
+private const val ERROR_MSG_API = "failed to fetch remote company info"
+private const val SUCCESS_MSG_API = "successfully fetched remote company info"
+private const val TAG = "CompanyRepo"
