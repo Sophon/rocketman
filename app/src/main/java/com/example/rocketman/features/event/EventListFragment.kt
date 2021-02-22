@@ -19,8 +19,6 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-private const val SORT_PREF_KEY = "com.example.rocketman.event.sortPrefKey"
-
 class EventListFragment: Fragment() {
 
     private lateinit var binding: FragmentEventsBinding
@@ -70,7 +68,7 @@ class EventListFragment: Fragment() {
     private fun setupRecyclerView() {
         binding.rvEvents.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = Adapter(requireContext())
+            adapter = Adapter()
         }
     }
 
@@ -158,3 +156,5 @@ class EventListFragment: Fragment() {
     }
     //endregion
 }
+
+private const val SORT_PREF_KEY = "com.example.rocketman.event.sortPrefKey"

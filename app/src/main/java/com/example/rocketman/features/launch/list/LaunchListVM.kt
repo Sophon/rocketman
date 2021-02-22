@@ -8,8 +8,6 @@ import com.example.rocketman.features.launch.Repo
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-private const val TAG = "LaunchList"
-
 class LaunchListVM(private val repo: Repo): ViewModel() {
 
     val launches = MutableLiveData<List<Launch>>()
@@ -48,3 +46,5 @@ class LaunchListVM(private val repo: Repo): ViewModel() {
         }
     }
 }
+
+private const val TAG = "LaunchList"

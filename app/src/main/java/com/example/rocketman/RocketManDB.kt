@@ -37,14 +37,5 @@ abstract class RocketManDB: RoomDatabase() {
 
     companion object {
         const val NAME_DB = "Rocket database"
-
-        fun build(context: Context): RocketManDB {
-            return Room.databaseBuilder(
-                context,
-                RocketManDB::class.java,
-                NAME_DB
-            )
-                .build()
-        }
     }
 }

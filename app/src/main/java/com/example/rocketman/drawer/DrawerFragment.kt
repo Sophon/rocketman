@@ -13,8 +13,6 @@ import com.example.rocketman.R
 import com.example.rocketman.databinding.FragmentDrawerBinding
 import kotlinx.android.synthetic.main.fragment_drawer.*
 
-private const val KEY_SELECTED_DRAWER_ITEM = "DRAWER_SELECTED_ITEM_ID_KEY"
-
 class DrawerFragment: Fragment() {
 
     private lateinit var binding: FragmentDrawerBinding
@@ -86,3 +84,5 @@ class DrawerFragment: Fragment() {
         )
     }
 }
+
+private const val KEY_SELECTED_DRAWER_ITEM = "DRAWER_SELECTED_ITEM_ID_KEY"

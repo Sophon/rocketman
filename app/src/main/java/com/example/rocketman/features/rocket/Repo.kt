@@ -4,10 +4,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-private const val ERROR_MSG_API = "failed to fetch remote rocket list"
-private const val SUCCESS_MSG_API = "successfully fetched remote rocket list"
-private const val TAG = "RocketRepo"
-
 class Repo(
     private val api: Api,
     private val dao: RocketDao
@@ -36,3 +32,7 @@ class Repo(
         }
     }
 }
+
+private const val ERROR_MSG_API = "failed to fetch remote rocket list"
+private const val SUCCESS_MSG_API = "successfully fetched remote rocket list"
+private const val TAG = "RocketRepo"
