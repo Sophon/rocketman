@@ -15,15 +15,17 @@ import kotlinx.android.synthetic.main.fragment_drawer.*
 
 class DrawerFragment: Fragment() {
 
-    private lateinit var binding: FragmentDrawerBinding
+    private var _binding: FragmentDrawerBinding? = null
+    private val binding get() = _binding!!
     private var drawerSelectedItemId = R.id.nav_events
 
+    //region Lifecycle
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentDrawerBinding.inflate(inflater)
+        _binding = FragmentDrawerBinding.inflate(inflater)
         (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar_home)
         return binding.root
     }
@@ -38,6 +40,14 @@ class DrawerFragment: Fragment() {
         setupDrawer()
         setBackPressedHandler()
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        _binding = null
+    }
+
+    //endregion
 
     private fun setBackPressedHandler() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {

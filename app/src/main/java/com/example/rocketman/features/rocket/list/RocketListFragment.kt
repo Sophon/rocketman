@@ -21,7 +21,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RocketListFragment: Fragment() {
 
-    private lateinit var binding: FragmentRocketListBinding
+    private var _binding: FragmentRocketListBinding? = null
+    private val binding get() = _binding!!
     private lateinit var toolbar: MaterialToolbar
     private val vm by viewModel<RocketListVM>()
     private lateinit var dataStore: DataStore<Preferences>
@@ -38,7 +39,7 @@ class RocketListFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentRocketListBinding.inflate(inflater)
+        _binding = FragmentRocketListBinding.inflate(inflater)
 
         setupRecyclerView()
 
@@ -61,6 +62,12 @@ class RocketListFragment: Fragment() {
         super.onPause()
 
         toolbar.menu.clear()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        _binding = null
     }
     //endregion
 

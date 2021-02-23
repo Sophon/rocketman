@@ -22,7 +22,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LaunchListFragment: Fragment() {
 
-    private lateinit var binding: FragmentLaunchListBinding
+    private var _binding: FragmentLaunchListBinding? = null
+    private val binding get() = _binding!!
     private lateinit var toolbar: MaterialToolbar
     private val vm by viewModel<LaunchListVM>()
     private lateinit var dataStore: DataStore<Preferences>
@@ -39,7 +40,7 @@ class LaunchListFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLaunchListBinding.inflate(inflater)
+        _binding = FragmentLaunchListBinding.inflate(inflater)
 
         setupRecyclerView()
 
@@ -62,6 +63,12 @@ class LaunchListFragment: Fragment() {
         super.onPause()
 
         toolbar.menu.clear()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        _binding = null
     }
     //endregion
 

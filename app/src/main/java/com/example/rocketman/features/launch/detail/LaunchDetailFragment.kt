@@ -12,17 +12,19 @@ import com.squareup.picasso.Picasso
 
 class LaunchDetailFragment: Fragment() {
 
-    private lateinit var binding: FragmentLaunchDetailBinding
+    private var _binding: FragmentLaunchDetailBinding? = null
+    private val binding get() = _binding!!
     private val launch by lazy {
         requireArguments().getParcelable<Launch>(ARG_LAUNCH_ID)!!
     }
 
+    //region Lifecycle
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLaunchDetailBinding.inflate(inflater)
+        _binding = FragmentLaunchDetailBinding.inflate(inflater)
         return binding.root
     }
 
@@ -31,6 +33,13 @@ class LaunchDetailFragment: Fragment() {
 
         loadUIData()
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        _binding = null
+    }
+    //endregion
 
     private fun loadUIData() {
         binding.apply {
