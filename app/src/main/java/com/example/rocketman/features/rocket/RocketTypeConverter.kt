@@ -48,10 +48,10 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromPayLoadWeightToString(payloadWeight: PayloadWeight?): String? {
         payloadWeight?.let {
-            return "${payloadWeight.id} +" +
-                    "payloadWeight" + payloadWeight.kg +
-                    "payloadWeight" + payloadWeight.lb +
-                    "payloadWeight" + payloadWeight.name
+            return payloadWeight.id +
+                    "payloadWeightDelim" + payloadWeight.kg +
+                    "payloadWeightDelim" + payloadWeight.lb +
+                    "payloadWeightDelim" + payloadWeight.name
         }
         return null
     }
@@ -59,7 +59,7 @@ class RocketTypeConverter {
     @TypeConverter
     fun fromStringToPayloadWeight(str: String?): PayloadWeight? {
         str?.let {
-            str.split("payloadWeight").also {
+            str.split("payloadWeightDelim").also {
                 return PayloadWeight(
                     id = it[0],
                     kg = it[1].toInt(),
