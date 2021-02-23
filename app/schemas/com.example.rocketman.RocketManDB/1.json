@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "7452afe31c71c20ee1fae211629a0609",
+    "identityHash": "7b70285fbc39dd312062bf2c8ab7f9e9",
     "entities": [
       {
         "tableName": "Company",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ceo` TEXT NOT NULL, `coo` TEXT NOT NULL, `cto` TEXT NOT NULL, `ctoPropulsion` TEXT NOT NULL, `employees` INTEGER NOT NULL, `founded` INTEGER NOT NULL, `founder` TEXT NOT NULL, `headquarters` TEXT NOT NULL, `id` TEXT NOT NULL, `launchSites` INTEGER NOT NULL, `links` TEXT NOT NULL, `name` TEXT NOT NULL, `summary` TEXT NOT NULL, `testSites` INTEGER NOT NULL, `valuation` INTEGER NOT NULL, `vehicles` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ceo` TEXT NOT NULL, `coo` TEXT NOT NULL, `cto` TEXT NOT NULL, `ctoPropulsion` TEXT NOT NULL, `employees` INTEGER NOT NULL, `founded` INTEGER NOT NULL, `founder` TEXT NOT NULL, `id` TEXT NOT NULL, `launchSites` INTEGER NOT NULL, `name` TEXT NOT NULL, `summary` TEXT NOT NULL, `testSites` INTEGER NOT NULL, `valuation` INTEGER NOT NULL, `vehicles` INTEGER NOT NULL, `address` TEXT NOT NULL, `city` TEXT NOT NULL, `state` TEXT NOT NULL, `elonTwitter` TEXT NOT NULL, `flickr` TEXT NOT NULL, `twitter` TEXT NOT NULL, `website` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "ceo",
@@ -51,12 +51,6 @@
             "notNull": true
           },
           {
-            "fieldPath": "headquarters",
-            "columnName": "headquarters",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "TEXT",
@@ -66,12 +60,6 @@
             "fieldPath": "launchSites",
             "columnName": "launchSites",
             "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "links",
-            "columnName": "links",
-            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -102,6 +90,48 @@
             "fieldPath": "vehicles",
             "columnName": "vehicles",
             "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "headquarters.address",
+            "columnName": "address",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "headquarters.city",
+            "columnName": "city",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "headquarters.state",
+            "columnName": "state",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "links.elonTwitter",
+            "columnName": "elonTwitter",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "links.flickr",
+            "columnName": "flickr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "links.twitter",
+            "columnName": "twitter",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "links.website",
+            "columnName": "website",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
@@ -476,7 +506,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7452afe31c71c20ee1fae211629a0609')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7b70285fbc39dd312062bf2c8ab7f9e9')"
     ]
   }
 }

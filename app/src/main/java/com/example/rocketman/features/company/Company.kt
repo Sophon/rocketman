@@ -1,5 +1,6 @@
 package com.example.rocketman.features.company
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -20,6 +21,7 @@ data class Company(
     val founded: Int = 0,
     @SerializedName("founder")
     val founder: String = "",
+    @Embedded
     @SerializedName("headquarters")
     val headquarters: Headquarters = Headquarters(),
     @PrimaryKey
@@ -27,6 +29,7 @@ data class Company(
     val id: String = "",
     @SerializedName("launch_sites")
     val launchSites: Int = 0,
+    @Embedded
     @SerializedName("links")
     val links: Links = Links(),
     @SerializedName("name")
