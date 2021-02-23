@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f8648f6f12f827e703b998e6b8421155",
+    "identityHash": "ae751a56bb046fd969e8a764cdf86d3f",
     "entities": [
       {
         "tableName": "Company",
@@ -116,7 +116,7 @@
       },
       {
         "tableName": "Rocket",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`active` INTEGER NOT NULL, `boosters` INTEGER NOT NULL, `company` TEXT NOT NULL, `costPerLaunch` INTEGER NOT NULL, `country` TEXT NOT NULL, `description` TEXT NOT NULL, `diameter` TEXT NOT NULL, `engines` TEXT NOT NULL, `firstFlight` TEXT NOT NULL, `firstStage` TEXT NOT NULL, `flickrImages` TEXT NOT NULL, `height` TEXT NOT NULL, `id` TEXT NOT NULL, `landingLegs` TEXT NOT NULL, `mass` TEXT NOT NULL, `name` TEXT NOT NULL, `payloadWeights` TEXT NOT NULL, `secondStage` TEXT NOT NULL, `stages` INTEGER NOT NULL, `successRatePct` INTEGER NOT NULL, `type` TEXT NOT NULL, `wikipedia` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`active` INTEGER NOT NULL, `boosters` INTEGER NOT NULL, `company` TEXT NOT NULL, `costPerLaunch` INTEGER NOT NULL, `country` TEXT NOT NULL, `description` TEXT NOT NULL, `firstFlight` TEXT NOT NULL, `flickrImages` TEXT NOT NULL, `id` TEXT NOT NULL, `name` TEXT NOT NULL, `stages` INTEGER NOT NULL, `successRatePct` INTEGER NOT NULL, `type` TEXT NOT NULL, `wikipedia` TEXT NOT NULL, `feet` REAL NOT NULL, `meters` REAL NOT NULL, `rocket_engines_engineLossMax` INTEGER NOT NULL, `rocket_engines_isp` TEXT NOT NULL, `rocket_engines_layout` TEXT NOT NULL, `rocket_engines_number` INTEGER NOT NULL, `rocket_engines_propellant1` TEXT NOT NULL, `rocket_engines_propellant2` TEXT NOT NULL, `rocket_engines_thrustToWeight` REAL NOT NULL, `rocket_engines_type` TEXT NOT NULL, `rocket_engines_version` TEXT NOT NULL, `rocket_engines_rocket_thrustSeaLevel_kN` INTEGER NOT NULL, `rocket_engines_rocket_thrustSeaLevel_lbf` INTEGER NOT NULL, `rocket_engines_rocket_thrustVacuum_kN` INTEGER NOT NULL, `rocket_engines_rocket_thrustVacuum_lbf` INTEGER NOT NULL, `rocket_firstStage_burnTimeSec` INTEGER NOT NULL, `rocket_firstStage_engines` INTEGER NOT NULL, `rocket_firstStage_fuelAmountTons` REAL NOT NULL, `rocket_firstStage_reusable` INTEGER NOT NULL, `rocket_firstStage_firstStage_thrustSeaLevel_kN` INTEGER NOT NULL, `rocket_firstStage_firstStage_thrustSeaLevel_lbf` INTEGER NOT NULL, `rocket_firstStage_firstStage_thrustVacuum_kN` INTEGER NOT NULL, `rocket_firstStage_firstStage_thrustVacuum_lbf` INTEGER NOT NULL, `rocket_height_feet` REAL NOT NULL, `rocket_height_meters` REAL NOT NULL, `rocket_secondStage_material` TEXT NOT NULL, `rocket_secondStage_number` INTEGER NOT NULL, `kg` INTEGER NOT NULL, `lb` INTEGER NOT NULL, `burnTimeSec` INTEGER NOT NULL, `engines` INTEGER NOT NULL, `fuelAmountTons` REAL NOT NULL, `payloads` TEXT NOT NULL, `reusable` INTEGER NOT NULL, `thrust` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "active",
@@ -155,26 +155,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "diameter",
-            "columnName": "diameter",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "engines",
-            "columnName": "engines",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
             "fieldPath": "firstFlight",
             "columnName": "firstFlight",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "firstStage",
-            "columnName": "firstStage",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -185,44 +167,14 @@
             "notNull": true
           },
           {
-            "fieldPath": "height",
-            "columnName": "height",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "landingLegs",
-            "columnName": "landingLegs",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "mass",
-            "columnName": "mass",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
             "fieldPath": "name",
             "columnName": "name",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "payloadWeights",
-            "columnName": "payloadWeights",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "secondStage",
-            "columnName": "secondStage",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -247,6 +199,254 @@
           {
             "fieldPath": "wikipedia",
             "columnName": "wikipedia",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "diameter.feet",
+            "columnName": "feet",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "diameter.meters",
+            "columnName": "meters",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "engines.engineLossMax",
+            "columnName": "rocket_engines_engineLossMax",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "engines.isp",
+            "columnName": "rocket_engines_isp",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "engines.layout",
+            "columnName": "rocket_engines_layout",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "engines.number",
+            "columnName": "rocket_engines_number",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "engines.propellant1",
+            "columnName": "rocket_engines_propellant1",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "engines.propellant2",
+            "columnName": "rocket_engines_propellant2",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "engines.thrustToWeight",
+            "columnName": "rocket_engines_thrustToWeight",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "engines.type",
+            "columnName": "rocket_engines_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "engines.version",
+            "columnName": "rocket_engines_version",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "engines.thrustSeaLevel.kN",
+            "columnName": "rocket_engines_rocket_thrustSeaLevel_kN",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "engines.thrustSeaLevel.lbf",
+            "columnName": "rocket_engines_rocket_thrustSeaLevel_lbf",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "engines.thrustVacuum.kN",
+            "columnName": "rocket_engines_rocket_thrustVacuum_kN",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "engines.thrustVacuum.lbf",
+            "columnName": "rocket_engines_rocket_thrustVacuum_lbf",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstStage.burnTimeSec",
+            "columnName": "rocket_firstStage_burnTimeSec",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstStage.engines",
+            "columnName": "rocket_firstStage_engines",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstStage.fuelAmountTons",
+            "columnName": "rocket_firstStage_fuelAmountTons",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstStage.reusable",
+            "columnName": "rocket_firstStage_reusable",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstStage.thrustSeaLevel.kN",
+            "columnName": "rocket_firstStage_firstStage_thrustSeaLevel_kN",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstStage.thrustSeaLevel.lbf",
+            "columnName": "rocket_firstStage_firstStage_thrustSeaLevel_lbf",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstStage.thrustVacuum.kN",
+            "columnName": "rocket_firstStage_firstStage_thrustVacuum_kN",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstStage.thrustVacuum.lbf",
+            "columnName": "rocket_firstStage_firstStage_thrustVacuum_lbf",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "height.feet",
+            "columnName": "rocket_height_feet",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "height.meters",
+            "columnName": "rocket_height_meters",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "landingLegs.material",
+            "columnName": "rocket_secondStage_material",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "landingLegs.number",
+            "columnName": "rocket_secondStage_number",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mass.kg",
+            "columnName": "kg",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mass.lb",
+            "columnName": "lb",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "secondStage.burnTimeSec",
+            "columnName": "burnTimeSec",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "secondStage.engines",
+            "columnName": "engines",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "secondStage.fuelAmountTons",
+            "columnName": "fuelAmountTons",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "secondStage.payloads",
+            "columnName": "payloads",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "secondStage.reusable",
+            "columnName": "reusable",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "secondStage.thrust",
+            "columnName": "thrust",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "payloadWeight",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `kg` INTEGER NOT NULL, `lb` INTEGER NOT NULL, `name` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kg",
+            "columnName": "kg",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lb",
+            "columnName": "lb",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -308,7 +508,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f8648f6f12f827e703b998e6b8421155')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ae751a56bb046fd969e8a764cdf86d3f')"
     ]
   }
 }

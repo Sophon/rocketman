@@ -1,6 +1,7 @@
 package com.example.rocketman.features.rocket
 
 import android.os.Parcelable
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -21,29 +22,37 @@ data class Rocket(
     val country: String = "",
     @SerializedName("description")
     val description: String = "",
+    @Embedded
     @SerializedName("diameter")
     val diameter: Diameter = Diameter(),
+    @Embedded(prefix = "rocket_engines_")
     @SerializedName("engines")
     val engines: Engines = Engines(),
     @SerializedName("first_flight")
     val firstFlight: String = "",
+    @Embedded(prefix = "rocket_firstStage_")
     @SerializedName("first_stage")
     val firstStage: FirstStage = FirstStage(),
     @SerializedName("flickr_images")
     val flickrImages: List<String> = listOf(),
+    @Embedded(prefix = "rocket_height_")
     @SerializedName("height")
     val height: Height = Height(),
     @PrimaryKey
     @SerializedName("id")
     val id: String = "",
+    @Embedded(prefix = "rocket_secondStage_")
     @SerializedName("landing_legs")
     val landingLegs: LandingLegs = LandingLegs(),
+    @Embedded
     @SerializedName("mass")
     val mass: Mass = Mass(),
     @SerializedName("name")
     val name: String = "",
+    @Embedded
     @SerializedName("payload_weights")
     val payloadWeights: List<PayloadWeight> = listOf(),
+    @Embedded
     @SerializedName("second_stage")
     val secondStage: SecondStage = SecondStage(),
     @SerializedName("stages")
@@ -78,10 +87,12 @@ data class Engines(
     val propellant1: String = "",
     @SerializedName("propellant_2")
     val propellant2: String = "",
+    @Embedded(prefix = "rocket_thrustSeaLevel_")
     @SerializedName("thrust_sea_level")
     val thrustSeaLevel: ThrustSeaLevel = ThrustSeaLevel(),
     @SerializedName("thrust_to_weight")
     val thrustToWeight: Double = 0.0,
+    @Embedded(prefix = "rocket_thrustVacuum_")
     @SerializedName("thrust_vacuum")
     val thrustVacuum: ThrustVacuum = ThrustVacuum(),
     @SerializedName("type")
@@ -100,8 +111,10 @@ data class FirstStage(
     val fuelAmountTons: Double = 0.0,
     @SerializedName("reusable")
     val reusable: Boolean = false,
+    @Embedded(prefix = "firstStage_thrustSeaLevel_")
     @SerializedName("thrust_sea_level")
     val thrustSeaLevel: ThrustSeaLevel = ThrustSeaLevel(),
+    @Embedded(prefix = "firstStage_thrustVacuum_")
     @SerializedName("thrust_vacuum")
     val thrustVacuum: ThrustVacuum = ThrustVacuum()
 ): Parcelable
@@ -146,8 +159,10 @@ data class Mass(
     }
 }
 
+@Entity(tableName = PayloadWeight.TABLE_NAME)
 @Parcelize
 data class PayloadWeight(
+    @PrimaryKey
     @SerializedName("id")
     val id: String = "",
     @SerializedName("kg")
@@ -156,7 +171,11 @@ data class PayloadWeight(
     val lb: Int = 0,
     @SerializedName("name")
     val name: String = ""
-): Parcelable
+): Parcelable {
+    companion object {
+        const val TABLE_NAME = "payloadWeight"
+    }
+}
 
 @Parcelize
 data class SecondStage(
