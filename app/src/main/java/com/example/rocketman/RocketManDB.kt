@@ -8,8 +8,6 @@ import com.example.rocketman.features.company.CompanyTypeConverter
 import com.example.rocketman.features.company.CompanyDao
 import com.example.rocketman.features.event.Event
 import com.example.rocketman.features.event.EventDao
-import com.example.rocketman.features.event.EventTypeConverter
-import com.example.rocketman.features.rocket.PayloadWeight
 import com.example.rocketman.features.rocket.Rocket
 import com.example.rocketman.features.rocket.RocketDao
 import com.example.rocketman.features.rocket.RocketTypeConverter
