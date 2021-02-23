@@ -10,7 +10,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CompanyFragment: Fragment() {
 
-    private lateinit var binding: FragmentCompanyDataBinding
+    private var _binding: FragmentCompanyDataBinding? = null
+    private val binding get() = _binding!!
     private lateinit var toolbar: MaterialToolbar
     private val vm by viewModel<CompanyVM>()
 
@@ -20,7 +21,7 @@ class CompanyFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCompanyDataBinding.inflate(inflater)
+        _binding = FragmentCompanyDataBinding.inflate(inflater)
         return binding.root
     }
 
@@ -40,6 +41,12 @@ class CompanyFragment: Fragment() {
         super.onPause()
 
         toolbar.menu.clear()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        _binding = null
     }
     //endregion
 
