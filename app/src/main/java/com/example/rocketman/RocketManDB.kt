@@ -25,8 +25,7 @@ import com.example.rocketman.features.rocket.RocketTypeConverter
 )
 @TypeConverters(
     CompanyTypeConverter::class,
-    RocketTypeConverter::class,
-    EventTypeConverter::class
+    RocketTypeConverter::class
 )
 abstract class RocketManDB: RoomDatabase() {
 

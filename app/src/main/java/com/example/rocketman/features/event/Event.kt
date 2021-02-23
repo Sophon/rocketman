@@ -1,5 +1,6 @@
 package com.example.rocketman.features.event
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -13,6 +14,7 @@ data class Event(
     val eventDateUnix: Int = 0,
     @SerializedName("event_date_utc")
     val eventDateUtc: String = "",
+    @Embedded
     @SerializedName("links")
     val links: Links? = Links(),
     @SerializedName("title")

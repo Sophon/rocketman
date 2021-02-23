@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "56335a681c3e8970c272f9285db06ac9",
+    "identityHash": "7452afe31c71c20ee1fae211629a0609",
     "entities": [
       {
         "tableName": "Company",
@@ -430,7 +430,7 @@
       },
       {
         "tableName": "Event",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`details` TEXT NOT NULL, `eventDateUnix` INTEGER NOT NULL, `eventDateUtc` TEXT NOT NULL, `links` TEXT, `title` TEXT NOT NULL, PRIMARY KEY(`eventDateUnix`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`details` TEXT NOT NULL, `eventDateUnix` INTEGER NOT NULL, `eventDateUtc` TEXT NOT NULL, `title` TEXT NOT NULL, `article` TEXT, PRIMARY KEY(`eventDateUnix`))",
         "fields": [
           {
             "fieldPath": "details",
@@ -451,16 +451,16 @@
             "notNull": true
           },
           {
-            "fieldPath": "links",
-            "columnName": "links",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
             "fieldPath": "title",
             "columnName": "title",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "links.article",
+            "columnName": "article",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -476,7 +476,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '56335a681c3e8970c272f9285db06ac9')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7452afe31c71c20ee1fae211629a0609')"
     ]
   }
 }
