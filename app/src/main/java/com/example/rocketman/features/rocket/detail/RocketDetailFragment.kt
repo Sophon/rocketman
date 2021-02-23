@@ -14,7 +14,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RocketDetailFragment: Fragment() {
 
-    private lateinit var binding: FragmentRocketDetailBinding
+    private var _binding: FragmentRocketDetailBinding? = null
+    private val binding get() = _binding!!
     private lateinit var toolbar: MaterialToolbar
     private val vm by viewModel<RocketDetailVM>()
 
@@ -24,7 +25,7 @@ class RocketDetailFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentRocketDetailBinding.inflate(inflater)
+        _binding = FragmentRocketDetailBinding.inflate(inflater)
         return binding.root
     }
 
@@ -45,6 +46,12 @@ class RocketDetailFragment: Fragment() {
         super.onPause()
 
         toolbar.menu.clear()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        _binding = null
     }
     //endregion
 
