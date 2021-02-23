@@ -25,93 +25,6 @@ class RocketTypeConverter {
     }
 
     @TypeConverter
-    fun fromEnginesToString(engines: Engines?): String? {
-        engines?.let {
-            engines.apply {
-                return "$engineLossMax" +
-                        "engine" + fromIspToString(isp) +
-                        "engine" + layout +
-                        "engine" + "$number" +
-                        "engine" + propellant1 +
-                        "engine" + propellant2 +
-                        "engine" + fromThrustSeaLevelToString(thrustSeaLevel) +
-                        "engine" + "$thrustToWeight" +
-                        "engine" + fromThrustVacuumToString(thrustVacuum) +
-                        "engine" + type +
-                        "engine" + version
-            }
-        }
-        return null
-    }
-
-    @TypeConverter
-    fun fromStringToEngines(str: String?): Engines? {
-        str?.let {
-            str.split("engine").also {
-                val isp = fromStringToIsp(it[1])
-                val thrustSeaLevel = fromStringToThrustSeaLevel(it[6])
-                val thrustVacuum = fromStringToThrustVacuum(it[8])
-                return if(isp != null && thrustSeaLevel != null && thrustVacuum != null) {
-                    Engines(
-                        engineLossMax = it[0].toInt(),
-                        isp = isp,
-                        layout = it[2],
-                        number = it[3].toInt(),
-                        propellant1 = it[4],
-                        propellant2 = it[5],
-                        thrustSeaLevel = thrustSeaLevel,
-                        thrustToWeight = it[7].toDouble(),
-                        thrustVacuum = thrustVacuum,
-                        type = it[9],
-                        version = it[10]
-                    )
-                } else {
-                    null
-                }
-            }
-        }
-        return null
-    }
-
-    @TypeConverter
-    fun fromFirstStageToString(firstStage: FirstStage?): String? {
-        firstStage?.let {
-            firstStage.apply {
-                return "$burnTimeSec" +
-                        "stage" + "$engines" +
-                        "stage" + "$fuelAmountTons" +
-                        "stage" + (if(reusable) "1" else "0") +
-                        "stage" +  fromThrustSeaLevelToString(thrustSeaLevel) +
-                        "stage" + fromThrustVacuumToString(thrustVacuum)
-            }
-        }
-        return null
-    }
-
-    @TypeConverter
-    fun fromStringToFirstStage(str: String?): FirstStage? {
-        str?.let {
-            str.split("stage").also {
-                val thrustSeaLevel = fromStringToThrustSeaLevel(it[4])
-                val thrustVacuum = fromStringToThrustVacuum(it[5])
-                return if(thrustSeaLevel != null && thrustVacuum != null) {
-                    FirstStage(
-                        burnTimeSec = it[0].toInt(),
-                        engines = it[1].toInt(),
-                        fuelAmountTons = it[2].toDouble(),
-                        reusable = it[3] == "1",
-                        thrustSeaLevel = thrustSeaLevel,
-                        thrustVacuum = thrustVacuum
-                    )
-                } else {
-                    null
-                }
-            }
-        }
-        return null
-    }
-
-    @TypeConverter
     fun fromHeightToString(height: Height?): String? {
         height?.let {
             return "${height.feet}height${height.meters}"
@@ -126,48 +39,6 @@ class RocketTypeConverter {
                 return Height(
                     feet = it[0].toDouble(),
                     meters = it[1].toDouble()
-                )
-            }
-        }
-        return null
-    }
-
-    @TypeConverter
-    fun fromLadingLegsToString(landingLegs: LandingLegs?): String? {
-        landingLegs?.let {
-            return "${landingLegs.material}landingLegs${landingLegs.number}"
-        }
-        return null
-    }
-
-    @TypeConverter
-    fun fromStringToLandingLegs(str: String?): LandingLegs? {
-        str?.let {
-            str.split("landingLegs").also {
-                return LandingLegs(
-                    material = it[0],
-                    number = it[1].toInt()
-                )
-            }
-        }
-        return null
-    }
-
-    @TypeConverter
-    fun fromMassToString(mass: Mass?): String? {
-        mass?.let {
-            return "${mass.kg}mass${mass.lb}"
-        }
-        return null
-    }
-
-    @TypeConverter
-    fun fromStringToMass(str: String?): Mass? {
-        str?.let {
-            str.split("mass").also {
-                return Mass(
-                    kg = it[0].toInt(),
-                    lb = it[1].toInt()
                 )
             }
         }
@@ -195,44 +66,6 @@ class RocketTypeConverter {
                     lb = it[2].toInt(),
                     name = it[3]
                 )
-            }
-        }
-        return null
-    }
-
-    @TypeConverter
-    fun fromSecondStageToString(secondStage: SecondStage?): String? {
-        secondStage?.let {
-            secondStage.apply {
-                return "$burnTimeSec" +
-                        "secondStage" + "$engines" +
-                        "secondStage" + "$fuelAmountTons" +
-                        "secondStage" + fromPayloadsToString(payloads) +
-                        "secondStage" + (if(reusable) "1" else "0") +
-                        "secondStage" + fromThrustToString(thrust)
-            }
-        }
-        return null
-    }
-
-    @TypeConverter
-    fun fromStringToSecondStage(str: String?): SecondStage? {
-        str?.let {
-            str.split("secondStage").also {
-                val payloads = fromStringToPayloads(it[3])
-                val thrust = fromStringToThrust(it[5])
-                return if(payloads != null && thrust != null) {
-                    return SecondStage(
-                        burnTimeSec = it[0].toInt(),
-                        engines = it[1].toInt(),
-                        fuelAmountTons = it[2].toDouble(),
-                        payloads = payloads,
-                        reusable = it[4] == "1",
-                        thrust = thrust
-                    )
-                } else {
-                    null
-                }
             }
         }
         return null
@@ -326,48 +159,6 @@ class RocketTypeConverter {
                 return Isp(
                     seaLevel = it[0].toInt(),
                     vacuum = it[1].toInt()
-                )
-            }
-        }
-        return null
-    }
-
-    @TypeConverter
-    fun fromThrustSeaLevelToString(thrustSeaLevel: ThrustSeaLevel?): String? {
-        thrustSeaLevel?.let {
-            return "${thrustSeaLevel.kN}thrustSeaLevel${thrustSeaLevel.lbf}"
-        }
-        return null
-    }
-
-    @TypeConverter
-    fun fromStringToThrustSeaLevel(str: String?): ThrustSeaLevel? {
-        str?.let {
-            str.split("thrustSeaLevel").also {
-                return ThrustSeaLevel(
-                    kN = str[0].toInt(),
-                    lbf = str[1].toInt()
-                )
-            }
-        }
-        return null
-    }
-
-    @TypeConverter
-    fun fromThrustVacuumToString(thrustVacuum: ThrustVacuum?): String? {
-        thrustVacuum?.let {
-            return "${thrustVacuum.kN}thrustVacuum${thrustVacuum.lbf}"
-        }
-        return null
-    }
-
-    @TypeConverter
-    fun fromStringToThrustVacuum(str: String?): ThrustVacuum? {
-        str?.let {
-            str.split("thrustVacuum").also {
-                return ThrustVacuum(
-                    kN = str[0].toInt(),
-                    lbf = str[1].toInt()
                 )
             }
         }

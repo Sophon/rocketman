@@ -1,16 +1,12 @@
 package com.example.rocketman
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.rocketman.features.company.Company
-import com.example.rocketman.features.company.CompanyTypeConverter
 import com.example.rocketman.features.company.CompanyDao
 import com.example.rocketman.features.event.Event
 import com.example.rocketman.features.event.EventDao
-import com.example.rocketman.features.event.EventTypeConverter
 import com.example.rocketman.features.rocket.Rocket
 import com.example.rocketman.features.rocket.RocketDao
 import com.example.rocketman.features.rocket.RocketTypeConverter
@@ -25,9 +21,7 @@ import com.example.rocketman.features.rocket.RocketTypeConverter
     version = 1
 )
 @TypeConverters(
-    CompanyTypeConverter::class,
-    RocketTypeConverter::class,
-    EventTypeConverter::class
+    RocketTypeConverter::class
 )
 abstract class RocketManDB: RoomDatabase() {
 
