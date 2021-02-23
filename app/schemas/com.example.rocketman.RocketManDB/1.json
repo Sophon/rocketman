@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "ae751a56bb046fd969e8a764cdf86d3f",
+    "identityHash": "56335a681c3e8970c272f9285db06ac9",
     "entities": [
       {
         "tableName": "Company",
@@ -116,7 +116,7 @@
       },
       {
         "tableName": "Rocket",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`active` INTEGER NOT NULL, `boosters` INTEGER NOT NULL, `company` TEXT NOT NULL, `costPerLaunch` INTEGER NOT NULL, `country` TEXT NOT NULL, `description` TEXT NOT NULL, `firstFlight` TEXT NOT NULL, `flickrImages` TEXT NOT NULL, `id` TEXT NOT NULL, `name` TEXT NOT NULL, `stages` INTEGER NOT NULL, `successRatePct` INTEGER NOT NULL, `type` TEXT NOT NULL, `wikipedia` TEXT NOT NULL, `feet` REAL NOT NULL, `meters` REAL NOT NULL, `rocket_engines_engineLossMax` INTEGER NOT NULL, `rocket_engines_isp` TEXT NOT NULL, `rocket_engines_layout` TEXT NOT NULL, `rocket_engines_number` INTEGER NOT NULL, `rocket_engines_propellant1` TEXT NOT NULL, `rocket_engines_propellant2` TEXT NOT NULL, `rocket_engines_thrustToWeight` REAL NOT NULL, `rocket_engines_type` TEXT NOT NULL, `rocket_engines_version` TEXT NOT NULL, `rocket_engines_rocket_thrustSeaLevel_kN` INTEGER NOT NULL, `rocket_engines_rocket_thrustSeaLevel_lbf` INTEGER NOT NULL, `rocket_engines_rocket_thrustVacuum_kN` INTEGER NOT NULL, `rocket_engines_rocket_thrustVacuum_lbf` INTEGER NOT NULL, `rocket_firstStage_burnTimeSec` INTEGER NOT NULL, `rocket_firstStage_engines` INTEGER NOT NULL, `rocket_firstStage_fuelAmountTons` REAL NOT NULL, `rocket_firstStage_reusable` INTEGER NOT NULL, `rocket_firstStage_firstStage_thrustSeaLevel_kN` INTEGER NOT NULL, `rocket_firstStage_firstStage_thrustSeaLevel_lbf` INTEGER NOT NULL, `rocket_firstStage_firstStage_thrustVacuum_kN` INTEGER NOT NULL, `rocket_firstStage_firstStage_thrustVacuum_lbf` INTEGER NOT NULL, `rocket_height_feet` REAL NOT NULL, `rocket_height_meters` REAL NOT NULL, `rocket_secondStage_material` TEXT NOT NULL, `rocket_secondStage_number` INTEGER NOT NULL, `kg` INTEGER NOT NULL, `lb` INTEGER NOT NULL, `burnTimeSec` INTEGER NOT NULL, `engines` INTEGER NOT NULL, `fuelAmountTons` REAL NOT NULL, `payloads` TEXT NOT NULL, `reusable` INTEGER NOT NULL, `thrust` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`active` INTEGER NOT NULL, `boosters` INTEGER NOT NULL, `company` TEXT NOT NULL, `costPerLaunch` INTEGER NOT NULL, `country` TEXT NOT NULL, `description` TEXT NOT NULL, `firstFlight` TEXT NOT NULL, `flickrImages` TEXT NOT NULL, `id` TEXT NOT NULL, `name` TEXT NOT NULL, `payloadWeights` TEXT NOT NULL, `stages` INTEGER NOT NULL, `successRatePct` INTEGER NOT NULL, `type` TEXT NOT NULL, `wikipedia` TEXT NOT NULL, `feet` REAL NOT NULL, `meters` REAL NOT NULL, `rocket_engines_engineLossMax` INTEGER NOT NULL, `rocket_engines_isp` TEXT NOT NULL, `rocket_engines_layout` TEXT, `rocket_engines_number` INTEGER NOT NULL, `rocket_engines_propellant1` TEXT NOT NULL, `rocket_engines_propellant2` TEXT NOT NULL, `rocket_engines_thrustToWeight` REAL NOT NULL, `rocket_engines_type` TEXT NOT NULL, `rocket_engines_version` TEXT NOT NULL, `rocket_engines_rocket_thrustSeaLevel_kN` INTEGER NOT NULL, `rocket_engines_rocket_thrustSeaLevel_lbf` INTEGER NOT NULL, `rocket_engines_rocket_thrustVacuum_kN` INTEGER NOT NULL, `rocket_engines_rocket_thrustVacuum_lbf` INTEGER NOT NULL, `rocket_firstStage_burnTimeSec` INTEGER NOT NULL, `rocket_firstStage_engines` INTEGER NOT NULL, `rocket_firstStage_fuelAmountTons` REAL NOT NULL, `rocket_firstStage_reusable` INTEGER NOT NULL, `rocket_firstStage_firstStage_thrustSeaLevel_kN` INTEGER NOT NULL, `rocket_firstStage_firstStage_thrustSeaLevel_lbf` INTEGER NOT NULL, `rocket_firstStage_firstStage_thrustVacuum_kN` INTEGER NOT NULL, `rocket_firstStage_firstStage_thrustVacuum_lbf` INTEGER NOT NULL, `rocket_height_feet` REAL NOT NULL, `rocket_height_meters` REAL NOT NULL, `rocket_secondStage_material` TEXT, `rocket_secondStage_number` INTEGER NOT NULL, `kg` INTEGER NOT NULL, `lb` INTEGER NOT NULL, `burnTimeSec` INTEGER NOT NULL, `engines` INTEGER NOT NULL, `fuelAmountTons` REAL NOT NULL, `payloads` TEXT NOT NULL, `reusable` INTEGER NOT NULL, `thrust` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "active",
@@ -179,6 +179,12 @@
             "notNull": true
           },
           {
+            "fieldPath": "payloadWeights",
+            "columnName": "payloadWeights",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
             "fieldPath": "stages",
             "columnName": "stages",
             "affinity": "INTEGER",
@@ -230,7 +236,7 @@
             "fieldPath": "engines.layout",
             "columnName": "rocket_engines_layout",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "engines.number",
@@ -356,7 +362,7 @@
             "fieldPath": "landingLegs.material",
             "columnName": "rocket_secondStage_material",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "landingLegs.number",
@@ -423,44 +429,6 @@
         "foreignKeys": []
       },
       {
-        "tableName": "payloadWeight",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `kg` INTEGER NOT NULL, `lb` INTEGER NOT NULL, `name` TEXT NOT NULL, PRIMARY KEY(`id`))",
-        "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "kg",
-            "columnName": "kg",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "lb",
-            "columnName": "lb",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "name",
-            "columnName": "name",
-            "affinity": "TEXT",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "id"
-          ],
-          "autoGenerate": false
-        },
-        "indices": [],
-        "foreignKeys": []
-      },
-      {
         "tableName": "Event",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`details` TEXT NOT NULL, `eventDateUnix` INTEGER NOT NULL, `eventDateUtc` TEXT NOT NULL, `links` TEXT, `title` TEXT NOT NULL, PRIMARY KEY(`eventDateUnix`))",
         "fields": [
@@ -508,7 +476,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ae751a56bb046fd969e8a764cdf86d3f')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '56335a681c3e8970c272f9285db06ac9')"
     ]
   }
 }

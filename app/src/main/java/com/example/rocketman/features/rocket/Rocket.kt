@@ -49,7 +49,6 @@ data class Rocket(
     val mass: Mass = Mass(),
     @SerializedName("name")
     val name: String = "",
-    @Embedded
     @SerializedName("payload_weights")
     val payloadWeights: List<PayloadWeight> = listOf(),
     @Embedded
@@ -80,7 +79,7 @@ data class Engines(
     @SerializedName("isp")
     val isp: Isp = Isp(),
     @SerializedName("layout")
-    val layout: String = "",
+    val layout: String? = "",
     @SerializedName("number")
     val number: Int = 0,
     @SerializedName("propellant_1")
@@ -138,7 +137,7 @@ data class Height(
 @Parcelize
 data class LandingLegs(
     @SerializedName("material")
-    val material: String = "",
+    val material: String? = "",
     @SerializedName("number")
     val number: Int = 0
 ): Parcelable
@@ -159,10 +158,8 @@ data class Mass(
     }
 }
 
-@Entity(tableName = PayloadWeight.TABLE_NAME)
 @Parcelize
 data class PayloadWeight(
-    @PrimaryKey
     @SerializedName("id")
     val id: String = "",
     @SerializedName("kg")
@@ -173,7 +170,7 @@ data class PayloadWeight(
     val name: String = ""
 ): Parcelable {
     companion object {
-        const val TABLE_NAME = "payloadWeight"
+        const val TABLE_NAME = "payloadWeights"
     }
 }
 

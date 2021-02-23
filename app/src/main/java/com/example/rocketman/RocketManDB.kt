@@ -18,7 +18,6 @@ import com.example.rocketman.features.rocket.RocketTypeConverter
     entities = [
         Company::class,
         Rocket::class,
-        PayloadWeight::class,
         Event::class
     ],
     exportSchema = true,
