@@ -21,7 +21,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EventListFragment: Fragment() {
 
-    private lateinit var binding: FragmentEventsBinding
+    private var _binding: FragmentEventsBinding? = null
+    private val binding get() = _binding!!
     private lateinit var toolbar: MaterialToolbar
     private val vm by viewModel<EventListVM>()
     private lateinit var dataStore: DataStore<Preferences>
@@ -38,7 +39,7 @@ class EventListFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentEventsBinding.inflate(inflater)
+        _binding = FragmentEventsBinding.inflate(inflater)
 
         setupRecyclerView()
 
@@ -61,6 +62,12 @@ class EventListFragment: Fragment() {
         super.onPause()
 
         toolbar.menu.clear()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        _binding = null
     }
     //endregion
 
