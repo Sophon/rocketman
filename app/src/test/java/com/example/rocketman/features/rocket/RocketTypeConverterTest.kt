@@ -129,4 +129,21 @@ class RocketTypeConverterTest {
         assertThat(sut.fromStringToPayloadWeight(null), `is`(nullValue()))
     }
     //endregion
+
+    //region Thrust
+    @Test
+    fun fromThrustToString() {
+        assertThat(sut.fromThrustToString(thrust), `is`("${thrust.kN}thrust${thrust.lbf}"))
+    }
+
+    @Test
+    fun fromNullThrustToNullString() {
+        assertThat(sut.fromThrustToString(null), `is`(nullValue()))
+    }
+
+    @Test
+    fun fromStringToThrust() {
+        assertThat(sut.fromStringToThrust("${thrust.kN}thrust${thrust.lbf}"), `is`(thrust))
+    }
+    //endregion
 }
