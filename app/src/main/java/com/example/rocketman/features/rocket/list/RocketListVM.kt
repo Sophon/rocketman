@@ -3,13 +3,13 @@ package com.example.rocketman.features.rocket.list
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rocketman.features.rocket.Repo
+import com.example.rocketman.features.rocket.RocketRepo
 import com.example.rocketman.features.rocket.Rocket
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class RocketListVM(private val repo: Repo): ViewModel() {
+class RocketListVM(private val repo: RocketRepo): ViewModel() {
 
     val rockets = MutableLiveData<List<Rocket>>()
     var activeOnly = false

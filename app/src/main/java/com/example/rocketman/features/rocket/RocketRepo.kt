@@ -4,8 +4,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-class Repo(
-    private val api: Api,
+class RocketRepo(
+    private val api: RocketApi,
     private val dao: RocketDao
 ) {
 
