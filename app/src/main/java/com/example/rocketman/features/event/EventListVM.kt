@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class EventListVM(private val repo: Repo): ViewModel() {
+class EventListVM(private val repo: EventRepo): ViewModel() {
 
     val events = MutableLiveData<List<Event>>()
     var sorting = Sorting.DESCENDING

@@ -3,10 +3,8 @@ package com.example.rocketman.features.event
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-private const val ERROR_MSG_NO_INSTANCE = "Events repository must be initialized!"
-
-class Repo(
-    private val api: Api,
+class EventRepo(
+    private val api: EventApi,
     private val dao: EventDao
 ) {
 
@@ -26,3 +24,5 @@ class Repo(
         }
     }
 }
+
+private const val ERROR_MSG_NO_INSTANCE = "Events repository must be initialized!"

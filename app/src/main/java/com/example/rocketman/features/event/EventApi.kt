@@ -3,7 +3,7 @@ package com.example.rocketman.features.event
 import retrofit2.Response
 import retrofit2.http.GET
 
-interface Api {
+interface EventApi {
 
     @GET("history")
     suspend fun getEvents(): Response<List<Event>>
