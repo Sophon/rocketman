@@ -4,9 +4,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-class Repo(
+class CompanyRepo(
     private val dao: CompanyDao,
-    private val api: Api
+    private val api: CompanyApi
 ) {
 
     private suspend fun getRemoteCompanyData() = api.getCompanyInfo()

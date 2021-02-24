@@ -7,13 +7,13 @@ import retrofit2.Retrofit
 
 val companyModule = module {
 
-    fun provideCompanyApi(retrofit: Retrofit): Api {
-        return retrofit.create(Api::class.java)
+    fun provideCompanyApi(retrofit: Retrofit): CompanyApi {
+        return retrofit.create(CompanyApi::class.java)
     }
 
     single { provideCompanyApi(get()) }
     single { get<RocketManDB>().companyDao() }
-    single { Repo(get(), get()) }
+    single { CompanyRepo(get(), get()) }
 
     viewModel { CompanyVM(get()) }
 }
