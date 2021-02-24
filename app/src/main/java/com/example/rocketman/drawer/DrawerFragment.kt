@@ -70,10 +70,10 @@ class DrawerFragment: Fragment() {
             childFragmentManager,
             findNavController(),
             listOf(
-                R.navigation.event,
-                R.navigation.rocket,
-                R.navigation.launch,
-                R.navigation.company
+                R.navigation.nav_event,
+                R.navigation.nav_rocket,
+                R.navigation.nav_launch,
+                R.navigation.nav_company
             ),
             R.id.drawer_container,
             drawerSelectedItemId,
