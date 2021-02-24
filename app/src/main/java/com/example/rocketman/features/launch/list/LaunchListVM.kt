@@ -4,11 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rocketman.features.launch.Launch
-import com.example.rocketman.features.launch.Repo
+import com.example.rocketman.features.launch.LaunchRepo
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class LaunchListVM(private val repo: Repo): ViewModel() {
+class LaunchListVM(private val repo: LaunchRepo): ViewModel() {
 
     val launches = MutableLiveData<List<Launch>>()
     var filter = LaunchFilter.ALL
