@@ -9,13 +9,13 @@ import retrofit2.Retrofit
 
 val rocketModule = module {
 
-    fun provideRocketApi(retrofit: Retrofit): Api {
-        return retrofit.create(Api::class.java)
+    fun provideRocketApi(retrofit: Retrofit): RocketApi {
+        return retrofit.create(RocketApi::class.java)
     }
 
     single { provideRocketApi(get()) }
     single { get<RocketManDB>().rocketDao() }
-    single { Repo(get(), get()) }
+    single { RocketRepo(get(), get()) }
 
     viewModel { RocketListVM(get()) }
     viewModel { RocketDetailVM(get()) }

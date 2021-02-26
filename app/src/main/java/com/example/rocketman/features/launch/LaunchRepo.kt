@@ -1,7 +1,7 @@
 package com.example.rocketman.features.launch
 
-class Repo(
-    private val api: Api
+class LaunchRepo(
+    private val api: LaunchApi
 ) {
 
     suspend fun getAllRemoteLaunches() = api.getAllLaunches()

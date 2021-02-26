@@ -4,7 +4,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface Api {
+interface LaunchApi {
 
     @GET("launches")
     suspend fun getAllLaunches(): Response<List<Launch>>

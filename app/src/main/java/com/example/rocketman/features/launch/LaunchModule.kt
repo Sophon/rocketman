@@ -7,12 +7,12 @@ import retrofit2.Retrofit
 
 val launchModule = module {
 
-    fun provideLaunchApi(retrofit: Retrofit): Api {
-        return retrofit.create(Api::class.java)
+    fun provideLaunchApi(retrofit: Retrofit): LaunchApi {
+        return retrofit.create(LaunchApi::class.java)
     }
 
     single { provideLaunchApi(get()) }
-    single { Repo(get()) }
+    single { LaunchRepo(get()) }
 
     viewModel { LaunchListVM(get()) }
 }

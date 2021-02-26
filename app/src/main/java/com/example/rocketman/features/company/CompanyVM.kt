@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class CompanyVM(private val repo: Repo): ViewModel() {
+class CompanyVM(private val repo: CompanyRepo): ViewModel() {
 
     val companyData = MutableLiveData<Company>()
 

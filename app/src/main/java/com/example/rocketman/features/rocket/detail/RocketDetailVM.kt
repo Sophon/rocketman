@@ -3,13 +3,13 @@ package com.example.rocketman.features.rocket.detail
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rocketman.features.rocket.Repo
+import com.example.rocketman.features.rocket.RocketRepo
 import com.example.rocketman.features.rocket.Rocket
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class RocketDetailVM(private val repo: Repo): ViewModel() {
+class RocketDetailVM(private val repo: RocketRepo): ViewModel() {
 
     val rocket = MutableLiveData<Rocket>()
 
