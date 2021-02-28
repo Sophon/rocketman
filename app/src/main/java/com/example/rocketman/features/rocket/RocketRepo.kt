@@ -20,15 +20,17 @@ class RocketRepo(
     suspend fun updateLocalRockets() {
         val response = getRemoteRockets()
 
-        if(response.isSuccessful) {
-            Timber.d("$TAG: $SUCCESS_MSG_API")
-            response.body()?.let {
-                withContext(Dispatchers.IO) {
-                    dao.saveRockets(it)
+        response?.let {
+            if(response.isSuccessful) {
+                Timber.d("$TAG: $SUCCESS_MSG_API")
+                response.body()?.let {
+                    withContext(Dispatchers.IO) {
+                        dao.saveRockets(it)
+                    }
                 }
+            } else {
+                Timber.d("$TAG: $ERROR_MSG_API")
             }
-        } else {
-            Timber.d("$TAG: $ERROR_MSG_API")
         }
     }
 }
